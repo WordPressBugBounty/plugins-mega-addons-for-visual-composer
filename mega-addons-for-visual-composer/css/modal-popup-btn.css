@@ -52,8 +52,8 @@
     box-shadow: none;
     font: bold 131% sans-serif;
     position: absolute;
-    right: -100px;
-    top: -3px;
+    right: 5px;
+    top: 5px;
     border-radius: 10px;
     color: #fff;
     cursor: pointer;
@@ -313,4 +313,127 @@
 		-webkit-transform: scale3d(1, 1, 1);
 		transform: scale3d(1, 1, 1);
 	}
+}
+
+/* Native dialog and dependency-free fallback for the Modal Popup element. */
+.mega-model-popup {
+    display: none;
+    box-sizing: border-box;
+    max-height: calc(100vh - 2rem);
+    overflow: visible;
+    padding: 0;
+    color: inherit;
+    transition: opacity 0.2s ease;
+}
+.mega-model-popup[open] {
+    display: block;
+}
+.mega-model-popup .model-popup-container {
+    max-height: calc(100vh - 2rem);
+    overflow: auto;
+}
+.mega-model-popup::backdrop {
+    background-color: var(--maw-modal-overlay-color, #1a94ad);
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+.mega-model-popup.maw-modal-opening,
+.mega-model-popup.maw-modal-closing {
+    opacity: 0;
+}
+.mega-model-popup.maw-modal-closing::backdrop {
+    opacity: 0;
+}
+.mega-model-popup .b-close {
+    appearance: none;
+    -webkit-appearance: none;
+    border: 0;
+    z-index: 2;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.68);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    padding: 0;
+}
+.mega-model-popup .b-close img {
+    display: block;
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+}
+.mega-model-popup .b-close:focus,
+.mega-model-popup .b-close:focus-visible {
+    outline: 3px solid #111827;
+    outline-offset: 3px;
+}
+.maw__modal_popup_box .model-popup-btn:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+}
+.maw-modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    isolation: isolate;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+.maw-modal-backdrop {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    transition: opacity 0.2s ease;
+}
+.maw-modal-overlay .mega-model-popup[open] {
+    z-index: 1;
+}
+.maw-modal-overlay.is-open {
+    display: flex;
+    opacity: 1;
+}
+.maw-modal-overlay.is-closing,
+.maw-modal-backdrop.is-closing {
+    opacity: 0;
+}
+.maw-modal-overlay .mega-model-popup[open] {
+    position: relative !important;
+    inset: auto !important;
+    left: auto !important;
+    top: auto !important;
+    margin: 0 !important;
+    transform: none;
+    max-height: calc(100vh - 2rem);
+}
+.maw-modal-overlay .mega-model-popup[open] .model-popup-container {
+    max-height: calc(100vh - 2rem);
+}
+@media (max-width: 768px) {
+    .mega-model-popup {
+        margin-top: 0 !important;
+    }
+    .mega-model-popup .model-popup-container {
+        max-height: calc(100vh - 1rem);
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .mega-model-popup,
+    .mega-model-popup::backdrop,
+    .maw-modal-overlay,
+    .maw-modal-backdrop {
+        animation: none !important;
+        transition: none !important;
+    }
 }

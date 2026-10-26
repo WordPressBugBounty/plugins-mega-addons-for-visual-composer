@@ -22,10 +22,10 @@ class WPBakeryShortCode_vc_creativelink extends WPBakeryShortCode {
 			'transform'		=>		'default',
 			'google_fonts'	=>		'default',
 		), $atts ) );
-		$some_id = rand(5, 500);
+		$some_id = VC_MEGA::next_instance_id();
 		$url = vc_build_link($url);
-		wp_enqueue_style( 'creative-css', plugins_url( '../css/creativelink.css' , __FILE__ ));
-		wp_enqueue_script( 'creative-js', plugins_url( '../js/creativelink.js' , __FILE__ ), array('jquery', 'jquery-ui-core'));
+		wp_enqueue_style( 'creative-css', plugins_url( '../css/creativelink.css' , __FILE__ ), array(), VC_MEGA::VERSION);
+		wp_enqueue_script( 'creative-js', plugins_url( '../js/creativelink.js' , __FILE__ ), array('jquery', 'jquery-ui-core'), VC_MEGA::VERSION, false);
 		$content = wpb_js_remove_wpautop($content, true);
 		ob_start(); ?>
 		<div class="<?php echo esc_attr($style); ?> creative_link_wrapper creative_link_<?php echo esc_attr($some_id); ?> <?php echo esc_attr($classname); ?>" style="text-align: <?php echo esc_attr($align); ?>;">
@@ -132,17 +132,17 @@ class WPBakeryShortCode_vc_creativelink extends WPBakeryShortCode {
 
 
 vc_map( array(
-	"name" 			=> __( 'Creative Links', 'creativelink' ),
+	"name" 			=> __( 'Creative Links', 'mega-addons-for-visual-composer' ),
 	"base" 			=> "vc_creativelink",
-	"category" 		=> __('Mega Addons'),
-	"description" 	=> __('Creative links button', 'creativelink'),
+	"category" 		=> __('Mega Addons', 'mega-addons-for-visual-composer'),
+	"description" 	=> __('Creative links button', 'mega-addons-for-visual-composer'),
 	"icon" => plugin_dir_url( __FILE__ ).'../icons/creativelink.png',
 	'params' => array(
 		array(
 			"type" 			=> 	"dropdown",
-			"heading" 		=> 	__( 'Effect Style', 'creativelink' ),
+			"heading" 		=> 	__( 'Effect Style', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"style",
-			"description" 	=> 	__( 'Select effect style <a href="https://addons.topdigitaltrends.net/creative-link/" target="_blank">See Demo</a>', 'creativelink' ),
+			"description" 	=> 	__( 'Select effect style', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'General',
 				"value" 		=> array(
 					"Effect 1"		=> "cl-effect-1",
@@ -168,9 +168,9 @@ vc_map( array(
 
 		array(
 			"type" 			=> 	"dropdown",
-			"heading" 		=> 	__( 'Button Align', 'creativelink' ),
+			"heading" 		=> 	__( 'Button Align', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"align",
-			"description" 	=> 	__( 'select text align', 'creativelink' ),
+			"description" 	=> 	__( 'select text align', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'General',
 				"value" 		=> array(
 					"Left"		=> "left",
@@ -181,23 +181,23 @@ vc_map( array(
 
 		array(
 			"type" 			=> 	"textfield",
-			"heading" 		=> 	__( 'Text', 'creativelink' ),
+			"heading" 		=> 	__( 'Text', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"text",
-			"description" 	=> 	__( 'write button text', 'creativelink' ),
+			"description" 	=> 	__( 'write button text', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'General',
 		),
 
 		array(
 			"type" 			=> 	"vc_link",
-			"heading" 		=> 	__( 'Button URL', 'creativelink' ),
+			"heading" 		=> 	__( 'Button URL', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"url",
-			"description" 	=> 	__( 'write url as link', 'creativelink' ),
+			"description" 	=> 	__( 'write url as link', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'General',
 		),
 
 		array(
             "type" 			=> 	"textfield",
-			"heading" 		=> 	__( 'Extra class name', 'megaaddons' ),
+			"heading" 		=> 	__( 'Extra class name', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"classname",
 			"description" 	=> 	"Style particular content element differently - add a class name and refer to it in custom CSS.",
 			"group" 		=> 	'General',
@@ -207,39 +207,39 @@ vc_map( array(
 			"type" 			=> "vc_links",
 			"param_name" 	=> "caption_url",
 			"class"			=>	"ult_param_heading",
-			"description" 	=> __( '<span style="Background: #ddd;padding: 10px; display: block; color: #0073aa;font-weight:600;"><a href="https://1.envato.market/02aNL" target="_blank" style="text-decoration: none;">Get the Pro version for more stunning elements and customization options.</a></span>', 'ihover' ),
+			"description" 	=> '<span style="Background: #ddd;padding: 10px; display: block; color: #0073aa;font-weight:600;">' . '<a href="https://1.envato.market/02aNL" target="_blank" style="text-decoration: none;">' . esc_html__( 'Get the Pro version for more stunning elements and customization options.', 'mega-addons-for-visual-composer' ) . '</a>' . '</span>',
 			"group" 		=> 'General',
 		),
         
 		array(
 			"type" 			=> 	"colorpicker",
-			"heading" 		=> 	__( 'Text Color', 'creativelink' ),
+			"heading" 		=> 	__( 'Text Color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"clr",
-			"description" 	=> 	__( 'select button color', 'creativelink' ),
+			"description" 	=> 	__( 'select button color', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'Color',
 		),
 
 		array(
 			"type" 			=> 	"colorpicker",
-			"heading" 		=> 	__( 'Background Color', 'creativelink' ),
+			"heading" 		=> 	__( 'Background Color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"bgclr",
-			"description" 	=> 	__( 'select button background color', 'creativelink' ),
+			"description" 	=> 	__( 'select button background color', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'Color',
 		),
 
 		array(
 			"type" 			=> 	"colorpicker",
-			"heading" 		=> 	__( 'Hover Text Color', 'creativelink' ),
+			"heading" 		=> 	__( 'Hover Text Color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"hoverclr",
-			"description" 	=> 	__( 'select button color on hover', 'creativelink' ),
+			"description" 	=> 	__( 'select button color on hover', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'Color',
 		),
 
 		array(
 			"type" 			=> 	"colorpicker",
-			"heading" 		=> 	__( 'Hover Background Color', 'creativelink' ),
+			"heading" 		=> 	__( 'Hover Background Color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"hoverbg",
-			"description" 	=> 	__( 'select button background color on hover', 'creativelink' ),
+			"description" 	=> 	__( 'select button background color on hover', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'Color',
 		),
 
@@ -247,7 +247,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Text Size [PC]', 'creativelink' ),
+			"heading" 		=> 	__( 'Text Size [PC]', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"size",
 			"edit_field_class" => "vc_col-sm-6",
 			"value"			=>	"18",
@@ -257,7 +257,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Text Size [Mobile]', 'creativelink' ),
+			"heading" 		=> 	__( 'Text Size [Mobile]', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"text_mblsize",
 			"edit_field_class" => "vc_col-sm-6",
 			"suffix" 		=> 'px',
@@ -266,7 +266,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Transform', 'button' ),
+			"heading" 		=> __( 'Transform', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "transform",
 			"group" 		=> 'Typography',
 			"value"			=>	array(

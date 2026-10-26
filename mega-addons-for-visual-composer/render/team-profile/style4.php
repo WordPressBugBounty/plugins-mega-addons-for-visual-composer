@@ -1,6 +1,7 @@
-<?php $some_id = rand(5, 500); ?>
-<?php $hex = $member_clr; 
-list($r, $g, $b) = sscanf($hex, "#%02x%02x%02x"); ?>
+<?php if ( ! defined( 'ABSPATH' ) ) { exit; } ?>
+<?php $some_id = VC_MEGA::next_instance_id(); ?>
+<?php $hex = is_string( $member_clr ) && preg_match( '/^#[0-9a-fA-F]{3}(?:[0-9a-fA-F]{3})?$/D', $member_clr ) ? ( strlen( $member_clr ) === 4 ? '#' . $member_clr[1] . $member_clr[1] . $member_clr[2] . $member_clr[2] . $member_clr[3] . $member_clr[3] : $member_clr ) : '#000000';
+$r = hexdec( substr( $hex, 1, 2 ) ); $g = hexdec( substr( $hex, 3, 2 ) ); $b = hexdec( substr( $hex, 5, 2 ) ); ?>
 
 <?php if ($member_visibility == 'smart') { ?>
 	<div class="mega_team_case_4 mega_team_case_4<?php echo esc_attr($some_id); ?> <?php echo esc_attr($classname); ?>" style="width: <?php echo esc_attr($pro_size); ?>px;">
@@ -50,6 +51,6 @@ list($r, $g, $b) = sscanf($hex, "#%02x%02x%02x"); ?>
 
 <style>
 	.mega_team_case_4<?php echo esc_attr($some_id); ?>:hover .mega_wrap {
-	    <?php echo "background-color: rgba($r, $g, $b, 0.5) !important;" ?>
+	    <?php echo esc_html( "background-color: rgba($r, $g, $b, 0.5) !important;" ); ?>
 	}
 </style>

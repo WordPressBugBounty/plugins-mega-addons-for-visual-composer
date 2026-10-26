@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 if (!class_exists('VC_Number_Param')) {
     class VC_Number_Param {
         function __construct() {

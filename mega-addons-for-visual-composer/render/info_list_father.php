@@ -19,7 +19,7 @@ class WPBakeryShortCode_info_list_father extends WPBakeryShortCodesContainer {
 		$GLOBALS['maw_infolist_liststyle'] = $liststyle; $GLOBALS['maw_infolist_listclr'] = $listclr;
 		$content = wpb_js_remove_wpautop($content, true);
 		$css_class = apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class( $css, ' ' ), $this->settings['base'], $atts );
-		wp_enqueue_style( 'info-list-css', plugins_url( '../css/infolist.css' , __FILE__ ));
+		wp_enqueue_style( 'info-list-css', plugins_url( '../css/infolist.css' , __FILE__ ), array(), VC_MEGA::VERSION);
 		ob_start(); ?>
 		<ul class="mega-info-list <?php echo esc_attr($css_class); ?>" style="list-style-type: none; height: 100%;">
 			<?php echo wp_kses_post($content); ?>
@@ -32,19 +32,19 @@ class WPBakeryShortCode_info_list_father extends WPBakeryShortCodesContainer {
 
 vc_map( array(
 	"base" 			=> "info_list_father",
-	"name" 			=> __( 'Info List', 'infolist' ),
+	"name" 			=> __( 'Info List', 'mega-addons-for-visual-composer' ),
 	"as_parent" 	=> array('only' => 'info_list_son'),
 	"content_element" => true,
 	"js_view" 		=> 'VcColumnView',
-	"category" 		=> __('Mega Addons'),
-	"description" 	=> __('Text blocks connected together in one list', ''),
+	"category" 		=> __('Mega Addons', 'mega-addons-for-visual-composer' ),
+	"description" 	=> __('Text blocks connected together in one list', 'mega-addons-for-visual-composer'),
 	"icon" => plugin_dir_url( __FILE__ ).'../icons/infolist.png',
 	'params' => array(
 		array(
 			"type" 			=> 	"dropdown",
-			"heading" 		=> 	__( 'Style', 'infolist' ),
+			"heading" 		=> 	__( 'Style', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"theme",
-			"description" 	=> 	__( 'choose style <a href="http://addons.topdigitaltrends.net/info-list/">See demo</a>', 'infolist' ),
+			"description" 	=> 	__( 'choose style', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Settings',
 			"value"			=> array(
 				"Left Align"			=>	"left",
@@ -54,27 +54,27 @@ vc_map( array(
 		
 		array(
             "type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Connector Line Height', 'infolist' ),
+			"heading" 		=> 	__( 'Connector Line Height', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"connector_h",
-			"description" 	=> 	__( 'line between to info list. set in pixel default 30', 'infolist' ),
+			"description" 	=> 	__( 'line between to info list. set in pixel default 30', 'mega-addons-for-visual-composer' ),
 			"value"			=>	"30",
 			"suffix" 		=> 'px',
 			"group" 		=> 	'Settings',
         ),
 		array(
             "type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Connector Width', 'infolist' ),
+			"heading" 		=> 	__( 'Connector Width', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"listwidth",
-			"description" 	=> 	__( 'set connector line width for info list in pixel eg, 1', 'infolist' ),
+			"description" 	=> 	__( 'set connector line width for info list in pixel eg, 1', 'mega-addons-for-visual-composer' ),
 			"value"			=>	"1",
 			"suffix" 		=> 'px',
 			"group" 		=> 	'Settings',
         ),
 		array(
 			"type" 			=> 	"dropdown",
-			"heading" 		=> 	__( 'Line Style', 'infolist' ),
+			"heading" 		=> 	__( 'Line Style', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"liststyle",
-			"description" 	=> 	__( 'set border style for info list', 'infolist' ),
+			"description" 	=> 	__( 'set border style for info list', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Settings',
 			"value"			=> array(
 				"Solid"			=>	"solid",
@@ -85,16 +85,16 @@ vc_map( array(
 		),
 		array(
 			"type" 			=> 	"colorpicker",
-			"heading" 		=> 	__( 'Line color', 'infolist' ),
+			"heading" 		=> 	__( 'Line color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"listclr",
-			"description" 	=> __('set connector line color for info list', 'infolist'),
+			"description" 	=> __('set connector line color for info list', 'mega-addons-for-visual-composer'),
 			"group" 		=> 'Settings',
 		),
 
 
 		array(
 			"type" 			=> 	"css_editor",
-			"heading" 		=> 	__( 'Design Options', 'infolist' ),
+			"heading" 		=> 	__( 'Design Options', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"css",
 			"group" 		=> 'Design Options',
 		),

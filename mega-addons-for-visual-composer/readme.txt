@@ -1,20 +1,19 @@
 === Mega Addons For WPBakery Page Builder ===
-Contributors: nasir179125, smokehunt
+Contributors: genialsouls, nasir179125, smokehunt
 Donate link: https://www.paypal.com/donate/?token=IEJu3QF5rsSIXSKPvPFBAyFldUM4WbkVRzGfUQ4ZSTSZcI3_hiYjVvr5fcz8_MFFwzeW5W&country.x=GB&locale.x=GB
-Tags: mega addons for wpbakery page builder, mega addons for visual composer, visual composer, all in one plugin, visual composer extension, whatsapp chat, imag hover effects, portfolio, carousel for wpbakery, post, shortcodes, tabs, member profile, info banner, price table, stats counter, flip book, testimonial, filterable gallery, floating menu,
-Requires at least: 3.5
-Tested up to: 6.2
-Stable tag: 4.3.0
-License: GPLv2 or later
+Tags: wpbakery, visual composer, carousel, portfolio, pricing table
+Requires at least: 4.9
+Tested up to: 7.1
+Stable tag: 4.4.0
+License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-34+ Addons WPBakery extension, Beautifully designed unique elements, Includes Premium quality addons For WPBakery Page Builder.
+A collection of customizable elements for WPBakery Page Builder.
 
 == Description ==
 
-Mega Addons For WPBakery Page Builder ~ The biggest Addon bundle for WPBakery With 34+ highly customizable elements and add-ons. This Addon Bundle provide you everything for your WPBakery Page Builder. Addons for WPBakery features professional looking, easy to use yet highly functional extensions that can be used in a WPBakery page builder.
+Mega Addons for WPBakery Page Builder adds customizable elements to pages built with WPBakery Page Builder. WPBakery Page Builder must be installed and activated separately; it is not included with this plugin.
 
-[Check WPBakery Addons Demo Pages](http://addons.topdigitaltrends.net/)
 
 [WPBakery Page Builder (formerly Visual Composer)](https://1.envato.market/A1QAx) plugin must be installed and activated to use this plugin. After you activate the required plugins, the elements should be available for use in WPBakery Page Builder.
 
@@ -24,14 +23,11 @@ Mega Addons For WPBakery Page Builder ~ The biggest Addon bundle for WPBakery Wi
 We’ve implemented freehand design experience in many elements and addons to make it easier to design amazing layouts using your mouse.
 Each element comes with bunch of options to control every possible things. You can achieve nearly any design with your imagination.
 
-### Light Weight & Instant Loading
-No extra resources or messy codes to slow down your website. Optimized for super fast loading and instant Live editing.
-
 ### Elements Control option
 Enable and disable individual elements to make your page loading faster and smoother. You can deactivate unnecessary widgets to keep the site lite.
 
-### FULLY RESPONSIVE & CROSS BROWSER READY
-Each Element and addon has been tested on different screen sizes, mobile devices, and tablets keeping in mind to add special responsive controls for the tricky widgets and addons we create.
+### Responsive controls
+Many elements include settings to adjust their layout on different screen sizes.
 
 
 
@@ -43,58 +39,58 @@ We have support team ready to help you. Ask your questions in the support forum,
 
 ### FREE WIDGETS AND COUNTING
 
-We have designed 33+ of the most useful widgets to enhance your WPBakery Page Building experience and allow you to climb the top of your design capabilities.
+The free version includes elements for common page-building tasks, including:
 
 
-1.	[Advanced Carousel](http://addons.topdigitaltrends.net/carousal-slider/) - Turn any content Into carousel
-2.	[Team Members](http://addons.topdigitaltrends.net/member-profile/) - Feature your team members with few clicks
-3.	[Info Banner](http://addons.topdigitaltrends.net/info-banner/) - Displays the banner information
-4.	[Image Hove Effects](http://addons.topdigitaltrends.net/image-hover-effects/) - Image Hover Effects
-5.	[Interactive Banner](http://addons.topdigitaltrends.net/interactive-banner/) - great hover effects
-6.	[Pricing Table](http://addons.topdigitaltrends.net/price-table/) - Create nice looking pricing table
-7.	[Timeline](http://addons.topdigitaltrends.net/timeline/) - Add multiple images and text
-8.	[Stats Counter](http://addons.topdigitaltrends.net/stats-counter/) - Your milestones, achievements etc
-9.	[Info Box](http://addons.topdigitaltrends.net/info-box/) - Add icon box with custom font icon
-10.	[Flip Box](http://addons.topdigitaltrends.net/flip-box/) - Add icon box with custom font icon
-11.	[Advanced Button](http://addons.topdigitaltrends.net/advanced-button/) - Animated style buttons
-12.	[Price Table Listing](http://addons.topdigitaltrends.net/advanced-pricing-list/) - Compare Listing
-13.	[Filterable Gallery](http://addons.topdigitaltrends.net/filterable-gallery/) - (Pro options) 2 More Hover Effects + Video Popup option
-14.	[Creative Links](http://addons.topdigitaltrends.net/creative-link/) - Creative links button
-15.	[Countdown](http://addons.topdigitaltrends.net/countdown/) - Set Countdown timer
-16.	[Advanced Social Icons](http://addons.topdigitaltrends.net/advanced-social-icons/) - social icons with animated effects
-17.	[TextTyper Typing](http://addons.topdigitaltrends.net/texttype-effects/) - Fancy line with animation effects
-18.	[Modal Popup](http://addons.topdigitaltrends.net/modal-popup/) - Add modal box in your content
-19.	[Info List](http://addons.topdigitaltrends.net/info-list/) - Text blocks connected together in one list
-20.	[Google Trends](http://addons.topdigitaltrends.net/google-trends/) - show google trends
-21.	[Tooltip Icons](http://addons.topdigitaltrends.net/tooltip-icons/) - show icons with tooltip
-22.	[Testimonial](http://addons.topdigitaltrends.net/testimonial/) - show client comments as testimonial
-23.	[Headings](http://addons.topdigitaltrends.net/headings/) - Display stylish headings
-24.	[Highlight Box](http://addons.topdigitaltrends.net/highlight-box/) - Beautiful designed buttons for highlight
-25.	[Accordion](http://addons.topdigitaltrends.net/accordion/) - vertically stacked list of items
-26.	[Image Swap](http://addons.topdigitaltrends.net/image-swap/) - Image over image hover effects
-27.	[Info Circle](http://addons.topdigitaltrends.net/info-circle/) - express info about your work
+1.	Advanced Carousel - Turn any content Into carousel
+2.	Team Members - Feature your team members with few clicks
+3.	Info Banner - Displays the banner information
+4.	Image Hove Effects - Image Hover Effects
+5.	Interactive Banner - great hover effects
+6.	Pricing Table - Create nice looking pricing table
+7.	Timeline - Add multiple images and text
+8.	Stats Counter - Your milestones, achievements etc
+9.	Info Box - Add icon box with custom font icon
+10.	Flip Box - Add icon box with custom font icon
+11.	Advanced Button - Animated style buttons
+12.	Price Table Listing - Compare Listing
+13.	Filterable Gallery - (Pro options) 2 More Hover Effects + Video Popup option
+14.	Creative Links - Creative links button
+15.	Countdown - Set Countdown timer
+16.	Advanced Social Icons - social icons with animated effects
+17.	TextTyper Typing - Fancy line with animation effects
+18.	Modal Popup - Add modal box in your content
+19.	Info List - Text blocks connected together in one list
+20.	Google Trends - show google trends
+21.	Tooltip Icons - show icons with tooltip
+22.	Testimonial - show client comments as testimonial
+23.	Headings - Display stylish headings
+24.	Highlight Box - Beautiful designed buttons for highlight
+25.	Accordion - vertically stacked list of items
+26.	Image Swap - Image over image hover effects
+27.	Info Circle - express info about your work
 
 ### More elements on [Premium Version](https://1.envato.market/02aNL)
 
-1.	[Post Carousel](http://addons.topdigitaltrends.net/post-carousel/) - Show posts as carousel slider
-2.	[Flip Book](http://addons.topdigitaltrends.net/flip-book/) - 3D Page Flip Book
-3.	[Post Grid](http://addons.topdigitaltrends.net/post-carousel/) - Show posts as Grid styles
-4.	[Modal Popup For Image Hover Effects](http://addons.topdigitaltrends.net/image-hover-effects-popup-demo/) - Modal popup & Lightbox for Image Hover Effects
-5.	[Filterable Gallery](http://addons.topdigitaltrends.net/filterable-gallery/) - Display images with separate categories
-6.	[WP Floating Menu](http://addons.topdigitaltrends.net/wp-floating-menu/) - Create beautiful one page websites using this module
-5.	[Dual Button](http://addons.topdigitaltrends.net/dual-button/) - Add a dual button and give some design
-7.	[Before After Image Comparison](http://addons.topdigitaltrends.net/before-after-image/) - Let your viewers compare between two images
-8.	[Info Circle](http://addons.topdigitaltrends.net/info-circle/) - (Slide Option) express info about your work
-10.	[Interactive Banner 2](http://addons.topdigitaltrends.net/interactive-banner-2/) - Display Image With Information
-11.	[Team Members](http://addons.topdigitaltrends.net/member-profile/) - (3 More Designs) Feature your team members with few clicks
-12.	[Interactive Banner](http://addons.topdigitaltrends.net/interactive-banner/) (10 More Effects) - great hover effects
-13.	[Pricing Table](http://addons.topdigitaltrends.net/price-table/) - Create nice looking pricing tables
-14.	[Advanced Carousel](http://addons.topdigitaltrends.net/carousal-slider/) - (Pro options) Turn any content Into carousel
-15.	[Flip Box](http://addons.topdigitaltrends.net/flip-box/) - (3D Text Flip) Add icon box with custom font icon
-16.	[Modal Popup](http://addons.topdigitaltrends.net/modal-popup/) - (6+ Button Effects ) Add modal box in your content
-17.	[Accordion](http://addons.topdigitaltrends.net/accordion/) - (7+ Theme Design ) vertically stacked list of items
-18.	[WhatsApp Chat](https://addons.topdigitaltrends.net/whatsapp-chat-wordpress/) - Get instant WhatsApp messages right from your website visitors.
-19.	[360 Product View](https://addons.topdigitaltrends.net/360-product-viewer/) - Interactive 3D image rotation in WordPress.
+1.	Post Carousel - Show posts as carousel slider
+2.	Flip Book - 3D Page Flip Book
+3.	Post Grid - Show posts as Grid styles
+4.	Modal Popup For Image Hover Effects - Modal popup & Lightbox for Image Hover Effects
+5.	Filterable Gallery - Display images with separate categories
+6.	WP Floating Menu - Create beautiful one page websites using this module
+5.	Dual Button - Add a dual button and give some design
+7.	Before After Image Comparison - Let your viewers compare between two images
+8.	Info Circle - (Slide Option) express info about your work
+10.	Interactive Banner 2 - Display Image With Information
+11.	Team Members - (3 More Designs) Feature your team members with few clicks
+12.	Interactive Banner (10 More Effects) - great hover effects
+13.	Pricing Table - Create nice looking pricing tables
+14.	Advanced Carousel - (Pro options) Turn any content Into carousel
+15.	Flip Box - (3D Text Flip) Add icon box with custom font icon
+16.	Modal Popup - (6+ Button Effects ) Add modal box in your content
+17.	Accordion - (7+ Theme Design ) vertically stacked list of items
+18.	WhatsApp Chat - Get instant WhatsApp messages right from your website visitors.
+19.	360 Product View - Interactive 3D image rotation in WordPress.
 
 
 ### Looking for a Best themes?
@@ -109,6 +105,10 @@ Businesses like restaurants, lawyers, agencies, interior designers, charity, plu
 
 = WHY PEOPLE LOVE THE MEGA ADDONS? =
 Over 60000+ users are empowering their websites with Mega Addons! From beginners to experts, everyone is loving Addons for its performance and ease of use.
+
+== Third-party services ==
+
+This plugin includes a Google Trends element. Site administrators can add Google-provided embed code to display Google Trends charts on a page. When that embed code runs in a visitor's browser, it requests content from Google; Google may receive request and browser/device information. Google's processing is subject to its [Terms of Service](https://policies.google.com/terms) and [Privacy Policy](https://policies.google.com/privacy). For information about Google Trends data, see Google's [Trends FAQ](https://support.google.com/trends/answer/4365533?hl=en).
 
 == Installation ==
 
@@ -138,8 +138,7 @@ Addons for WPBakery is light weight and we also gave you the control to enable o
 
 = How To add background image in Info Banner? =
 
-Select background image from "Design Options" category. You can see Its demo at the end of page http://addons.topdigitaltrends.net/info-banner/
-
+Select background image from "Design Options" category.
 
 = Activating plugin causes "500 server error" =
 
@@ -148,18 +147,32 @@ https://www.youtube.com/watch?time_continue=387&v=Qj4tfvMlcJs
 
 == Screenshots ==
 
-1. Enable/Disable Elements
-2. Mega Addons elements in WPBakery Page Builder
+1. Mega Addons elements in the WPBakery Page Builder element picker
+2. Enable and disable Mega Addons elements from plugin settings
 3. 3D Page Flip Book
 4. Show your awesome Team
 5. Image Hover Effects
 6. Lightbox & Modal Popup
 7. Pricing Table
-8. vertically stacked list of items
+8. Timeline element with connected items
 9. Post Carousel
 
 
 == Changelog ==
+
+= 4.4.0 =
+* Temporarily hid unavailable online demo links in element settings and plugin documentation.
+* Compatibility: Legacy custom markup using iHover square effects 16–20 may no longer display those hover effects. Supported shortcode effects are unchanged.
+* Updated the Advanced Carousel runtime to the verified upstream Slick 1.8.1 distribution while preserving saved carousel settings and shortcode behavior.
+* Improved modal keyboard focus and repeat open/close behavior while preserving the existing modal shortcode and saved content.
+* Prevented plugin-generated Google Fonts requests and added safe theme/system font fallback behavior without changing saved font attributes.
+* Added a safe fallback for the Google Trends element; existing saved content is retained without executing a remote chart loader.
+* Improved translation coverage and asset enqueue compliance across existing elements.
+
+= 4.3.1 =
+* Hardened authorization and validation for settings updates.
+* Improved input validation and escaping for shortcode-generated output and URLs.
+* Added direct-access guards to affected PHP files.
 
 = 4.3.0 – 04/05/2023 =
 * Vulnerable security issue is fixed. The vulnerability reported is the plugins do not validate and escape some of their shortcode attributes..
@@ -257,3 +270,8 @@ https://www.youtube.com/watch?time_continue=387&v=Qj4tfvMlcJs
 
 = 1.0 =
 * First Version
+
+== Upgrade Notice ==
+
+= 4.4.0 =
+Review the compatibility note for legacy custom markup using iHover square effects 16–20. Supported shortcode options are unchanged.

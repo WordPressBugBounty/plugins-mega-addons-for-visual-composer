@@ -65,7 +65,7 @@ class WPBakeryShortCode_mvc_team_profile extends WPBakeryShortCode {
 		if ($image_id2 != '') {
 			$image_url2 = wp_get_attachment_url( $image_id2 );		
 		}
-		wp_enqueue_style( 'memberprofile-css', plugins_url( '../css/memberprofile.css' , __FILE__ ));
+		wp_enqueue_style( 'memberprofile-css', plugins_url( '../css/memberprofile.css' , __FILE__ ), array(), VC_MEGA::VERSION);
 		$content = wpb_js_remove_wpautop($content, true);
 		ob_start(); ?>
 		
@@ -98,17 +98,17 @@ class WPBakeryShortCode_mvc_team_profile extends WPBakeryShortCode {
 
 
 vc_map( array(
-	"name" 			=> __( 'Member Profile', 'memberprofile' ),
+	"name" 			=> __( 'Member Profile', 'mega-addons-for-visual-composer' ),
 	"base" 			=> "mvc_team_profile",
-	"category" 		=> __('Mega Addons'),
-	"description" 	=> __('Show your awesome team', 'memberprofile'),
+	"category" 		=> __('Mega Addons', 'mega-addons-for-visual-composer'),
+	"description" 	=> __('Show your awesome team', 'mega-addons-for-visual-composer'),
 	"icon" => plugin_dir_url( __FILE__ ).'../icons/memberprofile.png',
 	'params' => array(
 		array(
             "type" 			=> 	"dropdown",
-			"heading" 		=> 	__( 'Member Style', 'memberprofile' ),
+			"heading" 		=> 	__( 'Member Style', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"member_visibility",
-			"description" 	=> 	__( 'Select style of member profile <a href="http://addons.topdigitaltrends.net/member-profile">See demo</a>', 'memberprofile' ),
+			"description" 	=> 	esc_html__( 'Select style of member profile', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'General',
 			"value" 		=> array(
 				"STYLE 1"		=> 		"grow", 
@@ -127,24 +127,24 @@ vc_map( array(
 
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Team Profile Width', 'memberprofile' ),
+			"heading" 		=> __( 'Team Profile Width', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "pro_size",
-			"description" 	=> __( 'custom size of profile container or leave blank for default', 'memberprofile' ),
+			"description" 	=> __( 'custom size of profile container or leave blank for default', 'mega-addons-for-visual-composer' ),
 			"suffix" 		=> 	'px',
 			"group" 		=> 'General',
 		),
 
         array(
             "type" 			=> 	"colorpicker",
-			"heading" 		=> 	__( 'Profile color', 'memberprofile' ),
+			"heading" 		=> 	__( 'Profile color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"member_clr",
-			"description" 	=> 	__( 'color effects for the team meber', 'memberprofile' ),
+			"description" 	=> 	__( 'color effects for the team meber', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'General',
         ),
 
         array(
 			"type" 			=> "vc_link",
-			"heading" 		=> __( 'Link To', 'member-vc' ),
+			"heading" 		=> __( 'Link To', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "url",
 			"dependency" => array('element' => "member_visibility", 'value' => array('grow', 'float', 'outset', 'smart', 'stalic', 'swap', 'minimic')),
 			"group" 		=> 'General',
@@ -152,32 +152,32 @@ vc_map( array(
 
     	array(
             "type" 			=> 	"attach_image",
-			"heading" 		=> 	__( 'Image', 'memberprofile' ),
+			"heading" 		=> 	__( 'Image', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"image_id",
-			"description" 	=> 	__( 'Select the image', 'memberprofile' ),
+			"description" 	=> 	__( 'Select the image', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'General',
         ),
 
         array(
             "type" 			=> 	"attach_image",
-			"heading" 		=> 	__( 'Image 2', 'memberprofile' ),
+			"heading" 		=> 	__( 'Image 2', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"image_id2",
 			"dependency" => array('element' => "member_visibility", 'value' => 'swap'),
-			"description" 	=> 	__( 'It will show on hover', 'memberprofile' ),
+			"description" 	=> 	__( 'It will show on hover', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'General',
         ),
 
 		array(
 			"type" 			=> "textfield",
-			"heading" 		=> __( 'Alternate Text', 'memberprofile' ),
+			"heading" 		=> __( 'Alternate Text', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "image_alt",
-			"description" 	=> __( 'It will be used as alt attribute of img tag', 'memberprofile' ),
+			"description" 	=> __( 'It will be used as alt attribute of img tag', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'General',
 		),
 
 		array(
             "type" 			=> 	"textfield",
-			"heading" 		=> 	__( 'Extra class name', 'megaaddons' ),
+			"heading" 		=> 	__( 'Extra class name', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"classname",
 			"description" 	=> 	"Style particular content element differently - add a class name and refer to it in custom CSS.",
 			"group" 		=> 	'General',
@@ -187,30 +187,30 @@ vc_map( array(
 			"type" 			=> "vc_links",
 			"param_name" 	=> "caption_url",
 			"class"			=>	"ult_param_heading",
-			"description" 	=> __( '<span style="Background: #ddd;padding: 10px; display: block; color: #0073aa;font-weight:600;"><a href="https://1.envato.market/02aNL" target="_blank" style="text-decoration: none;">Get the Pro version for more stunning elements and customization options.</a></span>', 'ihover' ),
+			"description" 	=> '<span style="Background: #ddd;padding: 10px; display: block; color: #0073aa;font-weight:600;">' . '<a href="https://1.envato.market/02aNL" target="_blank" style="text-decoration: none;">' . esc_html__( 'Get the Pro version for more stunning elements and customization options.', 'mega-addons-for-visual-composer' ) . '</a>' . '</span>',
 			"group" 		=> 'General',
 		),
 
 		array(
 			"type" 			=> "textfield",
-			"heading" 		=> __( 'Member name', 'memberprofile' ),
+			"heading" 		=> __( 'Member name', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "memb_name",
-			"description" 	=> __( 'Write member name', 'memberprofile' ),
+			"description" 	=> __( 'Write member name', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'About',
 		),
 		array(
 			"type" 			=> "textfield",
-			"heading" 		=> __( 'Profession', 'memberprofile' ),
+			"heading" 		=> __( 'Profession', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "memb_prof",
-			"description" 	=> __( 'Write member profession', 'memberprofile' ),
+			"description" 	=> __( 'Write member profession', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'About',
 		),
 
 		array(
 			"type" 			=> "textarea",
-			"heading" 		=> __( 'About', 'memberprofile' ),
+			"heading" 		=> __( 'About', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "memb_about",
-			"description" 	=> __( 'Info about member in detail', 'memberprofile' ),
+			"description" 	=> __( 'Info about member in detail', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'About',
 		),
 
@@ -218,37 +218,37 @@ vc_map( array(
 
 		array(
 			"type" 			=> "textfield",
-			"heading" 		=> __( 'Email', 'memberprofile' ),
+			"heading" 		=> __( 'Email', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "memb_email",
 			"dependency" => array('element' => "member_visibility", 'value' => array('grow', 'float', 'outset')),
-			"description" 	=> __( 'Write member email address or leave blank', 'memberprofile' ),
+			"description" 	=> __( 'Write member email address or leave blank', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Info',
 		),
 
 		array(
 			"type" 			=> "textfield",
-			"heading" 		=> __( 'Site Url', 'memberprofile' ),
+			"heading" 		=> __( 'Site Url', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "memb_url",
 			"dependency" => array('element' => "member_visibility", 'value' => array('grow', 'float', 'outset')),
-			"description" 	=> __( 'Write member site url or leave blank', 'memberprofile' ),
+			"description" 	=> __( 'Write member site url or leave blank', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Info',
 		),
 
 		array(
 			"type" 			=> "textfield",
-			"heading" 		=> __( 'Contact number', 'memberprofile' ),
+			"heading" 		=> __( 'Contact number', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "memb_numb",
 			"dependency" => array('element' => "member_visibility", 'value' => array('grow', 'float', 'outset')),
-			"description" 	=> __( 'Write member contact number or leave blank', 'memberprofile' ),
+			"description" 	=> __( 'Write member contact number or leave blank', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Info',
 		),
 
 		array(
 			"type" 			=> "textfield",
-			"heading" 		=> __( 'Address', 'memberprofile' ),
+			"heading" 		=> __( 'Address', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "memb_addr",
 			"dependency" => array('element' => "member_visibility", 'value' => array('grow', 'float', 'outset')),
-			"description" 	=> __( 'Write member address or leave blank', 'memberprofile' ),
+			"description" 	=> __( 'Write member address or leave blank', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Info',
 		),
 
@@ -256,104 +256,104 @@ vc_map( array(
 
 		array(
 			"type" 			=> "textfield",
-			"heading" 		=> __( 'Skill 1', 'memberprofile' ),
+			"heading" 		=> __( 'Skill 1', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "memb_skill",
 			"edit_field_class" => "vc_col-sm-8 edit_field_padding_top",
 			"dependency" => array('element' => "member_visibility", 'value' => array('grow', 'float', 'outset')),
-			"description" 	=> __( 'write your skill e.g Wordpress or leave blank', 'memberprofile' ),
+			"description" 	=> __( 'write your skill e.g Wordpress or leave blank', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Skill',
 		),
 
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'First percentage', 'memberprofile' ),
+			"heading" 		=> __( 'First percentage', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "memb_perl",
 			"edit_field_class" => "vc_col-sm-4 edit_field_padding_top",
 			"dependency" => array('element' => "member_visibility", 'value' => array('grow', 'float', 'outset')),
-			"description" 	=> __( 'first skill percentage e.g 87 or leave blank', 'memberprofile' ),
+			"description" 	=> __( 'first skill percentage e.g 87 or leave blank', 'mega-addons-for-visual-composer' ),
 			"suffix" 		=> 	'%',
 			"group" 		=> 'Skill',
 		),
 
 		array(
 			"type" 			=> "textfield",
-			"heading" 		=> __( 'Skill 2', 'memberprofile' ),
+			"heading" 		=> __( 'Skill 2', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "memb_skill2",
 			"edit_field_class" => "vc_col-sm-8",
 			"dependency" => array('element' => "member_visibility", 'value' => array('grow', 'float', 'outset')),
-			"description" 	=> __( 'write your skill e.g Wordpress or leave blank', 'memberprofile' ),
+			"description" 	=> __( 'write your skill e.g Wordpress or leave blank', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Skill',
 		),
 
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Second percentage', 'memberprofile' ),
+			"heading" 		=> __( 'Second percentage', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "memb_per2",
 			"edit_field_class" => "vc_col-sm-4",
 			"dependency" => array('element' => "member_visibility", 'value' => array('grow', 'float', 'outset')),
-			"description" 	=> __( 'second skill percentage e.g 83 or leave blank', 'memberprofile' ),
+			"description" 	=> __( 'second skill percentage e.g 83 or leave blank', 'mega-addons-for-visual-composer' ),
 			"suffix" 		=> 	'%',
 			"group" 		=> 'Skill',
 		),
 
 		array(
 			"type" 			=> "textfield",
-			"heading" 		=> __( 'Skill 3', 'memberprofile' ),
+			"heading" 		=> __( 'Skill 3', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "memb_skill3",
 			"edit_field_class" => "vc_col-sm-8",
 			"dependency" => array('element' => "member_visibility", 'value' => array('grow', 'float', 'outset')),
-			"description" 	=> __( 'write your skill e.g Wordpress or leave blank', 'memberprofile' ),
+			"description" 	=> __( 'write your skill e.g Wordpress or leave blank', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Skill',
 		),
 
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Third percentage', 'memberprofile' ),
+			"heading" 		=> __( 'Third percentage', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "memb_per3",
 			"edit_field_class" => "vc_col-sm-4",
 			"dependency" => array('element' => "member_visibility", 'value' => array('grow', 'float', 'outset')),
-			"description" 	=> __( 'third skill percentage e.g 83 or leave blank', 'memberprofile' ),
+			"description" 	=> __( 'third skill percentage e.g 83 or leave blank', 'mega-addons-for-visual-composer' ),
 			"suffix" 		=> 	'%',
 			"group" 		=> 'Skill',
 		),
 		array(
 			"type" 			=> "textfield",
-			"heading" 		=> __( 'Skill 4', 'memberprofile' ),
+			"heading" 		=> __( 'Skill 4', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "memb_skill4",
 			"edit_field_class" => "vc_col-sm-8",
 			"dependency" => array('element' => "member_visibility", 'value' => array('grow', 'float', 'outset')),
-			"description" 	=> __( 'write your skill e.g Wordpress or leave blank', 'memberprofile' ),
+			"description" 	=> __( 'write your skill e.g Wordpress or leave blank', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Skill',
 		),
 
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Fourth percentage', 'memberprofile' ),
+			"heading" 		=> __( 'Fourth percentage', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "memb_per4",
 			"edit_field_class" => "vc_col-sm-4",
 			"dependency" => array('element' => "member_visibility", 'value' => array('grow', 'float', 'outset')),
-			"description" 	=> __( 'fourth skill percentage e.g 83 or leave blank', 'memberprofile' ),
+			"description" 	=> __( 'fourth skill percentage e.g 83 or leave blank', 'mega-addons-for-visual-composer' ),
 			"suffix" 		=> 	'%',
 			"group" 		=> 'Skill',
 		),
 
 		array(
 			"type" 			=> "textfield",
-			"heading" 		=> __( 'Skill 5', 'memberprofile' ),
+			"heading" 		=> __( 'Skill 5', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "memb_skill5",
 			"edit_field_class" => "vc_col-sm-8",
 			"dependency" => array('element' => "member_visibility", 'value' => array('grow', 'float', 'outset')),
-			"description" 	=> __( 'write your skill e.g Wordpress or leave blank', 'memberprofile' ),
+			"description" 	=> __( 'write your skill e.g Wordpress or leave blank', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Skill',
 		),
 
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Fifth percentage', 'memberprofile' ),
+			"heading" 		=> __( 'Fifth percentage', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "memb_per5",
 			"edit_field_class" => "vc_col-sm-4",
 			"dependency" => array('element' => "member_visibility", 'value' => array('grow', 'float', 'outset')),
-			"description" 	=> __( 'fifth skill percentage e.g 83 or leave blank', 'memberprofile' ),
+			"description" 	=> __( 'fifth skill percentage e.g 83 or leave blank', 'mega-addons-for-visual-composer' ),
 			"suffix" 		=> 	'%',
 			"group" 		=> 'Skill',
 		),
@@ -362,24 +362,24 @@ vc_map( array(
 
 		array(
 			"type" 			=> "iconpicker",
-			"heading" 		=> __( 'Social icon', 'memberprofile' ),
+			"heading" 		=> __( 'Social icon', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "social_icon",
-			"description" 	=> __( 'choose icon for social upadate', 'memberprofile' ),
+			"description" 	=> __( 'choose icon for social upadate', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Social',
 		),
 
 		array(
 			"type" 			=> "textfield",
-			"heading" 		=> __( 'First Social Url', 'memberprofile' ),
+			"heading" 		=> __( 'First Social Url', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "social_url",
 			"edit_field_class" => "vc_col-sm-7",
-			"description" 	=> __( 'first social url', 'memberprofile' ),
+			"description" 	=> __( 'first social url', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Social',
 		),
 
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'First Social color', 'memberprofile' ),
+			"heading" 		=> __( 'First Social color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "social_clr",
 			"edit_field_class" => "vc_col-sm-5",
 			"group" 		=> 'Social',
@@ -388,24 +388,24 @@ vc_map( array(
 
 		array(
 			"type" 			=> "iconpicker",
-			"heading" 		=> __( 'Second social icon', 'memberprofile' ),
+			"heading" 		=> __( 'Second social icon', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "social_icon2",
-			"description" 	=> __( 'choose icon for social', 'memberprofile' ),
+			"description" 	=> __( 'choose icon for social', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Social',
 		),
 
 		array(
 			"type" 			=> "textfield",
-			"heading" 		=> __( 'Second Social Url', 'memberprofile' ),
+			"heading" 		=> __( 'Second Social Url', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "social_url2",
 			"edit_field_class" => "vc_col-sm-7",
-			"description" 	=> __( 'Second social url', 'memberprofile' ),
+			"description" 	=> __( 'Second social url', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Social',
 		),
 
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Second Social color', 'memberprofile' ),
+			"heading" 		=> __( 'Second Social color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "social_clr2",
 			"edit_field_class" => "vc_col-sm-5",
 			"group" 		=> 'Social',
@@ -413,24 +413,24 @@ vc_map( array(
 
 		array(
 			"type" 			=> "iconpicker",
-			"heading" 		=> __( 'Third social icon', 'memberprofile' ),
+			"heading" 		=> __( 'Third social icon', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "social_icon3",
-			"description" 	=> __( 'choose icon for social', 'memberprofile' ),
+			"description" 	=> __( 'choose icon for social', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Social',
 		),
 
 		array(
 			"type" 			=> "textfield",
-			"heading" 		=> __( 'Third Social Url', 'memberprofile' ),
+			"heading" 		=> __( 'Third Social Url', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "social_url3",
 			"edit_field_class" => "vc_col-sm-7",
-			"description" 	=> __( 'Third social url', 'memberprofile' ),
+			"description" 	=> __( 'Third social url', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Social',
 		),
 
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Third Social color', 'memberprofile' ),
+			"heading" 		=> __( 'Third Social color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "social_clr3",
 			"edit_field_class" => "vc_col-sm-5",
 			"group" 		=> 'Social',
@@ -439,24 +439,24 @@ vc_map( array(
 
 		array(
 			"type" 			=> "iconpicker",
-			"heading" 		=> __( 'Fourth social icon', 'memberprofile' ),
+			"heading" 		=> __( 'Fourth social icon', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "social_icon4",
-			"description" 	=> __( 'choose icon for social', 'memberprofile' ),
+			"description" 	=> __( 'choose icon for social', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Social',
 		),
 
 		array(
 			"type" 			=> "textfield",
-			"heading" 		=> __( 'Fourth Social Url', 'memberprofile' ),
+			"heading" 		=> __( 'Fourth Social Url', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "social_url4",
 			"edit_field_class" => "vc_col-sm-7",
-			"description" 	=> __( 'Fourth social url', 'memberprofile' ),
+			"description" 	=> __( 'Fourth social url', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Social',
 		),
 
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Fourth Social color', 'memberprofile' ),
+			"heading" 		=> __( 'Fourth Social color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "social_clr4",
 			"edit_field_class" => "vc_col-sm-5",
 			"group" 		=> 'Social',
@@ -464,24 +464,24 @@ vc_map( array(
 
 		array(
 			"type" 			=> "iconpicker",
-			"heading" 		=> __( 'Fifth social icon', 'memberprofile' ),
+			"heading" 		=> __( 'Fifth social icon', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "social_icon5",
-			"description" 	=> __( 'choose icon for social', 'memberprofile' ),
+			"description" 	=> __( 'choose icon for social', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Social',
 		),
 
 		array(
 			"type" 			=> "textfield",
-			"heading" 		=> __( 'Fifth Social Url', 'memberprofile' ),
+			"heading" 		=> __( 'Fifth Social Url', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "social_url5",
 			"edit_field_class" => "vc_col-sm-7",
-			"description" 	=> __( 'Fifth social url', 'memberprofile' ),
+			"description" 	=> __( 'Fifth social url', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Social',
 		),
 
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Fifth Social color', 'memberprofile' ),
+			"heading" 		=> __( 'Fifth Social color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "social_clr5",
 			"edit_field_class" => "vc_col-sm-5",
 			"group" 		=> 'Social',
@@ -491,13 +491,13 @@ vc_map( array(
 			"type" 			=> "vc_links",
 			"param_name" 	=> "caption_url",
 			"class"			=>	"ult_param_heading",
-			"description" 	=> __( '<span style="Background: #ddd;padding: 10px; display: block; color: #302f2f;font-weight:600;">About Tab Settings</span>', 'ihover' ),
+			"description" 	=> '<span style="Background: #ddd;padding: 10px; display: block; color: #302f2f;font-weight:600;">' . esc_html__( 'About Tab Settings', 'mega-addons-for-visual-composer' ) . '</span>',
 			"group" 		=> 'Typography',
 		),
 
 		array(
             "type" 			=> 	"colorpicker",
-			"heading" 		=> 	__( 'Color [Member - Profession]', 'memberprofile' ),
+			"heading" 		=> 	__( 'Color [Member - Profession]', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"memberproclr",
 			"edit_field_class" => "vc_col-sm-6",
 			"group" 		=> 	'Typography',
@@ -505,7 +505,7 @@ vc_map( array(
 
         array(
             "type" 			=> 	"colorpicker",
-			"heading" 		=> 	__( 'About Color', 'memberprofile' ),
+			"heading" 		=> 	__( 'About Color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"about_clr",
 			"edit_field_class" => "vc_col-sm-6",
 			"group" 		=> 	'Typography',
@@ -513,7 +513,7 @@ vc_map( array(
 
         array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Member Name [Font Size]', 'memberprofile' ),
+			"heading" 		=> __( 'Member Name [Font Size]', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "member_txt_size",
 			"edit_field_class" => "vc_col-sm-6",
 			"suffix" 		=> 	'px',
@@ -522,7 +522,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'About [Font Size]', 'memberprofile' ),
+			"heading" 		=> __( 'About [Font Size]', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "about_txt_size",
 			"edit_field_class" => "vc_col-sm-6",
 			"suffix" 		=> 	'px',
@@ -531,7 +531,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Profession [Font Size]', 'memberprofile' ),
+			"heading" 		=> __( 'Profession [Font Size]', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "pro_txt_size",
 			"suffix" 		=> 	'px',
 			"group" 		=> 'Typography',
@@ -541,22 +541,22 @@ vc_map( array(
 			"type" 			=> "vc_links",
 			"param_name" 	=> "caption_url",
 			"class"			=>	"ult_param_heading",
-			"description" 	=> __( '<span style="Background: #ddd;padding: 10px; display: block; color: #302f2f;font-weight:600;">Info Tab Settings</span>', 'ihover' ),
+			"description" 	=> '<span style="Background: #ddd;padding: 10px; display: block; color: #302f2f;font-weight:600;">' . esc_html__( 'Info Tab Settings', 'mega-addons-for-visual-composer' ) . '</span>',
 			"group" 		=> 'Typography',
 		),
 
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Info [Font Size]', 'memberprofile' ),
+			"heading" 		=> __( 'Info [Font Size]', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "info_size",
 			"suffix" 		=> 	'px',
 			"group" 		=> 'Typography',
 		),
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Text Color', 'memberprofile' ),
+			"heading" 		=> __( 'Text Color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "info_clr",
-			"description" 	=> __( 'Set color of all info text', 'memberprofile' ),
+			"description" 	=> __( 'Set color of all info text', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Typography',
 		),
 
@@ -564,13 +564,13 @@ vc_map( array(
 			"type" 			=> "vc_links",
 			"param_name" 	=> "caption_url",
 			"class"			=>	"ult_param_heading",
-			"description" 	=> __( '<span style="Background: #ddd;padding: 10px; display: block; color: #302f2f;font-weight:600;">Social Tab Settings</span>', 'ihover' ),
+			"description" 	=> '<span style="Background: #ddd;padding: 10px; display: block; color: #302f2f;font-weight:600;">' . esc_html__( 'Social Tab Settings', 'mega-addons-for-visual-composer' ) . '</span>',
 			"group" 		=> 'Typography',
 		),
 
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Social [Icon Size]', 'memberprofile' ),
+			"heading" 		=> __( 'Social [Icon Size]', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "social_size",
 			"value" 		=> "19",
 			"suffix" 		=> 	'px',

@@ -47,8 +47,8 @@ class WPBakeryShortCode_vc_info_circle extends WPBakeryShortCode {
 		if ($image_id4 != '') { $image_url4 = wp_get_attachment_url( $image_id4 ); }
 		if ($image_id5 != '') { $image_url5 = wp_get_attachment_url( $image_id5 ); }
 		$content = wpb_js_remove_wpautop($content, true);
-		wp_enqueue_style( 'info-circle-css', plugins_url( '../css/info-circle.css' , __FILE__ ));
-		wp_enqueue_script( 'info-circle-js', plugins_url( '../js/info-circle.js' , __FILE__ ), array('jquery'));
+		wp_enqueue_style( 'info-circle-css', plugins_url( '../css/info-circle.css' , __FILE__ ), array(), VC_MEGA::VERSION);
+		wp_enqueue_script( 'info-circle-js', plugins_url( '../js/info-circle.js' , __FILE__ ), array('jquery'), VC_MEGA::VERSION, false);
 		ob_start(); ?>
 		<div id="mega-info-circle" class="mega-info-circle" style="margin-top: 40px;">
         	<div class="mega-outer-section" style="border: <?php echo esc_attr($outer_border); ?>;">
@@ -258,64 +258,64 @@ class WPBakeryShortCode_vc_info_circle extends WPBakeryShortCode {
 
 
 vc_map( array(
-	"name" 			=> __( 'Info Circle', 'circle' ),
+	"name" 			=> __( 'Info Circle', 'mega-addons-for-visual-composer' ),
 	"base" 			=> "vc_info_circle",
-	"category" 		=> __('Mega Addons'),
-	"description" 	=> __('express info about your work', 'circle'),
+	"category" 		=> __('Mega Addons', 'mega-addons-for-visual-composer'),
+	"description" 	=> __('express info about your work', 'mega-addons-for-visual-composer'),
 	"icon" => plugin_dir_url( __FILE__ ).'../icons/infocircle.png',
 	'params' => array(
 		array(
 			"type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Caption Width <a href="https://addons.topdigitaltrends.net/info-circle/" target="_blank">See Demo</a>', 'circle' ),
+			"heading" 		=> 	__( 'Caption Width', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"width",
-			"description" 	=> 	__( 'width of inner container in % eg, 60. '),
+			"description" 	=> 	__( 'width of inner container in % eg, 60. ', 'mega-addons-for-visual-composer'),
 			"suffix" 		=> '%',
 			"value"			=>	"60",
 			"group" 		=> 	'General',
 		),
 		array(
 			"type" 			=> 	"checkbox",
-			"heading" 		=> 	__( 'Hide Icon', 'circle' ),
+			"heading" 		=> 	__( 'Hide Icon', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"hide_icon",
-			"description" 	=> 	__( 'hide icon for inner container'),
+			"description" 	=> 	__( 'hide icon for inner container', 'mega-addons-for-visual-composer'),
 			"group" 		=> 	'General',
 		),
 		array(
 			"type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Heading Font size', 'circle' ),
+			"heading" 		=> 	__( 'Heading Font size', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"heading_size",
-			"description" 	=> 	__( 'set in pixel eg, 18'),
+			"description" 	=> 	__( 'set in pixel eg, 18', 'mega-addons-for-visual-composer'),
 			"suffix" 		=> 'px',
 			"value"			=>	"18",
 			"group" 		=> 	'General',
 		),
 		array(
 			"type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Description Font size', 'circle' ),
+			"heading" 		=> 	__( 'Description Font size', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"desc_size",
-			"description" 	=> 	__( 'set in pixel eg, 15'),
+			"description" 	=> 	__( 'set in pixel eg, 15', 'mega-addons-for-visual-composer'),
 			"value"			=>	"15",
 			"suffix" 		=> 'px',
 			"group" 		=> 	'General',
 		),	
 		array(
 			"type" 			=> 	"colorpicker",
-			"heading" 		=> 	__( 'Caption Text Color', 'circle' ),
+			"heading" 		=> 	__( 'Caption Text Color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"captionclr",
 			"group" 		=> 	'General',
 		),
 		array(
 			"type" 			=> 	"colorpicker",
-			"heading" 		=> 	__( 'Caption Background', 'circle' ),
+			"heading" 		=> 	__( 'Caption Background', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"bgclr",
-			"description" 	=> 	__( 'background for inner container'),
+			"description" 	=> 	__( 'background for inner container', 'mega-addons-for-visual-composer'),
 			"group" 		=> 	'General',
 		),
 		array(
 			"type" 			=> 	"textfield",
-			"heading" 		=> 	__( 'Border Style', 'circle' ),
+			"heading" 		=> 	__( 'Border Style', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"outer_border",
-			"description" 	=> 	__( 'border for outer container'),
+			"description" 	=> 	__( 'border for outer container', 'mega-addons-for-visual-composer'),
 			"value"			=>	"2px solid #E1E1E1",
 			"group" 		=> 	'General',
 		),
@@ -323,7 +323,7 @@ vc_map( array(
 			"type" 			=> "vc_links",
 			"param_name" 	=> "caption_url",
 			"class"			=>	"ult_param_heading",
-			"description" 	=> __( '<span style="Background: #ddd;padding: 10px; display: block; color: #0073aa;font-weight:600;"><a href="https://1.envato.market/02aNL" target="_blank" style="text-decoration: none;">Get the Pro version for more stunning elements and customization options.</a></span>', 'ihover' ),
+			"description" 	=> '<span style="Background: #ddd;padding: 10px; display: block; color: #0073aa;font-weight:600;">' . '<a href="https://1.envato.market/02aNL" target="_blank" style="text-decoration: none;">' . esc_html__( 'Get the Pro version for more stunning elements and customization options.', 'mega-addons-for-visual-composer' ) . '</a>' . '</span>',
 			"group" 		=> 'General',
 		),
 
@@ -333,9 +333,9 @@ vc_map( array(
 
 		array(
 			"type" 			=> 	"dropdown",
-			"heading" 		=> 	__( 'Icon/Image', 'circle' ),
+			"heading" 		=> 	__( 'Icon/Image', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"style",
-			"description" 	=> 	__( 'choose Icon or Image'),
+			"description" 	=> 	__( 'choose Icon or Image', 'mega-addons-for-visual-composer'),
 			"group" 		=> 	'Icon',
 			"value"			=>	array(
 				"Icon"		=>		"icon",
@@ -344,9 +344,9 @@ vc_map( array(
 		),
 		array(
 			"type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Font Icon size', 'circle' ),
+			"heading" 		=> 	__( 'Font Icon size', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"icon_size",
-			"description" 	=> 	__( 'set in pixel eg, 25'),
+			"description" 	=> 	__( 'set in pixel eg, 25', 'mega-addons-for-visual-composer'),
 			"dependency" => array('element' => "style", 'value' => 'icon'),
 			"value"			=>	"25",
 			"suffix" 		=> 	'px',
@@ -354,25 +354,25 @@ vc_map( array(
 		),
 		array(
 			"type" 			=> 	"colorpicker",
-			"heading" 		=> 	__( 'Icon Color', 'circle' ),
+			"heading" 		=> 	__( 'Icon Color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"icon_clr",
-			"description" 	=> 	__( 'color will apply on all icons'),
+			"description" 	=> 	__( 'color will apply on all icons', 'mega-addons-for-visual-composer'),
 			"dependency" => array('element' => "style", 'value' => 'icon'),
 			"group" 		=> 	'Icon',
 		),
 		array(
 			"type" 			=> 	"colorpicker",
-			"heading" 		=> 	__( 'Background Color', 'circle' ),
+			"heading" 		=> 	__( 'Background Color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"icon_bg",
-			"description" 	=> 	__( 'background will apply on all icons'),
+			"description" 	=> 	__( 'background will apply on all icons', 'mega-addons-for-visual-composer'),
 			"dependency" => array('element' => "style", 'value' => 'icon'),
 			"group" 		=> 	'Icon',
 		),
 		array(
 			"type" 			=> 	"textfield",
-			"heading" 		=> 	__( 'Border', 'circle' ),
+			"heading" 		=> 	__( 'Border', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"border_clr",
-			"description" 	=> 	__( 'It will apply on all icons [width style color]'),
+			"description" 	=> 	__( 'It will apply on all icons [width style color]', 'mega-addons-for-visual-composer'),
 			"dependency" 	=> array('element' => "style", 'value' => 'icon'),
 			"value"			=>	"0px solid #fff",
 			"group" 		=> 	'Icon',
@@ -383,27 +383,27 @@ vc_map( array(
 
 		array(
 			"type" 			=> 	"iconpicker",
-			"heading" 		=> 	__( 'Choose Icon', 'circle' ),
+			"heading" 		=> 	__( 'Choose Icon', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"icon",
 			"dependency" => array('element' => "style", 'value' => 'icon'),
 			"group" 		=> 	'Icon List',
 		),
 		array(
 			"type" 			=> 	"attach_image",
-			"heading" 		=> 	__( 'Select Image', 'circle' ),
+			"heading" 		=> 	__( 'Select Image', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"image_id",
 			"dependency" => array('element' => "style", 'value' => 'image'),
 			"group" 		=> 	'Icon List',
 		),
 		array(
 			"type" 			=> 	"textfield",
-			"heading" 		=> 	__( 'Heading', 'circle' ),
+			"heading" 		=> 	__( 'Heading', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"heading",
 			"group" 		=> 	'Icon List',
 		),
 		array(
 			"type" 			=> 	"textarea",
-			"heading" 		=> 	__( 'Description', 'circle' ),
+			"heading" 		=> 	__( 'Description', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"desc",
 			"group" 		=> 	'Icon List',
 		),
@@ -413,27 +413,27 @@ vc_map( array(
 
 		array(
 			"type" 			=> 	"iconpicker",
-			"heading" 		=> 	__( 'Choose Icon', 'circle' ),
+			"heading" 		=> 	__( 'Choose Icon', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"icon2",
 			"dependency" => array('element' => "style", 'value' => 'icon'),
 			"group" 		=> 	'Icon List 2',
 		),
 		array(
 			"type" 			=> 	"attach_image",
-			"heading" 		=> 	__( 'Select Image', 'circle' ),
+			"heading" 		=> 	__( 'Select Image', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"image_id2",
 			"dependency" => array('element' => "style", 'value' => 'image'),
 			"group" 		=> 	'Icon List 2',
 		),
 		array(
 			"type" 			=> 	"textfield",
-			"heading" 		=> 	__( 'Heading', 'circle' ),
+			"heading" 		=> 	__( 'Heading', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"heading2",
 			"group" 		=> 	'Icon List 2',
 		),
 		array(
 			"type" 			=> 	"textarea",
-			"heading" 		=> 	__( 'Description', 'circle' ),
+			"heading" 		=> 	__( 'Description', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"desc2",
 			"group" 		=> 	'Icon List 2',
 		),
@@ -443,27 +443,27 @@ vc_map( array(
 
 		array(
 			"type" 			=> 	"iconpicker",
-			"heading" 		=> 	__( 'Choose Icon', 'circle' ),
+			"heading" 		=> 	__( 'Choose Icon', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"icon3",
 			"dependency" => array('element' => "style", 'value' => 'icon'),
 			"group" 		=> 	'Icon List 3',
 		),
 		array(
 			"type" 			=> 	"attach_image",
-			"heading" 		=> 	__( 'Select Image', 'circle' ),
+			"heading" 		=> 	__( 'Select Image', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"image_id3",
 			"dependency" => array('element' => "style", 'value' => 'image'),
 			"group" 		=> 	'Icon List 3',
 		),
 		array(
 			"type" 			=> 	"textfield",
-			"heading" 		=> 	__( 'Heading', 'circle' ),
+			"heading" 		=> 	__( 'Heading', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"heading3",
 			"group" 		=> 	'Icon List 3',
 		),
 		array(
 			"type" 			=> 	"textarea",
-			"heading" 		=> 	__( 'Description', 'circle' ),
+			"heading" 		=> 	__( 'Description', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"desc3",
 			"group" 		=> 	'Icon List 3',
 		),
@@ -473,27 +473,27 @@ vc_map( array(
 
 		array(
 			"type" 			=> 	"iconpicker",
-			"heading" 		=> 	__( 'Choose Icon', 'circle' ),
+			"heading" 		=> 	__( 'Choose Icon', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"icon4",
 			"dependency" => array('element' => "style", 'value' => 'icon'),
 			"group" 		=> 	'Icon List 4',
 		),
 		array(
 			"type" 			=> 	"attach_image",
-			"heading" 		=> 	__( 'Select Image', 'circle' ),
+			"heading" 		=> 	__( 'Select Image', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"image_id4",
 			"dependency" => array('element' => "style", 'value' => 'image'),
 			"group" 		=> 	'Icon List 4',
 		),
 		array(
 			"type" 			=> 	"textfield",
-			"heading" 		=> 	__( 'Heading', 'circle' ),
+			"heading" 		=> 	__( 'Heading', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"heading4",
 			"group" 		=> 	'Icon List 4',
 		),
 		array(
 			"type" 			=> 	"textarea",
-			"heading" 		=> 	__( 'Description', 'circle' ),
+			"heading" 		=> 	__( 'Description', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"desc4",
 			"group" 		=> 	'Icon List 4',
 		),
@@ -503,27 +503,27 @@ vc_map( array(
 
 		array(
 			"type" 			=> 	"iconpicker",
-			"heading" 		=> 	__( 'Choose Icon', 'circle' ),
+			"heading" 		=> 	__( 'Choose Icon', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"icon5",
 			"dependency" => array('element' => "style", 'value' => 'icon'),
 			"group" 		=> 	'Icon List 5',
 		),
 		array(
 			"type" 			=> 	"attach_image",
-			"heading" 		=> 	__( 'Select Image', 'circle' ),
+			"heading" 		=> 	__( 'Select Image', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"image_id5",
 			"dependency" => array('element' => "style", 'value' => 'image'),
 			"group" 		=> 	'Icon List 5',
 		),
 		array(
 			"type" 			=> 	"textfield",
-			"heading" 		=> 	__( 'Heading', 'circle' ),
+			"heading" 		=> 	__( 'Heading', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"heading5",
 			"group" 		=> 	'Icon List 5',
 		),
 		array(
 			"type" 			=> 	"textarea",
-			"heading" 		=> 	__( 'Description', 'circle' ),
+			"heading" 		=> 	__( 'Description', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"desc5",
 			"group" 		=> 	'Icon List 5',
 		),

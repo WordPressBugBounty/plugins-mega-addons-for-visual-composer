@@ -68,35 +68,35 @@ class WPBakeryShortCode_mvc_timeline_son extends WPBakeryShortCode {
 
 
 vc_map( array(
-	"name" 			=> __( 'Timeline', 'timeline' ),
+	"name" 			=> __( 'Timeline', 'mega-addons-for-visual-composer' ),
 	"base" 			=> "mvc_timeline_son",
 	"as_child" 	=> array('only' => 'mvc_timeline_father'),
 	"content_element" => true,
-	"category" 		=> __('Mega Addons'),
-	"description" 	=> __('Add multiple images and text', ''),
+	"category" 		=> __('Mega Addons', 'mega-addons-for-visual-composer'),
+	"description" 	=> __('Add multiple images and text', 'mega-addons-for-visual-composer'),
 	"icon" => plugin_dir_url( __FILE__ ).'../icons/timeline.png',
 	'params' => array(
 		array(
             "type" 			=> 	"textfield",
-			"heading" 		=> 	__( 'Date', 'timeline' ),
+			"heading" 		=> 	__( 'Date', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"date",
-			"description" 	=> 	__( 'Write timeline date e.g Jan 15 <a target="_blank" href="https://addons.topdigitaltrends.net/timeline/">See Demo</a>', 'timeline' ),
+			"description" 	=> 	__( 'Write timeline date e.g. Jan 15', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'General',
         ),
 
         array(
             "type" 			=> 	"colorpicker",
-			"heading" 		=> 	__( 'Color', 'timeline' ),
+			"heading" 		=> 	__( 'Color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"clr",
-			"description" 	=> 	__( 'color of the date', 'timeline' ),
+			"description" 	=> 	__( 'color of the date', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'General',
         ),
 
         array(
             "type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Font size', 'timeline' ),
+			"heading" 		=> 	__( 'Font size', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"size",
-			"description" 	=> 	__( 'fone size of date in pixel e.g 17', 'timeline' ),
+			"description" 	=> 	__( 'fone size of date in pixel e.g 17', 'mega-addons-for-visual-composer' ),
 			"suffix" 		=> 'px',
 			"group" 		=> 	'General',
         ),
@@ -105,15 +105,15 @@ vc_map( array(
 			"type" 			=> "vc_links",
 			"param_name" 	=> "caption_url",
 			"class"			=>	"ult_param_heading",
-			"description" 	=> __( '<span style="Background: #ddd;padding: 10px; display: block; color: #0073aa;font-weight:600;"><a href="https://1.envato.market/02aNL" target="_blank" style="text-decoration: none;">Get the Pro version for more stunning elements and customization options.</a></span>', 'ihover' ),
+			"description" 	=> '<span style="Background: #ddd;padding: 10px; display: block; color: #0073aa;font-weight:600;">' . '<a href="https://1.envato.market/02aNL" target="_blank" style="text-decoration: none;">' . esc_html__( 'Get the Pro version for more stunning elements and customization options.', 'mega-addons-for-visual-composer' ) . '</a>' . '</span>',
 			"group" 		=> 'General',
 		),
 
         array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Select style', 'timeline' ),
+			"heading" 		=> __( 'Select style', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "centerstyle",
-			"description" 	=> __( 'style for center', 'timeline' ),
+			"description" 	=> __( 'style for center', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Timeline Center',
 				"value" 		=> array(
 					'Center With Font Icon'	=>	'fonticon',
@@ -123,26 +123,26 @@ vc_map( array(
 
         array(
             "type" 			=> 	"iconpicker",
-			"heading" 		=> 	__( 'Font Icon', 'timeline' ),
+			"heading" 		=> 	__( 'Font Icon', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"icon",
-			"description" 	=> 	__( 'choose font awesome or leave blank', 'timeline' ),
+			"description" 	=> 	__( 'choose font awesome or leave blank', 'mega-addons-for-visual-composer' ),
 			"dependency" => array('element' => "centerstyle", 'value' => 'fonticon'),
 			"group" 		=> 	'Timeline Center',
         ),
 
         array(
             "type" 			=> 	"colorpicker",
-			"heading" 		=> 	__( 'Background', 'timeline' ),
+			"heading" 		=> 	__( 'Background', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"bgclr",
-			"description" 	=> 	__( 'Center dot background color', 'timeline' ),
+			"description" 	=> 	__( 'Center dot background color', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'Timeline Center',
         ),
 
         array(
             "type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Font size', 'timeline' ),
+			"heading" 		=> 	__( 'Font size', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"icon_size",
-			"description" 	=> 	__( 'Icon font size e.g 17', 'timeline' ),
+			"description" 	=> 	__( 'Icon font size e.g 17', 'mega-addons-for-visual-composer' ),
 			"dependency" => array('element' => "centerstyle", 'value' => 'fonticon'),
 			"suffix" 		=> 'px',
 			"group" 		=> 	'Timeline Center',
@@ -150,7 +150,7 @@ vc_map( array(
 
         array(
             "type" 			=> 	"textfield",
-			"heading" 		=> 	__( 'Title', 'timeline' ),
+			"heading" 		=> 	__( 'Title', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"maintitle",
 			"value"			=>	"Timeline Title",
 			"group" 		=> 	'Content',
@@ -158,7 +158,7 @@ vc_map( array(
 
         array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Title Align', 'timeline' ),
+			"heading" 		=> __( 'Title Align', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "titlealign",
 			"edit_field_class" => "vc_col-sm-4 wdo_items_to_show wdo_margin_bottom",
 			"group" 		=> 'Content',
@@ -171,7 +171,7 @@ vc_map( array(
 
         array(
             "type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Title size', 'timeline' ),
+			"heading" 		=> 	__( 'Title size', 'mega-addons-for-visual-composer' ),
 			"edit_field_class" => "vc_col-sm-4 wdo_items_to_show wdo_margin_bottom",
 			"param_name" 	=> 	"titlesize",
 			"suffix" 		=> 'px',
@@ -180,7 +180,7 @@ vc_map( array(
 
 		array(
             "type" 				=> 	"vc_number",
-			"heading" 			=> 	__( 'Padding [Top - Bottom]', 'timeline' ),
+			"heading" 			=> 	__( 'Padding [Top - Bottom]', 'mega-addons-for-visual-composer' ),
 			"edit_field_class" 	=> "vc_col-sm-4 wdo_items_to_show wdo_margin_bottom",
 			"param_name" 		=> 	"titlepadding",
 			"value" 			=> '10',
@@ -190,7 +190,7 @@ vc_map( array(
 
         array(
             "type" 			=> 	"colorpicker",
-			"heading" 		=> 	__( 'Title Color', 'timeline' ),
+			"heading" 		=> 	__( 'Title Color', 'mega-addons-for-visual-composer' ),
 			"edit_field_class" => "vc_col-sm-4 wdo_items_to_show wdo_margin_bottom",
 			"param_name" 	=> 	"titleclr",
 			"group" 		=> 	'Content',
@@ -198,7 +198,7 @@ vc_map( array(
 
         array(
             "type" 			=> 	"colorpicker",
-			"heading" 		=> 	__( 'Title Background', 'timeline' ),
+			"heading" 		=> 	__( 'Title Background', 'mega-addons-for-visual-composer' ),
 			"edit_field_class" => "vc_col-sm-4 wdo_items_to_show wdo_margin_bottom",
 			"param_name" 	=> 	"titlebg",
 			"group" 		=> 	'Content',
@@ -206,14 +206,14 @@ vc_map( array(
 
         array(
 			"type" 			=> 	"attach_image",
-			"heading" 		=> 	__( 'Select Image', 'timeline' ),
+			"heading" 		=> 	__( 'Select Image', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"image_id",
 			"group" 		=> 	'Content',
 		),
 
 		array(
             "type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Image Width', 'timeline' ),
+			"heading" 		=> 	__( 'Image Width', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"img_width",
 			"suffix" 		=> 'px',
 			"group" 		=> 	'Content',
@@ -221,16 +221,16 @@ vc_map( array(
 
         array(
             "type" 			=> 	"textarea_html",
-			"heading" 		=> 	__( 'Content Details', 'timeline' ),
+			"heading" 		=> 	__( 'Content Details', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"content",
-			"description" 	=> 	__( 'Add heading, details, pictures or video url', 'timeline' ),
+			"description" 	=> 	__( 'Add heading, details, pictures or video url', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'Content',
         ),
 
         
         array(
             "type" 			=> 	"css_editor",
-			"heading" 		=> 	__( 'Styles', 'timeline' ),
+			"heading" 		=> 	__( 'Styles', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"css",
 			"group" 		=> 	'Design Option',
         ),

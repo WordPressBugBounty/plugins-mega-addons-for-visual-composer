@@ -42,13 +42,13 @@ class WPBakeryShortCode_mvc_infobox extends WPBakeryShortCode {
 			'btn_clr' 				=> 		'',
 			'css'	 				=> 		'',
 		), $atts ) );
-		$some_id = rand(5, 500);
+		$some_id = VC_MEGA::next_instance_id();
 		$btn_url = vc_build_link($btn_url);
 		$css_class = apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class( $css, ' ' ), $this->settings['base'], $atts );
 		if ($image_id != '') {
 			$image_url = wp_get_attachment_url( $image_id );		
 		}
-		wp_enqueue_style( 'info-box-css', plugins_url( '../css/infobox.css' , __FILE__ ));
+		wp_enqueue_style( 'info-box-css', plugins_url( '../css/infobox.css' , __FILE__ ), array(), VC_MEGA::VERSION);
 		$content = wpb_js_remove_wpautop($content, true);
 		ob_start(); ?>
 		
@@ -98,17 +98,17 @@ class WPBakeryShortCode_mvc_infobox extends WPBakeryShortCode {
 
 
 vc_map( array(
-	"name" 			=> __( 'Info Box', 'infobox' ),
+	"name" 			=> __( 'Info Box', 'mega-addons-for-visual-composer' ),
 	"base" 			=> "mvc_infobox",
-	"category" 		=> __('Mega Addons'),
-	"description" 	=> __('Add icon box with custom font icon', 'infobox'),
+	"category" 		=> __('Mega Addons', 'mega-addons-for-visual-composer'),
+	"description" 	=> __('Add icon box with custom font icon', 'mega-addons-for-visual-composer'),
 	"icon" => plugin_dir_url( __FILE__ ).'../icons/infobox.png',
 	'params' => array(
 		array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Select Style', 'infobox' ),
+			"heading" 		=> __( 'Select Style', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "info_style",
-			"description" 	=> __( 'Choose info style <a href="http://addons.topdigitaltrends.net/info-box/" target="_blank">See Demo</a>', 'infobox' ),
+			"description" 	=> esc_html__( 'Choose info style', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'General',
 			"value" 		=> array(
 				'Vertical'	=>	'mega_info_box',
@@ -117,9 +117,9 @@ vc_map( array(
 		),
 		array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Select Image or Font icon', 'infobox' ),
+			"heading" 		=> __( 'Select Image or Font icon', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "info_opt",
-			"description" 	=> __( 'Select Image or Font icon', 'infobox' ),
+			"description" 	=> __( 'Select Image or Font icon', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'General',
 			"value" 		=> array(
 				'Image'	=>	'show_image',
@@ -128,34 +128,34 @@ vc_map( array(
 		),
 		array(
             "type" 			=> 	"attach_image",
-			"heading" 		=> 	__( 'Image', 'infobox' ),
+			"heading" 		=> 	__( 'Image', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"image_id",
-			"description" 	=> 	__( 'Select the image', 'infobox' ),
+			"description" 	=> 	__( 'Select the image', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'General',
 			"dependency" => array('element' => "info_opt", 'value' => 'show_image'),
         ),
         array(
             "type" 			=> 	"textfield",
-			"heading" 		=> 	__( 'Alternate Text', 'info-banner-vc' ),
+			"heading" 		=> 	__( 'Alternate Text', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"alt",
-			"description" 	=> 	__( 'It will be used as alt attribute of img tag', 'info-banner-vc' ),
+			"description" 	=> 	__( 'It will be used as alt attribute of img tag', 'mega-addons-for-visual-composer' ),
 			"dependency" => array('element' => "info_opt", 'value' => 'show_image'),
 			"group" 		=> 	'General',
         ),
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Width', 'infobox' ),
+			"heading" 		=> __( 'Width', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "image_size",
-			"description" 	=> __( 'Set the width in pixel e.g 80', 'infobox' ),
+			"description" 	=> __( 'Set the width in pixel e.g 80', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'General',
 			"suffix" 		=> 'px',
 			"dependency" => array('element' => "info_opt", 'value' => 'show_image'),
 		),
 		array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Image Radius', 'infobox' ),
+			"heading" 		=> __( 'Image Radius', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "image_radius",
-			"description" 	=> __( 'set the image border radius', 'infobox' ),
+			"description" 	=> __( 'set the image border radius', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'General',
 			"dependency" => array('element' => "info_opt", 'value' => 'show_image'),
 			"value"			=>	array(
@@ -170,17 +170,17 @@ vc_map( array(
 		),
 		array(
 			"type" 			=> "iconpicker",
-			"heading" 		=> __( 'Font icon', 'infobox' ),
+			"heading" 		=> __( 'Font icon', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "font_icon",
-			"description" 	=> __( 'Select the font icon', 'infobox' ),
+			"description" 	=> __( 'Select the font icon', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'General',
 			"dependency" => array('element' => "info_opt", 'value' => 'show_icon'),
 		),
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Font size', 'infobox' ),
+			"heading" 		=> __( 'Font size', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "icon_size",
-			"description" 	=> __( 'Set icon font size in pixel e.g 30', 'infobox' ),
+			"description" 	=> __( 'Set icon font size in pixel e.g 30', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'General',
 			"value"			=>	"25",
 			"suffix" 		=> 'px',
@@ -188,9 +188,9 @@ vc_map( array(
 		),
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Height/Width', 'infobox' ),
+			"heading" 		=> __( 'Height/Width', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "icon_height",
-			"description" 	=> __( 'height & width for icon, set in pixel', 'infobox' ),
+			"description" 	=> __( 'height & width for icon, set in pixel', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'General',
 			"value"			=>	"",
 			"suffix" 		=> 'px',
@@ -198,30 +198,30 @@ vc_map( array(
 		),
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Font Color', 'infobox' ),
+			"heading" 		=> __( 'Font Color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "icon_color",
-			"description" 	=> __( 'Set icon color', 'infobox' ),
+			"description" 	=> __( 'Set icon color', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'General',
 			"dependency" => array('element' => "info_opt", 'value' => 'show_icon'),
 		),
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Hover Color', 'infobox' ),
+			"heading" 		=> __( 'Hover Color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "hoverclr",
-			"description" 	=> __( 'icon color on hover', 'infobox' ),
+			"description" 	=> __( 'icon color on hover', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'General',
 			"dependency" => array('element' => "info_opt", 'value' => 'show_icon'),
 		),
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Backgroud', 'infobox' ),
+			"heading" 		=> __( 'Backgroud', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "icon_bg",
 			"group" 		=> 'General',
 			"dependency" => array('element' => "info_opt", 'value' => 'show_icon'),
 		),
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Hover Backgroud', 'infobox' ),
+			"heading" 		=> __( 'Hover Backgroud', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "hoverbg",
 			"group" 		=> 'General',
 			"dependency" => array('element' => "info_opt", 'value' => 'show_icon'),
@@ -229,7 +229,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Box Shadow', 'infobox' ),
+			"heading" 		=> __( 'Box Shadow', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "shadow",
 			"group" 		=> 'General',
 			"value"			=>	array(
@@ -239,7 +239,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Hover Shadow', 'infobox' ),
+			"heading" 		=> __( 'Hover Shadow', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "hovershadow",
 			"group" 		=> 'General',
 			"value"			=>	array(
@@ -249,7 +249,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Link To', 'infobox' ),
+			"heading" 		=> __( 'Link To', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "link",
 			"group" 		=> 'General',
 			"value"			=>	array(
@@ -261,7 +261,7 @@ vc_map( array(
 
 		array(
             "type" 			=> 	"vc_link",
-			"heading" 		=> 	__( 'Url Link', 'infobox' ),
+			"heading" 		=> 	__( 'Url Link', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"btn_url",
 			"dependency" => array('element' => "link", 'value' => array('link_box', 'link_btn')),
 			"group" 		=> 	'General',
@@ -269,18 +269,18 @@ vc_map( array(
 
 		array(
             "type" 			=> 	"textfield",
-			"heading" 		=> 	__( 'Button Text', 'infobox' ),
+			"heading" 		=> 	__( 'Button Text', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"btn_text",
-			"description" 	=> 	__( 'Button text name', 'infobox' ),
+			"description" 	=> 	__( 'Button text name', 'mega-addons-for-visual-composer' ),
 			"dependency" => array('element' => "link", 'value' => 'link_btn'),
 			"group" 		=> 	'General',
         ),
 
         array(
             "type" 			=> 	"colorpicker",
-			"heading" 		=> 	__( 'Button Text color', 'infobox' ),
+			"heading" 		=> 	__( 'Button Text color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"btn_clr",
-			"description" 	=> 	__( 'Set Button background color', 'infobox' ),
+			"description" 	=> 	__( 'Set Button background color', 'mega-addons-for-visual-composer' ),
 			"dependency" => array('element' => "link", 'value' => 'link_btn'),
 			"group" 		=> 	'General',
         ),
@@ -289,15 +289,15 @@ vc_map( array(
 			"type" 			=> "vc_links",
 			"param_name" 	=> "caption_url",
 			"class"			=>	"ult_param_heading",
-			"description" 	=> __( '<span style="Background: #ddd;padding: 10px; display: block; color: #0073aa;font-weight:600;"><a href="https://1.envato.market/02aNL" target="_blank" style="text-decoration: none;">Get the Pro version for more stunning elements and customization options.</a></span>', 'ihover' ),
+			"description" 	=> '<span style="Background: #ddd;padding: 10px; display: block; color: #0073aa;font-weight:600;">' . '<a href="https://1.envato.market/02aNL" target="_blank" style="text-decoration: none;">' . esc_html__( 'Get the Pro version for more stunning elements and customization options.', 'mega-addons-for-visual-composer' ) . '</a>' . '</span>',
 			"group" 		=> 'General',
 		),
 
 		array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Border Radius', 'infobox' ),
+			"heading" 		=> __( 'Border Radius', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "icon_radius",
-			"description" 	=> __( 'set the border radius around icon', 'infobox' ),
+			"description" 	=> __( 'set the border radius around icon', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Border',
 			"dependency" => array('element' => "info_opt", 'value' => 'show_icon'),
 			"value"			=>	array(
@@ -312,9 +312,9 @@ vc_map( array(
 		),
 		array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Border Width', 'infobox' ),
+			"heading" 		=> __( 'Border Width', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "border_width",
-			"description" 	=> __( 'select the border width', 'infobox' ),
+			"description" 	=> __( 'select the border width', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Border',
 			"dependency" => array('element' => "info_opt", 'value' => 'show_icon'),
 			"value"			=>	array(
@@ -330,7 +330,7 @@ vc_map( array(
 		),
 		array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Border Style', 'infobox' ),
+			"heading" 		=> __( 'Border Style', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "border_style",
 			"group" 		=> 'Border',
 			"dependency" => array('element' => "info_opt", 'value' => 'show_icon'),
@@ -346,9 +346,9 @@ vc_map( array(
 		),
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Border Color', 'infobox' ),
+			"heading" 		=> __( 'Border Color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "border_clr",
-			"description" 	=> __( 'set the border color', 'infobox' ),
+			"description" 	=> __( 'set the border color', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Border',
 			"dependency" => array('element' => "info_opt", 'value' => 'show_icon'),
 		),
@@ -357,37 +357,37 @@ vc_map( array(
 
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Line Height', 'infobox' ),
+			"heading" 		=> __( 'Line Height', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "line_height",
-			"description" 	=> __( 'Set line height for text', 'infobox' ),
+			"description" 	=> __( 'Set line height for text', 'mega-addons-for-visual-composer' ),
 			"value"			=>	"1",
 			"group" 		=> 'Detail',
 		),
 		array(
 			"type" 			=> "textfield",
-			"heading" 		=> __( 'Title', 'infobox' ),
+			"heading" 		=> __( 'Title', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "info_title",
-			"description" 	=> __( 'Write title for heading', 'infobox' ),
+			"description" 	=> __( 'Write title for heading', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Detail',
 		),
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Title font size', 'infobox' ),
+			"heading" 		=> __( 'Title font size', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "title_size",
-			"description" 	=> __( 'Set font size for title e.g 16', 'infobox' ),
+			"description" 	=> __( 'Set font size for title e.g 16', 'mega-addons-for-visual-composer' ),
 			"suffix" 		=> 'px',
 			"group" 		=> 'Detail',
 		),
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Title Color', 'infobox' ),
+			"heading" 		=> __( 'Title Color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "title_color",
 			"value" 		=> "#000",
 			"group" 		=> 'Detail',
 		),
 		array(
 			"type" 			=> 	"textarea_html",
-			"heading" 		=> 	__( 'Description', 'infobox' ),
+			"heading" 		=> 	__( 'Description', 'mega-addons-for-visual-composer' ),
 			'holder' 		=> 'div',
 			"param_name" 	=> 	"content",
 			"value"			=>	"<p>write description of Info box.</p>",
@@ -395,7 +395,7 @@ vc_map( array(
 		),
 		array(
 			"type" 			=> 	"css_editor",
-			"heading" 		=> 	__( 'Display Design', 'infobox' ),
+			"heading" 		=> 	__( 'Display Design', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"css",
 			"group" 		=>  'Design Options',
 		),

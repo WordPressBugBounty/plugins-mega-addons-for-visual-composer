@@ -23,11 +23,20 @@ class WPBakeryShortCode_vc_testimonial extends WPBakeryShortCode {
 			'profclr'			=>		'#000',
 			'bgclr'				=>		'',
 		), $atts ) );
+		if ( ! is_string( $rating ) || ! in_array( $rating, array( 'none', '5_stars', '4_stars', '3_stars' ), true ) ) {
+			$rating = 'none';
+		}
+		$rating_accessible_text = '';
+		if ( 'none' !== $rating ) {
+			$rating_value = (int) $rating;
+			/* translators: %1$d is the testimonial rating value, between 1 and 5. */
+			$rating_accessible_text = sprintf( __( '%1$d out of 5 stars', 'mega-addons-for-visual-composer' ), $rating_value );
+		}
 		$link = vc_build_link($link);
 		if ($image_id != '') {
 			$image_url = wp_get_attachment_url( $image_id );		
 		}
-		wp_enqueue_style( 'testimonial-css', plugins_url( '../css/testimonial.css' , __FILE__ ));
+		wp_enqueue_style( 'testimonial-css', plugins_url( '../css/testimonial.css' , __FILE__ ), array(), VC_MEGA::VERSION);
 		$content = wpb_js_remove_wpautop($content, true);
 		ob_start(); ?>
 		<?php if ($style == 'theme1') { ?>
@@ -44,9 +53,9 @@ class WPBakeryShortCode_vc_testimonial extends WPBakeryShortCode {
 						<div class="tm-name">
 							<span style="font-size: <?php echo esc_attr($namesize); ?>px; color: <?php echo esc_attr($nameclr); ?>; font-weight: bold;"><?php echo esc_attr($name); ?></span>,
 							<span><i><a href="<?php echo esc_url($link['url']); ?>" target="<?php echo esc_attr($link['target']); ?>" title="<?php echo esc_html($link['title']); ?>" style="color: <?php echo esc_attr($profclr); ?>; font-size: <?php echo esc_attr($profsize); ?>px; font-style: italic; text-decoration: none;"><?php echo esc_attr($prof); ?></a></i></span>
-							<p style="padding-top: 5px; display: <?php echo esc_attr($rating); ?>;">
-								<img src="<?php echo plugin_dir_url( __FILE__ ); ?>../images/<?php echo esc_attr($rating); ?>.png">
-							</p>
+							<?php if ( 'none' !== $rating ) { ?>
+								<p style="padding-top: 5px;"><img src="<?php echo esc_url( plugin_dir_url( __FILE__ ) . '../images/' . $rating . '.png' ); ?>" alt="<?php echo esc_attr( $rating_accessible_text ); ?>"></p>
+							<?php } ?>
 						</div>
 					</div>
 					<div class="Clearfix"></div>
@@ -67,7 +76,7 @@ class WPBakeryShortCode_vc_testimonial extends WPBakeryShortCode {
 					</div>
 					<div class="tm-profile">
 						<?php if ($rating !== 'none') { ?>
-							<img src="<?php echo plugin_dir_url( __FILE__ ); ?>../images/<?php echo esc_attr($rating); ?>.png">
+							<img src="<?php echo esc_url( plugin_dir_url( __FILE__ ) . '../images/' . $rating . '.png' ); ?>" alt="<?php echo esc_attr( $rating_accessible_text ); ?>">
 						<?php } ?>
 						<img src="<?php echo esc_attr($image_url); ?>" alt="<?php echo esc_attr($alt); ?>" style="width: <?php echo esc_attr($width); ?>px; border-radius: <?php echo esc_attr($radius); ?>%">
 					</div>
@@ -98,7 +107,7 @@ class WPBakeryShortCode_vc_testimonial extends WPBakeryShortCode {
 					</p>
 				</div>
 				<?php if ($rating !== 'none') { ?>
-					<img src="<?php echo plugin_dir_url( __FILE__ ); ?>../images/<?php echo esc_attr($rating); ?>.png">
+					<img src="<?php echo esc_url( plugin_dir_url( __FILE__ ) . '../images/' . $rating . '.png' ); ?>" alt="<?php echo esc_attr( $rating_accessible_text ); ?>">
 				<?php } ?>
 			</div>
 		<?php } ?>
@@ -115,7 +124,7 @@ class WPBakeryShortCode_vc_testimonial extends WPBakeryShortCode {
 					<div class="tm-prof4">
 						<span style="font-size: <?php echo esc_attr($namesize); ?>px; color: <?php echo esc_attr($nameclr); ?>; font-weight: bold; text-align: center;"><?php echo esc_attr($name); ?></span>
 						<?php if ($rating !== 'none') { ?>
-							<span><img src="<?php echo plugin_dir_url( __FILE__ ); ?>../images/<?php echo esc_attr($rating); ?>.png"></span>
+							<span><img src="<?php echo esc_url( plugin_dir_url( __FILE__ ) . '../images/' . $rating . '.png' ); ?>" alt="<?php echo esc_attr( $rating_accessible_text ); ?>"></span>
 						<?php } ?>
 						<p><a href="<?php echo esc_url($link['url']); ?>" target="<?php echo esc_attr($link['target']); ?>" title="<?php echo esc_html($link['title']); ?>" style="color: <?php echo esc_attr($profclr); ?>; font-size: <?php echo esc_attr($profsize); ?>px; font-style: italic; text-decoration: none; ">
 							<?php echo esc_attr($prof); ?>
@@ -140,7 +149,7 @@ class WPBakeryShortCode_vc_testimonial extends WPBakeryShortCode {
 							<?php echo esc_attr($prof); ?>
 						</a></p>
 						<?php if ($rating !== 'none') { ?>
-							<span><img style="border-radius: 0px;" src="<?php echo plugin_dir_url( __FILE__ ); ?>../images/<?php echo esc_attr($rating); ?>.png"></span>
+							<span><img style="border-radius: 0px;" src="<?php echo esc_url( plugin_dir_url( __FILE__ ) . '../images/' . $rating . '.png' ); ?>" alt="<?php echo esc_attr( $rating_accessible_text ); ?>"></span>
 						<?php } ?>
 					</div>
 				</div>
@@ -163,7 +172,7 @@ class WPBakeryShortCode_vc_testimonial extends WPBakeryShortCode {
 							</a>
 						</p>
 						<?php if ($rating !== 'none') { ?>
-							<span><img src="<?php echo plugin_dir_url( __FILE__ ); ?>../images/<?php echo esc_attr($rating); ?>.png"></span>
+							<span><img src="<?php echo esc_url( plugin_dir_url( __FILE__ ) . '../images/' . $rating . '.png' ); ?>" alt="<?php echo esc_attr( $rating_accessible_text ); ?>"></span>
 						<?php } ?>
 					</div>
 				</div>
@@ -184,7 +193,7 @@ class WPBakeryShortCode_vc_testimonial extends WPBakeryShortCode {
 						</a>
 					</p>
 					<?php if ($rating !== 'none') { ?>
-						<p style="padding-top: 5px;"><img src="<?php echo plugin_dir_url( __FILE__ ); ?>../images/<?php echo esc_attr($rating); ?>.png"></p>
+						<p style="padding-top: 5px;"><img src="<?php echo esc_url( plugin_dir_url( __FILE__ ) . '../images/' . $rating . '.png' ); ?>" alt="<?php echo esc_attr( $rating_accessible_text ); ?>"></p>
 					<?php } ?>
 				</div>
 				<div class="Clearfix"></div>
@@ -201,17 +210,17 @@ class WPBakeryShortCode_vc_testimonial extends WPBakeryShortCode {
 
 
 vc_map( array(
-	"name" 			=> __( 'Testimonial', 'testimonial' ),
+	"name" 			=> __( 'Testimonial', 'mega-addons-for-visual-composer' ),
 	"base" 			=> "vc_testimonial",
-	"category" 		=> __('Mega Addons'),
-	"description" 	=> __('show client comments as testimonial', ''),
+	"category" 		=> __('Mega Addons', 'mega-addons-for-visual-composer'),
+	"description" 	=> __('show client comments as testimonial', 'mega-addons-for-visual-composer'),
 	"icon" => plugin_dir_url( __FILE__ ).'../icons/testimonial.png',
 	'params' => array(
 		array(
             "type" 			=> 	"dropdown",
-			"heading" 		=> 	__( 'Style', 'testimonial' ),
+			"heading" 		=> 	__( 'Style', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"style",
-			"description" 	=> 	'<a href="https://addons.topdigitaltrends.net/testimonial/" target="_blank">See Demo</a>',
+			"description" 	=> 	'',
 			"group" 		=> 	'Settings',
 			"value"			=>	array(
 				"Theme 1"	=>	"theme1",
@@ -225,7 +234,7 @@ vc_map( array(
         ),
         array(
             "type" 			=> 	"dropdown",
-			"heading" 		=> 	__( 'Rating', 'testimonial' ),
+			"heading" 		=> 	__( 'Rating', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"rating",
 			"group" 		=> 	'Settings',
 			"value"			=>	array(
@@ -237,46 +246,46 @@ vc_map( array(
         ),
         array(
             "type" 			=> 	"vc_link",
-			"heading" 		=> 	__( 'Link To', 'testimonial' ),
+			"heading" 		=> 	__( 'Link To', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"link",
-			"description" 	=> 	__( 'write url for open link', 'testimonial' ),
+			"description" 	=> 	__( 'write url for open link', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'Settings',
         ),
         array(
 			"type" 			=> "vc_links",
 			"param_name" 	=> "caption_url",
 			"class"			=>	"ult_param_heading",
-			"description" 	=> __( '<span style="Background: #ddd;padding: 10px; display: block; color: #0073aa;font-weight:600;"><a href="https://1.envato.market/02aNL" target="_blank" style="text-decoration: none;">Get the Pro version for more stunning elements and customization options.</a></span>', 'ihover' ),
+			"description" 	=> '<span style="Background: #ddd;padding: 10px; display: block; color: #0073aa;font-weight:600;">' . '<a href="https://1.envato.market/02aNL" target="_blank" style="text-decoration: none;">' . esc_html__( 'Get the Pro version for more stunning elements and customization options.', 'mega-addons-for-visual-composer' ) . '</a>' . '</span>',
 			"group" 		=> 'Settings',
 		),
 		array(
             "type" 			=> 	"attach_image",
-			"heading" 		=> 	__( 'Image', 'testimonial' ),
+			"heading" 		=> 	__( 'Image', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"image_id",
-			"description" 	=> 	__( 'Select the image', 'testimonial' ),
+			"description" 	=> 	__( 'Select the image', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'Image',
         ),
         array(
             "type" 			=> 	"textfield",
-			"heading" 		=> 	__( 'Alternate Text', 'info-banner-vc' ),
+			"heading" 		=> 	__( 'Alternate Text', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"alt",
-			"description" 	=> 	__( 'It will be used as alt attribute of img tag', 'info-banner-vc' ),
+			"description" 	=> 	__( 'It will be used as alt attribute of img tag', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'Image',
         ),
         array(
             "type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Image Width', 'testimonial' ),
+			"heading" 		=> 	__( 'Image Width', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"width",
-			"description" 	=> 	__( 'image width in pixel e.g 100', 'testimonial' ),
+			"description" 	=> 	__( 'image width in pixel e.g 100', 'mega-addons-for-visual-composer' ),
 			"max"			=>	"",
 			"suffix" 		=> 'px',
 			"group" 		=> 	'Image',
         ),
         array(
             "type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Radius', 'testimonial' ),
+			"heading" 		=> 	__( 'Radius', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"radius",
-			"description" 	=> 	__( 'image border radius in pixel or percentage e,g 50', 'testimonial' ),
+			"description" 	=> 	__( 'image border radius in pixel or percentage e,g 50', 'mega-addons-for-visual-composer' ),
 			"suffix" 		=> 	'%',
 			"value"			=>	"50",
 			"group" 		=> 	'Image',
@@ -286,57 +295,57 @@ vc_map( array(
 
         array(
             "type" 			=> 	"textfield",
-			"heading" 		=> 	__( 'Client Name', 'testimonial' ),
+			"heading" 		=> 	__( 'Client Name', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"name",
 			"group" 		=> 	'Client',
         ),
         array(
             "type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Name Font Size', 'testimonial' ),
+			"heading" 		=> 	__( 'Name Font Size', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"namesize",
 			"value"			=>	"14",
 			"suffix" 		=> 'px',
-			"description" 	=> 	__( 'set in pixel e,g 14', 'testimonial' ),
+			"description" 	=> 	__( 'set in pixel e,g 14', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'Client',
         ),
         array(
             "type" 			=> 	"colorpicker",
-			"heading" 		=> 	__( 'Color of Name', 'testimonial' ),
+			"heading" 		=> 	__( 'Color of Name', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"nameclr",
 			"value"			=>	"#000",
 			"group" 		=> 	'Client',
         ),
         array(
             "type" 			=> 	"textfield",
-			"heading" 		=> 	__( 'Client Profession', 'testimonial' ),
+			"heading" 		=> 	__( 'Client Profession', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"prof",
 			"group" 		=> 	'Client',
         ),
         array(
             "type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Profession Font Size', 'testimonial' ),
+			"heading" 		=> 	__( 'Profession Font Size', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"profsize",
 			"value"			=>	"14",
 			"suffix" 		=> 'px',
-			"description" 	=> 	__( 'set in pixel e,g 14', 'testimonial' ),
+			"description" 	=> 	__( 'set in pixel e,g 14', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'Client',
         ),
         array(
             "type" 			=> 	"colorpicker",
-			"heading" 		=> 	__( 'Color of Profession', 'testimonial' ),
+			"heading" 		=> 	__( 'Color of Profession', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"profclr",
 			"value"			=>	"#000",
 			"group" 		=> 	'Client',
         ),
         array(
             "type" 			=> 	"colorpicker",
-			"heading" 		=> 	__( 'Comments Background', 'testimonial' ),
+			"heading" 		=> 	__( 'Comments Background', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"bgclr",
 			"group" 		=> 	'Comments',
         ),
         array(
             "type" 			=> 	"textarea_html",
-			"heading" 		=> 	__( 'Client Comments', 'testimonial' ),
+			"heading" 		=> 	__( 'Client Comments', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"content",
 			"group" 		=> 	'Comments',
 			"value"			=>	"write client comments here as feedback",

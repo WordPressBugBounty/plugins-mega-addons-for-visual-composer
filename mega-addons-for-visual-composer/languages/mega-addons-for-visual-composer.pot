@@ -1,0 +1,3728 @@
+# Copyright (C) 2026 Topdigitaltrends
+# This file is distributed under the GPL2.
+msgid ""
+msgstr ""
+"Project-Id-Version: Mega Addons For WPBakery Page Builder 4.4.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/mega-addons-for-visual-composer\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-10-25T23:01:10+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+
+#. Plugin Name of the plugin
+#: index.php
+msgid "Mega Addons For WPBakery Page Builder"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: index.php
+msgid "https://addons.topdigitaltrends.net/"
+msgstr ""
+
+#. Description of the plugin
+#: index.php
+msgid "Mega Addons gives you multi plugins all in one. It's very powerful for any theme."
+msgstr ""
+
+#. Author of the plugin
+#: index.php
+msgid "Topdigitaltrends"
+msgstr ""
+
+#. Author URI of the plugin
+#: index.php
+msgid "https://www.topdigitaltrends.net/"
+msgstr ""
+
+#: includes/settings.php:19
+#: render/infobanners.php:225
+msgid "Info Banner"
+msgstr ""
+
+#: includes/settings.php:29
+#: render/hover.php:59
+#: render/hover.php:62
+msgid "Image Hover Effects"
+msgstr ""
+
+#: includes/settings.php:42
+#: render/price.php:69
+msgid "Price Table"
+msgstr ""
+
+#: includes/settings.php:52
+msgid "Advanced Price Listing"
+msgstr ""
+
+#: includes/settings.php:65
+#: render/infobox.php:101
+msgid "Info Box"
+msgstr ""
+
+#: includes/settings.php:75
+#: render/advanced_btn.php:379
+msgid "Advanced Button"
+msgstr ""
+
+#: includes/settings.php:88
+msgid "Team Profile"
+msgstr ""
+
+#: includes/settings.php:98
+#: render/info_circle.php:261
+msgid "Info Circle"
+msgstr ""
+
+#: includes/settings.php:111
+msgid "Stat Counter"
+msgstr ""
+
+#: includes/settings.php:121
+#: render/flipbox.php:192
+msgid "Flip Box"
+msgstr ""
+
+#: includes/settings.php:134
+#: render/timeline_father.php:39
+#: render/timeline_son.php:71
+msgid "Timeline"
+msgstr ""
+
+#: includes/settings.php:144
+#: render/countdown.php:81
+msgid "Countdown"
+msgstr ""
+
+#: includes/settings.php:157
+msgid "Creative Link"
+msgstr ""
+
+#: includes/settings.php:167
+msgid "Text Typer"
+msgstr ""
+
+#: includes/settings.php:180
+msgid "Advanced Social Icons"
+msgstr ""
+
+#: includes/settings.php:190
+#: render/modalPopup.php:93
+msgid "Modal Popup"
+msgstr ""
+
+#: includes/settings.php:203
+#: render/interactivebanner.php:94
+msgid "Interactive Banner"
+msgstr ""
+
+#: includes/settings.php:213
+#: render/highlight_box.php:77
+msgid "Highlight Box"
+msgstr ""
+
+#: includes/settings.php:226
+#: render/info_list_father.php:35
+msgid "Info List"
+msgstr ""
+
+#: includes/settings.php:236
+#: render/googletrends.php:27
+msgid "Google Trends"
+msgstr ""
+
+#: includes/settings.php:249
+#: render/tooltip_icons.php:50
+msgid "Tooltip Icons"
+msgstr ""
+
+#: includes/settings.php:259
+#: render/testimonial.php:213
+msgid "Testimonial"
+msgstr ""
+
+#: includes/settings.php:272
+#: render/tm_carousel_father.php:81
+msgid "Advanced Carousel"
+msgstr ""
+
+#: includes/settings.php:282
+#: render/headings.php:201
+#: render/info_circle.php:400
+#: render/info_circle.php:430
+#: render/info_circle.php:460
+#: render/info_circle.php:490
+#: render/info_circle.php:520
+#: render/interactivebanner.php:182
+msgid "Heading"
+msgstr ""
+
+#: includes/settings.php:295
+#: render/image_swap.php:104
+msgid "Image Swap"
+msgstr ""
+
+#: includes/settings.php:305
+msgid "Accordions"
+msgstr ""
+
+#: includes/settings.php:318
+#: render/filterablegallery_wrap.php:149
+msgid "Filterable Gallery"
+msgstr ""
+
+#: includes/settings.php:332
+msgid "Save Changes"
+msgstr ""
+
+#: includes/settings.php:335
+msgid "Changes Saved!"
+msgstr ""
+
+#: includes/settings.php:336
+msgid "Settings could not be saved. Please try again."
+msgstr ""
+
+#: main.php:108
+msgid "You cannot change these settings."
+msgstr ""
+
+#: main.php:117
+msgid "Settings must be submitted using POST."
+msgstr ""
+
+#: main.php:126
+#: main.php:148
+msgid "Invalid settings request."
+msgstr ""
+
+#: main.php:136
+msgid "Refresh this page and try saving again."
+msgstr ""
+
+#: main.php:190
+#: main.php:201
+msgid "Invalid settings fields or values."
+msgstr ""
+
+#: main.php:215
+#: main.php:226
+msgid "Existing settings need administrator review before saving."
+msgstr ""
+
+#: main.php:246
+msgid "Settings were not saved. Please try again."
+msgstr ""
+
+#: render/accordion_father.php:73
+msgid "Accordion"
+msgstr ""
+
+#: render/accordion_father.php:77
+#: render/accordion_son.php:47
+#: render/advanced_btn.php:381
+#: render/advanceprice.php:69
+#: render/countdown.php:83
+#: render/creativelink.php:137
+#: render/filterablegallery_wrap.php:153
+#: render/filtergallery.php:122
+#: render/flipbox.php:194
+#: render/googletrends.php:29
+#: render/headings.php:203
+#: render/highlight_box.php:79
+#: render/hover.php:61
+#: render/image_swap.php:106
+#: render/infobanners.php:227
+#: render/infobox.php:103
+#: render/info_circle.php:263
+#: render/info_list_father.php:39
+#: render/info_list_son.php:112
+#: render/interactivebanner.php:96
+#: render/modalPopup.php:95
+#: render/price.php:71
+#: render/social_father.php:33
+#: render/social_son.php:99
+#: render/statcounter.php:165
+#: render/teamprofile.php:103
+#: render/testimonial.php:215
+#: render/texttyper.php:138
+#: render/timeline_father.php:43
+#: render/timeline_son.php:75
+#: render/tm_carousel_father.php:85
+#: render/tm_carousel_son.php:98
+#: render/tooltip_icons.php:52
+msgid "Mega Addons"
+msgstr ""
+
+#: render/accordion_father.php:78
+#: render/accordion_son.php:48
+msgid "vertically stacked list of items"
+msgstr ""
+
+#: render/accordion_father.php:83
+msgid "Tab Open/Close"
+msgstr ""
+
+#: render/accordion_father.php:85
+msgid "click to expand or collapse"
+msgstr ""
+
+#: render/accordion_father.php:95
+#: render/image_swap.php:229
+#: render/tm_carousel_father.php:146
+#: render/tooltip_icons.php:125
+msgid "Animation Speed"
+msgstr ""
+
+#: render/accordion_father.php:97
+msgid "in millisecond"
+msgstr ""
+
+#: render/accordion_father.php:105
+msgid "Event"
+msgstr ""
+
+#: render/accordion_father.php:107
+#: render/info_list_son.php:120
+msgid "select"
+msgstr ""
+
+#: render/accordion_father.php:117
+#: render/countdown.php:154
+#: render/social_son.php:120
+msgid "Margin"
+msgstr ""
+
+#: render/accordion_father.php:119
+msgid "margin between accordion titles."
+msgstr ""
+
+#: render/accordion_father.php:127
+msgid "Active Tab Background"
+msgstr ""
+
+#: render/accordion_father.php:134
+msgid "Active Tab Hover Color"
+msgstr ""
+
+#: render/accordion_father.php:141
+#: render/flipbox.php:313
+#: render/interactivebanner.php:168
+#: render/tm_carousel_father.php:204
+msgid "Extra Class"
+msgstr ""
+
+#: render/accordion_father.php:143
+msgid "Add extra class name that will be applied to the accordion, and you can use this class for your customizations."
+msgstr ""
+
+#: render/accordion_father.php:151
+#: render/advanced_btn.php:514
+#: render/advanceprice.php:130
+#: render/countdown.php:166
+#: render/creativelink.php:210
+#: render/filterablegallery_wrap.php:261
+#: render/flipbox.php:323
+#: render/googletrends.php:45
+#: render/headings.php:316
+#: render/highlight_box.php:152
+#: render/hover.php:126
+#: render/hoverbutton.php:326
+#: render/image_swap.php:174
+#: render/infobanners.php:347
+#: render/infobox.php:292
+#: render/info_circle.php:326
+#: render/info_list_son.php:213
+#: render/interactivebanner.php:177
+#: render/modalPopup.php:173
+#: render/price.php:172
+#: render/social_son.php:160
+#: render/statcounter.php:296
+#: render/teamprofile.php:190
+#: render/testimonial.php:258
+#: render/texttyper.php:204
+#: render/timeline_son.php:108
+#: render/tm_carousel_father.php:213
+#: render/tooltip_icons.php:88
+msgid "Get the Pro version for more stunning elements and customization options."
+msgstr ""
+
+#: render/accordion_father.php:157
+msgid "Icon Font Size"
+msgstr ""
+
+#: render/accordion_father.php:166
+#: render/info_list_son.php:145
+msgid "Icon"
+msgstr ""
+
+#: render/accordion_father.php:168
+msgid "it will show by default"
+msgstr ""
+
+#: render/accordion_father.php:174
+msgid "Active Icon"
+msgstr ""
+
+#: render/accordion_father.php:176
+msgid "it will show when accordion is active"
+msgstr ""
+
+#: render/accordion_father.php:182
+msgid "Icon Size [For Mobile]"
+msgstr ""
+
+#: render/accordion_father.php:190
+msgid "Title Size [For Mobile]"
+msgstr ""
+
+#: render/accordion_father.php:198
+msgid "Description Size [For Mobile]"
+msgstr ""
+
+#: render/accordion_son.php:43
+msgid "Accordion Settings"
+msgstr ""
+
+#: render/accordion_son.php:56
+#: render/flipbox.php:403
+#: render/headings.php:324
+#: render/infobox.php:368
+#: render/info_list_son.php:270
+#: render/modalPopup.php:333
+#: render/statcounter.php:314
+#: render/timeline_father.php:49
+#: render/timeline_son.php:153
+#: render/tm_carousel_son.php:160
+msgid "Title"
+msgstr ""
+
+#: render/accordion_son.php:59
+msgid "display title"
+msgstr ""
+
+#: render/accordion_son.php:65
+#: render/modalPopup.php:322
+#: render/timeline_son.php:161
+msgid "Title Align"
+msgstr ""
+
+#: render/accordion_son.php:77
+msgid "Title Padding"
+msgstr ""
+
+#: render/accordion_son.php:79
+msgid "from top and bottom"
+msgstr ""
+
+#: render/accordion_son.php:86
+#: render/info_list_son.php:153
+#: render/modalPopup.php:248
+#: render/modalPopup.php:341
+#: render/timeline_father.php:56
+msgid "Font Size"
+msgstr ""
+
+#: render/accordion_son.php:88
+msgid "set in pixel eg, 16"
+msgstr ""
+
+#: render/accordion_son.php:95
+#: render/headings.php:431
+#: render/infobox.php:383
+#: render/info_list_son.php:292
+#: render/statcounter.php:337
+#: render/timeline_father.php:64
+#: render/timeline_son.php:193
+#: render/tm_carousel_son.php:176
+msgid "Title Color"
+msgstr ""
+
+#: render/accordion_son.php:102
+#: render/timeline_son.php:201
+msgid "Title Background"
+msgstr ""
+
+#: render/accordion_son.php:108
+msgid "Title Background Gradient"
+msgstr ""
+
+#: render/accordion_son.php:110
+msgid "put three different colors inside for gradient effects or leave blank <a href=\"https://www.w3schools.com/csS/css3_gradients.asp\">Further</a>"
+msgstr ""
+
+#: render/accordion_son.php:117
+msgid "Extra ID"
+msgstr ""
+
+#: render/accordion_son.php:119
+msgid "Add extra ID name that will be applied to the accordion tabs, and you can use this ID for your customizations."
+msgstr ""
+
+#: render/accordion_son.php:127
+#: render/price.php:260
+msgid "Body Background"
+msgstr ""
+
+#: render/accordion_son.php:134
+msgid "Detail"
+msgstr ""
+
+#: render/accordion_son.php:143
+msgid "Title Border Width"
+msgstr ""
+
+#: render/accordion_son.php:145
+msgid "border width for title [top right bottom left]"
+msgstr ""
+
+#: render/accordion_son.php:151
+msgid "Title [Border Radius]"
+msgstr ""
+
+#: render/accordion_son.php:158
+msgid "Title Border Color"
+msgstr ""
+
+#: render/accordion_son.php:160
+msgid "color for title border"
+msgstr ""
+
+#: render/accordion_son.php:166
+msgid "Description Border Width"
+msgstr ""
+
+#: render/accordion_son.php:168
+msgid "border width for description [top right bottom left]"
+msgstr ""
+
+#: render/accordion_son.php:174
+msgid "Description Border Color"
+msgstr ""
+
+#: render/accordion_son.php:176
+msgid "color for description border"
+msgstr ""
+
+#: render/advanced_btn.php:382
+#: render/hoverbutton.php:134
+msgid "Animated style buttons"
+msgstr ""
+
+#: render/advanced_btn.php:387
+#: render/creativelink.php:171
+#: render/hoverbutton.php:285
+#: render/modalPopup.php:201
+msgid "Button Align"
+msgstr ""
+
+#: render/advanced_btn.php:398
+#: render/modalPopup.php:187
+msgid "Button Effects"
+msgstr ""
+
+#: render/advanced_btn.php:400
+#: render/hoverbutton.php:141
+msgid "Choose button style"
+msgstr ""
+
+#: render/advanced_btn.php:432
+#: render/hoverbutton.php:331
+#: render/info_list_son.php:147
+#: render/modalPopup.php:179
+msgid "Select icon"
+msgstr ""
+
+#: render/advanced_btn.php:434
+#: render/hoverbutton.php:333
+#: render/infobanners.php:519
+msgid "it will be show within text"
+msgstr ""
+
+#: render/advanced_btn.php:439
+msgid "Icon Align"
+msgstr ""
+
+#: render/advanced_btn.php:449
+#: render/hoverbutton.php:338
+#: render/infobanners.php:524
+msgid "Button text"
+msgstr ""
+
+#: render/advanced_btn.php:453
+#: render/hoverbutton.php:340
+#: render/infobanners.php:526
+msgid "Write button text"
+msgstr ""
+
+#: render/advanced_btn.php:458
+msgid "Button text 2"
+msgstr ""
+
+#: render/advanced_btn.php:460
+#: render/modalPopup.php:222
+msgid "it will show on hover"
+msgstr ""
+
+#: render/advanced_btn.php:467
+#: render/filterablegallery_wrap.php:327
+#: render/hoverbutton.php:297
+#: render/modalPopup.php:386
+msgid "Padding [Top Bottom]"
+msgstr ""
+
+#: render/advanced_btn.php:470
+#: render/hoverbutton.php:299
+msgid "It will increase height of button e.g 10"
+msgstr ""
+
+#: render/advanced_btn.php:477
+#: render/hoverbutton.php:306
+msgid "Padding [Left Right]"
+msgstr ""
+
+#: render/advanced_btn.php:480
+#: render/hoverbutton.php:308
+msgid "It will increase width of button e.g 20"
+msgstr ""
+
+#: render/advanced_btn.php:487
+msgid "Set Full Width Button?"
+msgstr ""
+
+#: render/advanced_btn.php:496
+#: render/creativelink.php:192
+#: render/hoverbutton.php:354
+#: render/infobanners.php:559
+#: render/tm_carousel_son.php:249
+msgid "Button URL"
+msgstr ""
+
+#: render/advanced_btn.php:498
+#: render/hoverbutton.php:356
+#: render/infobanners.php:561
+msgid "Write button url as link"
+msgstr ""
+
+#: render/advanced_btn.php:504
+#: render/creativelink.php:200
+#: render/headings.php:306
+#: render/teamprofile.php:180
+msgid "Extra class name"
+msgstr ""
+
+#: render/advanced_btn.php:522
+#: render/hoverbutton.php:386
+#: render/infobanners.php:498
+#: render/infobanners.php:594
+msgid "Text color"
+msgstr ""
+
+#: render/advanced_btn.php:524
+#: render/hoverbutton.php:388
+msgid "Set color of text e.g #ffff"
+msgstr ""
+
+#: render/advanced_btn.php:530
+#: render/advanced_btn.php:546
+#: render/flipbox.php:461
+#: render/hoverbutton.php:394
+#: render/hoverbutton.php:420
+#: render/infobanners.php:506
+#: render/infobanners.php:601
+msgid "Background color"
+msgstr ""
+
+#: render/advanced_btn.php:532
+#: render/hoverbutton.php:396
+msgid "Set color of background e.g #269CE9"
+msgstr ""
+
+#: render/advanced_btn.php:538
+#: render/hoverbutton.php:411
+#: render/infobanners.php:608
+msgid "Hover Text color"
+msgstr ""
+
+#: render/advanced_btn.php:540
+#: render/hoverbutton.php:413
+msgid "Set color of text on hover e.g #ffff"
+msgstr ""
+
+#: render/advanced_btn.php:548
+#: render/hoverbutton.php:422
+msgid "Set color of background on hover e.g #269CE9"
+msgstr ""
+
+#: render/advanced_btn.php:556
+#: render/flipbox.php:229
+msgid "Border Styling"
+msgstr ""
+
+#: render/advanced_btn.php:564
+#: render/countdown.php:220
+#: render/filterablegallery_wrap.php:395
+#: render/flipbox.php:256
+#: render/hover.php:164
+#: render/image_swap.php:191
+#: render/infobanners.php:566
+#: render/infobox.php:333
+#: render/info_circle.php:316
+#: render/info_list_son.php:233
+#: render/statcounter.php:284
+#: render/tm_carousel_son.php:296
+msgid "Border Style"
+msgstr ""
+
+#: render/advanced_btn.php:581
+#: render/hoverbutton.php:372
+#: render/info_list_son.php:222
+msgid "Border width"
+msgstr ""
+
+#: render/advanced_btn.php:583
+#: render/hoverbutton.php:374
+msgid "Set width of border in pixel e.g 1"
+msgstr ""
+
+#: render/advanced_btn.php:591
+#: render/hoverbutton.php:364
+#: render/info_list_son.php:259
+msgid "Border color"
+msgstr ""
+
+#: render/advanced_btn.php:593
+#: render/hoverbutton.php:366
+msgid "Set color of border e.g #269CE9"
+msgstr ""
+
+#: render/advanced_btn.php:598
+#: render/highlight_box.php:201
+#: render/hoverbutton.php:315
+#: render/testimonial.php:286
+msgid "Radius"
+msgstr ""
+
+#: render/advanced_btn.php:600
+#: render/highlight_box.php:203
+#: render/hoverbutton.php:317
+msgid "set button radius e.g 5"
+msgstr ""
+
+#: render/advanced_btn.php:609
+#: render/tm_carousel_son.php:256
+msgid "Text Size"
+msgstr ""
+
+#: render/advanced_btn.php:611
+#: render/advanced_btn.php:621
+#: render/hoverbutton.php:347
+#: render/infobanners.php:552
+msgid "Set font size in pixel e.g 18"
+msgstr ""
+
+#: render/advanced_btn.php:619
+msgid "Icon Size"
+msgstr ""
+
+#: render/advanced_btn.php:629
+msgid "Icon Text Space"
+msgstr ""
+
+#: render/advanced_btn.php:640
+msgid "Typography"
+msgstr ""
+
+#: render/advanced_btn.php:646
+#: render/creativelink.php:269
+#: render/headings.php:397
+#: render/highlight_box.php:210
+msgid "Transform"
+msgstr ""
+
+#: render/advanced_btn.php:660
+#: render/highlight_box.php:85
+#: render/hoverbutton.php:139
+#: render/infobanners.php:233
+#: render/info_list_father.php:45
+#: render/testimonial.php:221
+msgid "Style"
+msgstr ""
+
+#: render/advanced_btn.php:673
+msgid "Decoration"
+msgstr ""
+
+#: render/advanced_btn.php:687
+#: render/highlight_box.php:224
+#: render/infobanners.php:269
+#: render/infobanners.php:365
+#: render/infobanners.php:583
+msgid "Shadow"
+msgstr ""
+
+#: render/advanced_btn.php:700
+#: render/headings.php:354
+#: render/infobanners.php:452
+msgid "Google Fonts Option"
+msgstr ""
+
+#: render/advanced_btn.php:706
+#: render/headings.php:360
+#: render/infobanners.php:458
+msgid "Use theme default font family?"
+msgstr ""
+
+#: render/advanced_btn.php:708
+#: render/headings.php:362
+#: render/infobanners.php:460
+msgid "Use font family from the theme."
+msgstr ""
+
+#: render/advanced_btn.php:721
+#: render/headings.php:375
+#: render/infobanners.php:473
+msgid "Select font family."
+msgstr ""
+
+#: render/advanced_btn.php:722
+#: render/headings.php:376
+#: render/infobanners.php:474
+msgid "Select font styling."
+msgstr ""
+
+#: render/advanceprice.php:67
+msgid "Advanced Pricing List"
+msgstr ""
+
+#: render/advanceprice.php:70
+msgid "Compare Listing"
+msgstr ""
+
+#: render/advanceprice.php:75
+msgid "Price margin (from top)"
+msgstr ""
+
+#: render/advanceprice.php:77
+msgid "Set complete margin of price table from top to bottom in pixel e.g 30. It is recomend for first price listing from left side."
+msgstr ""
+
+#: render/advanceprice.php:83
+#: render/price.php:91
+msgid "Price Title"
+msgstr ""
+
+#: render/advanceprice.php:85
+#: render/price.php:93
+msgid "It will be used as price package name"
+msgstr ""
+
+#: render/advanceprice.php:90
+#: render/price.php:106
+msgid "Show/Hide price amount"
+msgstr ""
+
+#: render/advanceprice.php:92
+#: render/price.php:108
+msgid "Select Show or Hide amount and currency "
+msgstr ""
+
+#: render/advanceprice.php:101
+msgid "Currency and Amount"
+msgstr ""
+
+#: render/advanceprice.php:103
+msgid "Write currency and amount e.g $299"
+msgstr ""
+
+#: render/advanceprice.php:109
+msgid "Amount font size"
+msgstr ""
+
+#: render/advanceprice.php:111
+msgid "Set font size of price amount e.g 35"
+msgstr ""
+
+#: render/advanceprice.php:119
+#: render/price.php:133
+msgid "Price plan"
+msgstr ""
+
+#: render/advanceprice.php:121
+msgid "Price plan e.g \"month\""
+msgstr ""
+
+#: render/advanceprice.php:136
+#: render/price.php:178
+msgid "Show/Hide Offer"
+msgstr ""
+
+#: render/advanceprice.php:138
+#: render/price.php:180
+msgid "Select Show or Hide offer "
+msgstr ""
+
+#: render/advanceprice.php:147
+#: render/price.php:190
+msgid "Offer text"
+msgstr ""
+
+#: render/advanceprice.php:149
+#: render/price.php:192
+msgid "Write text for showing best offer in Ribbon e.g BEST"
+msgstr ""
+
+#: render/advanceprice.php:155
+#: render/price.php:198
+msgid "Offer Background color"
+msgstr ""
+
+#: render/advanceprice.php:157
+#: render/price.php:200
+msgid "background color of offer"
+msgstr ""
+
+#: render/advanceprice.php:165
+#: render/filtergallery.php:145
+#: render/hover.php:143
+#: render/price.php:208
+msgid "Caption Text"
+msgstr ""
+
+#: render/advanceprice.php:167
+#: render/price.php:210
+msgid "Enter your pricing content. You can use a UL list as shown by default but anything would really work!"
+msgstr ""
+
+#: render/advanceprice.php:176
+msgid "Show/Hide button"
+msgstr ""
+
+#: render/advanceprice.php:178
+msgid "Select Show or Hide Button "
+msgstr ""
+
+#: render/advanceprice.php:188
+#: render/infobox.php:272
+#: render/modalPopup.php:213
+#: render/price.php:219
+#: render/tm_carousel_son.php:242
+msgid "Button Text"
+msgstr ""
+
+#: render/advanceprice.php:190
+#: render/infobox.php:274
+#: render/price.php:221
+msgid "Button text name"
+msgstr ""
+
+#: render/advanceprice.php:196
+#: render/price.php:227
+msgid "Button Url"
+msgstr ""
+
+#: render/advanceprice.php:198
+msgid "Set Button URL for link"
+msgstr ""
+
+#: render/advanceprice.php:206
+#: render/price.php:252
+msgid "Header Background color"
+msgstr ""
+
+#: render/advanceprice.php:208
+#: render/price.php:254
+msgid "Top Header and button background color"
+msgstr ""
+
+#: render/advanceprice.php:213
+msgid "Amount color"
+msgstr ""
+
+#: render/advanceprice.php:215
+msgid "Set color of price amount"
+msgstr ""
+
+#: render/advanceprice.php:221
+msgid "Body background color"
+msgstr ""
+
+#: render/advanceprice.php:223
+#: render/price.php:262
+msgid "Set complete background color"
+msgstr ""
+
+#: render/countdown.php:84
+msgid "Set Countdown timer"
+msgstr ""
+
+#: render/countdown.php:89
+msgid "Unique ID"
+msgstr ""
+
+#: render/countdown.php:91
+msgid "Required: It should be different from other countdown time. Enter any name or numbers."
+msgstr ""
+
+#: render/countdown.php:97
+#: render/flipbox.php:366
+#: render/infobox.php:147
+#: render/info_list_son.php:163
+#: render/social_son.php:129
+#: render/statcounter.php:233
+#: render/tm_carousel_son.php:124
+msgid "Width"
+msgstr ""
+
+#: render/countdown.php:99
+msgid "set width in pixel for each week, hours, minutes and seconds e.g 100"
+msgstr ""
+
+#: render/countdown.php:107
+#: render/info_list_son.php:172
+#: render/social_son.php:139
+#: render/statcounter.php:242
+#: render/tm_carousel_son.php:131
+msgid "Height"
+msgstr ""
+
+#: render/countdown.php:109
+msgid "set height in pixel for each week, hours, minutes and seconds e.g 100"
+msgstr ""
+
+#: render/countdown.php:117
+msgid "Timer Font size"
+msgstr ""
+
+#: render/countdown.php:119
+msgid "Timer font size in pixel e.g 18"
+msgstr ""
+
+#: render/countdown.php:127
+msgid "Period Font size"
+msgstr ""
+
+#: render/countdown.php:129
+msgid "period font size in pixel e.g 18"
+msgstr ""
+
+#: render/countdown.php:137
+#: render/headings.php:411
+#: render/infobox.php:360
+#: render/info_list_son.php:286
+#: render/modalPopup.php:350
+#: render/statcounter.php:306
+#: render/tm_carousel_son.php:190
+msgid "Line Height"
+msgstr ""
+
+#: render/countdown.php:139
+msgid "set line height between  e.g 1"
+msgstr ""
+
+#: render/countdown.php:145
+msgid "Padding From Top"
+msgstr ""
+
+#: render/countdown.php:147
+msgid "padding from top help to move time in center default 15"
+msgstr ""
+
+#: render/countdown.php:156
+msgid "set margin for each timer space between them from left and right side e.g 10"
+msgstr ""
+
+#: render/countdown.php:172
+msgid "Timer Text Color"
+msgstr ""
+
+#: render/countdown.php:179
+msgid "Period Text Color"
+msgstr ""
+
+#: render/countdown.php:186
+#: render/creativelink.php:224
+#: render/filterablegallery_wrap.php:438
+#: render/highlight_box.php:167
+#: render/info_circle.php:365
+#: render/interactivebanner.php:223
+#: render/modalPopup.php:308
+#: render/modalPopup.php:365
+#: render/modalPopup.php:379
+#: render/social_son.php:209
+#: render/timeline_father.php:71
+#: render/tm_carousel_son.php:312
+msgid "Background Color"
+msgstr ""
+
+#: render/countdown.php:188
+msgid "count down background color"
+msgstr ""
+
+#: render/countdown.php:194
+#: render/filterablegallery_wrap.php:385
+#: render/flipbox.php:247
+#: render/headings.php:236
+#: render/hover.php:154
+#: render/image_swap.php:183
+#: render/infobox.php:315
+#: render/modalPopup.php:267
+msgid "Border Width"
+msgstr ""
+
+#: render/countdown.php:196
+msgid "set border width in pixel or leave blank e.g 10"
+msgstr ""
+
+#: render/countdown.php:204
+#: render/filtergallery.php:222
+#: render/infobanners.php:377
+#: render/infobanners.php:574
+#: render/infobox.php:298
+#: render/info_list_son.php:250
+#: render/modalPopup.php:276
+#: render/social_son.php:193
+#: render/statcounter.php:267
+msgid "Border Radius"
+msgstr ""
+
+#: render/countdown.php:206
+msgid "border radius in pixel or percentage e.g 5px or 50%"
+msgstr ""
+
+#: render/countdown.php:212
+#: render/filterablegallery_wrap.php:412
+#: render/flipbox.php:239
+#: render/headings.php:246
+#: render/hover.php:180
+#: render/image_swap.php:207
+#: render/infobox.php:349
+#: render/modalPopup.php:260
+#: render/modalPopup.php:372
+#: render/tm_carousel_father.php:317
+msgid "Border Color"
+msgstr ""
+
+#: render/countdown.php:214
+msgid "set border color"
+msgstr ""
+
+#: render/countdown.php:222
+msgid "set border style"
+msgstr ""
+
+#: render/countdown.php:240
+#: render/headings.php:209
+#: render/infobox.php:109
+msgid "Select Style"
+msgstr ""
+
+#: render/countdown.php:242
+msgid "Visible countdown style in"
+msgstr ""
+
+#: render/countdown.php:255
+msgid "Year"
+msgstr ""
+
+#: render/countdown.php:257
+msgid "just number start from 0 [ e.g 0 for current year, 1 for next year.. ]"
+msgstr ""
+
+#: render/countdown.php:263
+msgid "Month"
+msgstr ""
+
+#: render/countdown.php:265
+msgid "just number between 1 to 12 for specific month [ e.g 3 ]"
+msgstr ""
+
+#: render/countdown.php:271
+#: render/timeline_son.php:81
+msgid "Date"
+msgstr ""
+
+#: render/countdown.php:273
+msgid "just number between 1 to 30 for specific date"
+msgstr ""
+
+#: render/creativelink.php:135
+msgid "Creative Links"
+msgstr ""
+
+#: render/creativelink.php:138
+msgid "Creative links button"
+msgstr ""
+
+#: render/creativelink.php:143
+msgid "Effect Style"
+msgstr ""
+
+#: render/creativelink.php:145
+msgid "Select effect style"
+msgstr ""
+
+#: render/creativelink.php:173
+#: render/hoverbutton.php:287
+msgid "select text align"
+msgstr ""
+
+#: render/creativelink.php:184
+#: render/highlight_box.php:126
+msgid "Text"
+msgstr ""
+
+#: render/creativelink.php:186
+msgid "write button text"
+msgstr ""
+
+#: render/creativelink.php:194
+msgid "write url as link"
+msgstr ""
+
+#: render/creativelink.php:216
+#: render/filterablegallery_wrap.php:430
+#: render/highlight_box.php:160
+#: render/teamprofile.php:557
+#: render/texttyper.php:196
+#: render/tm_carousel_son.php:305
+msgid "Text Color"
+msgstr ""
+
+#: render/creativelink.php:218
+msgid "select button color"
+msgstr ""
+
+#: render/creativelink.php:226
+msgid "select button background color"
+msgstr ""
+
+#: render/creativelink.php:232
+msgid "Hover Text Color"
+msgstr ""
+
+#: render/creativelink.php:234
+msgid "select button color on hover"
+msgstr ""
+
+#: render/creativelink.php:240
+#: render/highlight_box.php:174
+#: render/social_son.php:223
+msgid "Hover Background Color"
+msgstr ""
+
+#: render/creativelink.php:242
+msgid "select button background color on hover"
+msgstr ""
+
+#: render/creativelink.php:250
+msgid "Text Size [PC]"
+msgstr ""
+
+#: render/creativelink.php:260
+msgid "Text Size [Mobile]"
+msgstr ""
+
+#: render/filterablegallery_wrap.php:154
+msgid "Display images with separate categories"
+msgstr ""
+
+#: render/filterablegallery_wrap.php:161
+msgid "Number of Items Display In Row"
+msgstr ""
+
+#: render/filterablegallery_wrap.php:166
+msgid "Columns [For PC]"
+msgstr ""
+
+#: render/filterablegallery_wrap.php:175
+msgid "Columns [For Tab]"
+msgstr ""
+
+#: render/filterablegallery_wrap.php:184
+msgid "Columns [Mobile]"
+msgstr ""
+
+#: render/filterablegallery_wrap.php:204
+#: render/hover.php:93
+#: render/image_swap.php:154
+#: render/image_swap.php:306
+#: render/interactivebanner.php:152
+msgid "Image Height"
+msgstr ""
+
+#: render/filterablegallery_wrap.php:213
+#: render/info_circle.php:309
+msgid "Caption Background"
+msgstr ""
+
+#: render/filterablegallery_wrap.php:222
+#: render/hover.php:190
+#: render/image_swap.php:241
+msgid "Hover Effect"
+msgstr ""
+
+#: render/filterablegallery_wrap.php:235
+msgid "Link Icon"
+msgstr ""
+
+#: render/filterablegallery_wrap.php:243
+msgid "Lightbox Icon"
+msgstr ""
+
+#: render/filterablegallery_wrap.php:251
+#: render/infobanners.php:323
+msgid "Extra Class Name"
+msgstr ""
+
+#: render/filterablegallery_wrap.php:269
+msgid "Gallery All Label"
+msgstr ""
+
+#: render/filterablegallery_wrap.php:277
+msgid "Categories Name"
+msgstr ""
+
+#: render/filterablegallery_wrap.php:286
+msgid "Shuffle Button"
+msgstr ""
+
+#: render/filterablegallery_wrap.php:304
+msgid "Text Transform"
+msgstr ""
+
+#: render/filterablegallery_wrap.php:321
+msgid "Category Control Styles"
+msgstr ""
+
+#: render/filterablegallery_wrap.php:337
+#: render/modalPopup.php:396
+msgid "Padding [Right Left]"
+msgstr ""
+
+#: render/filterablegallery_wrap.php:347
+msgid "Margin [Right Left]"
+msgstr ""
+
+#: render/filterablegallery_wrap.php:357
+msgid "Boder Radius"
+msgstr ""
+
+#: render/filterablegallery_wrap.php:366
+msgid "Category [Font Size]"
+msgstr ""
+
+#: render/filterablegallery_wrap.php:376
+msgid "Margin [Bottom]"
+msgstr ""
+
+#: render/filterablegallery_wrap.php:424
+#: render/modalPopup.php:288
+msgid "Color Settings"
+msgstr ""
+
+#: render/filterablegallery_wrap.php:446
+msgid "Active Text Color"
+msgstr ""
+
+#: render/filterablegallery_wrap.php:454
+msgid "Active Background"
+msgstr ""
+
+#: render/filtergallery.php:55
+#: render/filtergallery.php:83
+msgid "Open image"
+msgstr ""
+
+#: render/filtergallery.php:119
+msgid "Gallery List"
+msgstr ""
+
+#: render/filtergallery.php:123
+msgid "List Items"
+msgstr ""
+
+#: render/filtergallery.php:128
+msgid "Control Name"
+msgstr ""
+
+#: render/filtergallery.php:131
+msgid "Use the gallery control name from Filterable Settings. Separate multiple items with comma (e.g. tech, innovation, web design)"
+msgstr ""
+
+#: render/filtergallery.php:137
+#: render/flipbox.php:342
+#: render/hover.php:67
+#: render/infobox.php:131
+#: render/info_list_son.php:129
+#: render/interactivebanner.php:130
+#: render/statcounter.php:197
+#: render/teamprofile.php:155
+#: render/testimonial.php:263
+#: render/tooltip_icons.php:58
+msgid "Image"
+msgstr ""
+
+#: render/filtergallery.php:139
+#: render/flipbox.php:344
+#: render/hover.php:69
+#: render/image_swap.php:114
+#: render/infobox.php:133
+#: render/info_list_son.php:131
+#: render/interactivebanner.php:132
+#: render/teamprofile.php:157
+#: render/testimonial.php:265
+#: render/tooltip_icons.php:60
+msgid "Select the image"
+msgstr ""
+
+#: render/filtergallery.php:147
+#: render/hover.php:145
+msgid "Provide Caption Here"
+msgstr ""
+
+#: render/filtergallery.php:156
+msgid "Link Settings"
+msgstr ""
+
+#: render/filtergallery.php:162
+#: render/flipbox.php:272
+#: render/hover.php:103
+#: render/image_swap.php:164
+#: render/infobox.php:252
+#: render/teamprofile.php:147
+#: render/testimonial.php:249
+#: render/tm_carousel_son.php:104
+msgid "Link To"
+msgstr ""
+
+#: render/filtergallery.php:164
+#: render/hover.php:105
+#: render/image_swap.php:166
+msgid "Enter URL to link caption"
+msgstr ""
+
+#: render/filtergallery.php:170
+msgid "Lightbox Button"
+msgstr ""
+
+#: render/filtergallery.php:182
+msgid "Video Link"
+msgstr ""
+
+#: render/filtergallery.php:205
+msgid "Icon Settings"
+msgstr ""
+
+#: render/filtergallery.php:212
+msgid "Width/Height"
+msgstr ""
+
+#: render/filtergallery.php:232
+#: render/highlight_box.php:192
+msgid "Icon [Font Size]"
+msgstr ""
+
+#: render/filtergallery.php:242
+#: render/info_circle.php:357
+#: render/social_son.php:202
+#: render/statcounter.php:251
+msgid "Icon Color"
+msgstr ""
+
+#: render/filtergallery.php:251
+#: render/statcounter.php:259
+msgid "Icon Background"
+msgstr ""
+
+#: render/filtergallery.php:260
+msgid "Icon Margin"
+msgstr ""
+
+#: render/filtergallery.php:270
+msgid "Border Settings"
+msgstr ""
+
+#: render/flipbox.php:195
+msgid "Show flip box for Info"
+msgstr ""
+
+#: render/flipbox.php:200
+msgid "Style Flip Box"
+msgstr ""
+
+#: render/flipbox.php:202
+msgid "select style"
+msgstr ""
+
+#: render/flipbox.php:212
+msgid "Flip height"
+msgstr ""
+
+#: render/flipbox.php:214
+msgid "Required. set flip box height e.g 200"
+msgstr ""
+
+#: render/flipbox.php:215
+msgid "200"
+msgstr ""
+
+#: render/flipbox.php:222
+msgid "Front Background"
+msgstr ""
+
+#: render/flipbox.php:224
+msgid "background color for front display"
+msgstr ""
+
+#: render/flipbox.php:241
+msgid "border color for front display"
+msgstr ""
+
+#: render/flipbox.php:249
+msgid "border width for front display"
+msgstr ""
+
+#: render/flipbox.php:282
+msgid "Link URL"
+msgstr ""
+
+#: render/flipbox.php:289
+msgid "Link Text"
+msgstr ""
+
+#: render/flipbox.php:292
+msgid "button text"
+msgstr ""
+
+#: render/flipbox.php:297
+msgid "Link Color"
+msgstr ""
+
+#: render/flipbox.php:300
+msgid "button text color"
+msgstr ""
+
+#: render/flipbox.php:305
+msgid "Link Background"
+msgstr ""
+
+#: render/flipbox.php:308
+msgid "button background color"
+msgstr ""
+
+#: render/flipbox.php:315
+#: render/interactivebanner.php:170
+#: render/tm_carousel_father.php:206
+msgid "Add extra class name that will be applied to the icon process, and you can use this class for your customizations."
+msgstr ""
+
+#: render/flipbox.php:331
+#: render/flipbox.php:333
+#: render/infobox.php:120
+#: render/infobox.php:122
+msgid "Select Image or Font icon"
+msgstr ""
+
+#: render/flipbox.php:350
+#: render/image_swap.php:120
+#: render/image_swap.php:136
+#: render/infobanners.php:395
+#: render/infobox.php:139
+#: render/info_list_son.php:137
+#: render/interactivebanner.php:137
+#: render/statcounter.php:206
+#: render/teamprofile.php:172
+#: render/testimonial.php:270
+#: render/tm_carousel_son.php:117
+#: render/tooltip_icons.php:65
+msgid "Alternate Text"
+msgstr ""
+
+#: render/flipbox.php:352
+#: render/image_swap.php:122
+#: render/image_swap.php:138
+#: render/infobanners.php:398
+#: render/infobox.php:141
+#: render/info_list_son.php:140
+#: render/interactivebanner.php:139
+#: render/statcounter.php:208
+#: render/teamprofile.php:174
+#: render/testimonial.php:272
+#: render/tm_carousel_son.php:119
+#: render/tooltip_icons.php:67
+msgid "It will be used as alt attribute of img tag"
+msgstr ""
+
+#: render/flipbox.php:358
+#: render/infobox.php:156
+#: render/tm_carousel_son.php:138
+msgid "Image Radius"
+msgstr ""
+
+#: render/flipbox.php:360
+msgid "Set Image radius in pixel or % e.g 50%"
+msgstr ""
+
+#: render/flipbox.php:368
+msgid "Image width in pixel e.g 80"
+msgstr ""
+
+#: render/flipbox.php:375
+#: render/infobox.php:173
+msgid "Font icon"
+msgstr ""
+
+#: render/flipbox.php:377
+#: render/infobox.php:175
+msgid "Select the font icon"
+msgstr ""
+
+#: render/flipbox.php:383
+#: render/infobox.php:181
+#: render/social_son.php:183
+#: render/statcounter.php:321
+#: render/statcounter.php:363
+#: render/timeline_son.php:97
+#: render/timeline_son.php:143
+msgid "Font size"
+msgstr ""
+
+#: render/flipbox.php:385
+#: render/infobox.php:183
+msgid "Set icon font size in pixel e.g 30"
+msgstr ""
+
+#: render/flipbox.php:392
+#: render/infobox.php:201
+msgid "Font Color"
+msgstr ""
+
+#: render/flipbox.php:394
+#: render/infobox.php:203
+msgid "Set icon color"
+msgstr ""
+
+#: render/flipbox.php:405
+msgid "set title for front display"
+msgstr ""
+
+#: render/flipbox.php:410
+#: render/flipbox.php:468
+#: render/headings.php:344
+#: render/infobanners.php:422
+#: render/infobox.php:390
+#: render/info_circle.php:406
+#: render/info_circle.php:436
+#: render/info_circle.php:466
+#: render/info_circle.php:496
+#: render/info_circle.php:526
+#: render/info_list_son.php:312
+#: render/interactivebanner.php:198
+msgid "Description"
+msgstr ""
+
+#: render/flipbox.php:412
+msgid "set description for front display"
+msgstr ""
+
+#: render/flipbox.php:417
+msgid "Line height"
+msgstr ""
+
+#: render/flipbox.php:419
+msgid "set line height for text e.g 1.5"
+msgstr ""
+
+#: render/flipbox.php:420
+msgid "1.5"
+msgstr ""
+
+#: render/flipbox.php:425
+#: render/price.php:267
+msgid "Title (Font Size)"
+msgstr ""
+
+#: render/flipbox.php:427
+msgid "set title font size for front display e.g 15"
+msgstr ""
+
+#: render/flipbox.php:428
+msgid "15"
+msgstr ""
+
+#: render/flipbox.php:434
+msgid "Description (Font Size)"
+msgstr ""
+
+#: render/flipbox.php:436
+msgid "set description font size for front display e.g 13"
+msgstr ""
+
+#: render/flipbox.php:437
+msgid "13"
+msgstr ""
+
+#: render/flipbox.php:443
+#: render/price.php:237
+msgid "Title color"
+msgstr ""
+
+#: render/flipbox.php:445
+msgid "set title color"
+msgstr ""
+
+#: render/flipbox.php:450
+msgid "Description color"
+msgstr ""
+
+#: render/flipbox.php:452
+msgid "set description color"
+msgstr ""
+
+#: render/flipbox.php:463
+msgid "set background color"
+msgstr ""
+
+#: render/flipbox.php:470
+msgid "write detail about flip box"
+msgstr ""
+
+#: render/flipbox.php:480
+msgid "Front Title Font Size (For Mobile)"
+msgstr ""
+
+#: render/flipbox.php:482
+#: render/interactivebanner.php:289
+msgid "set in pixel e.g 16"
+msgstr ""
+
+#: render/flipbox.php:488
+msgid "Front Description Font Size (For Mobile)"
+msgstr ""
+
+#: render/flipbox.php:490
+#: render/interactivebanner.php:208
+#: render/interactivebanner.php:298
+msgid "set in pixel e.g 15"
+msgstr ""
+
+#: render/flipbox.php:496
+msgid "Flip height (For Mobile)"
+msgstr ""
+
+#: render/flipbox.php:498
+msgid "set in pixel e.g 200"
+msgstr ""
+
+#: render/googletrends.php:18
+msgid "The embedded chart is currently unavailable."
+msgstr ""
+
+#: render/googletrends.php:30
+msgid "show google trends"
+msgstr ""
+
+#: render/googletrends.php:35
+msgid "Google Trend Embed Code"
+msgstr ""
+
+#: render/googletrends.php:37
+msgid "Google Trends chart rendering is currently unavailable. Existing saved content is retained but not executed or displayed."
+msgstr ""
+
+#: render/googletrends.php:50
+#: render/infobox.php:398
+msgid "Display Design"
+msgstr ""
+
+#: render/headings.php:204
+msgid "Display stylish headings"
+msgstr ""
+
+#: render/headings.php:225
+msgid "Line length"
+msgstr ""
+
+#: render/headings.php:255
+msgid "Seclect Icon/Image"
+msgstr ""
+
+#: render/headings.php:269
+#: render/highlight_box.php:119
+#: render/info_circle.php:386
+#: render/info_circle.php:416
+#: render/info_circle.php:446
+#: render/info_circle.php:476
+#: render/info_circle.php:506
+msgid "Choose Icon"
+msgstr ""
+
+#: render/headings.php:277
+msgid "Icon Alignment"
+msgstr ""
+
+#: render/headings.php:290
+msgid "Color for Icon"
+msgstr ""
+
+#: render/headings.php:298
+msgid "Choose Image"
+msgstr ""
+
+#: render/headings.php:332
+msgid "Heading Alignment"
+msgstr ""
+
+#: render/headings.php:391
+msgid "Title Settings"
+msgstr ""
+
+#: render/headings.php:414
+msgid "margin between line and headings"
+msgstr ""
+
+#: render/headings.php:421
+msgid "Title [Font Size]"
+msgstr ""
+
+#: render/headings.php:441
+msgid "Description Settings"
+msgstr ""
+
+#: render/headings.php:447
+msgid "Description [Font Size]"
+msgstr ""
+
+#: render/highlight_box.php:80
+msgid "Beautiful designed buttons for highlight"
+msgstr ""
+
+#: render/highlight_box.php:87
+msgid "highlight style"
+msgstr ""
+
+#: render/highlight_box.php:100
+msgid "Box Height"
+msgstr ""
+
+#: render/highlight_box.php:102
+msgid "set in pixel eg, 140"
+msgstr ""
+
+#: render/highlight_box.php:109
+msgid "line height"
+msgstr ""
+
+#: render/highlight_box.php:111
+msgid "between text and Icon"
+msgstr ""
+
+#: render/highlight_box.php:128
+msgid "display heighlight box text"
+msgstr ""
+
+#: render/highlight_box.php:134
+msgid "Text 2"
+msgstr ""
+
+#: render/highlight_box.php:136
+msgid "It will show in 2nd line or leave blank"
+msgstr ""
+
+#: render/highlight_box.php:142
+msgid "Box URL"
+msgstr ""
+
+#: render/highlight_box.php:183
+msgid "Text [Font Size]"
+msgstr ""
+
+#: render/hover.php:75
+msgid "Image Alt"
+msgstr ""
+
+#: render/hover.php:77
+msgid "It will use as image alt attribute"
+msgstr ""
+
+#: render/hover.php:83
+#: render/image_swap.php:144
+#: render/image_swap.php:297
+#: render/interactivebanner.php:144
+#: render/testimonial.php:277
+#: render/timeline_son.php:216
+#: render/tooltip_icons.php:72
+msgid "Image Width"
+msgstr ""
+
+#: render/hover.php:85
+#: render/hover.php:95
+#: render/image_swap.php:146
+#: render/image_swap.php:156
+msgid "set in pixel e.g 250 or leave blank for default"
+msgstr ""
+
+#: render/hover.php:111
+msgid "Lightbox"
+msgstr ""
+
+#: render/hover.php:113
+msgid "popup on click. paste image or video url in \"Link To\" field for opening popup on click"
+msgstr ""
+
+#: render/hover.php:136
+msgid "Caption Background Color"
+msgstr ""
+
+#: render/hover.php:138
+msgid "Background color for caption"
+msgstr ""
+
+#: render/hover.php:156
+#: render/image_swap.php:185
+msgid "Width of border, eg: 15. Leaving blank will disable border"
+msgstr ""
+
+#: render/hover.php:182
+#: render/image_swap.php:209
+msgid "Select the color for border"
+msgstr ""
+
+#: render/hover.php:192
+msgid "Choose hover effect <a href=\"http://gudh.github.io/ihover/dist/\">See demo</a>"
+msgstr ""
+
+#: render/hoverbutton.php:131
+msgid "CSS3 Button (OLD)"
+msgstr ""
+
+#: render/hoverbutton.php:150
+#: render/tooltip_icons.php:133
+msgid "Animation Style"
+msgstr ""
+
+#: render/hoverbutton.php:152
+#: render/hoverbutton.php:167
+#: render/hoverbutton.php:204
+#: render/hoverbutton.php:232
+#: render/hoverbutton.php:251
+#: render/hoverbutton.php:269
+msgid "Choose animation style on hover"
+msgstr ""
+
+#: render/hoverbutton.php:165
+msgid "2D Transition"
+msgstr ""
+
+#: render/hoverbutton.php:202
+msgid "Background Transition"
+msgstr ""
+
+#: render/hoverbutton.php:230
+msgid "Border Transition"
+msgstr ""
+
+#: render/hoverbutton.php:249
+msgid "Speech Bubbles"
+msgstr ""
+
+#: render/hoverbutton.php:267
+msgid "Shadow and Glow"
+msgstr ""
+
+#: render/hoverbutton.php:345
+#: render/infobanners.php:550
+msgid "Text font size"
+msgstr ""
+
+#: render/hoverbutton.php:402
+msgid "Background Shadow color"
+msgstr ""
+
+#: render/hoverbutton.php:404
+msgid "keep it same and much dark from background color"
+msgstr ""
+
+#: render/image_swap.php:107
+msgid "Image over image hover effects"
+msgstr ""
+
+#: render/image_swap.php:112
+msgid "Front Image"
+msgstr ""
+
+#: render/image_swap.php:128
+msgid "Flip Image"
+msgstr ""
+
+#: render/image_swap.php:130
+#: render/teamprofile.php:166
+msgid "It will show on hover"
+msgstr ""
+
+#: render/image_swap.php:217
+#: render/tm_carousel_son.php:149
+msgid "Alignment"
+msgstr ""
+
+#: render/image_swap.php:231
+msgid "write value in ms, 1s = 1000ms"
+msgstr ""
+
+#: render/image_swap.php:243
+msgid "Choose hover effect"
+msgstr ""
+
+#: render/image_swap.php:291
+msgid "Image Size For Mobile"
+msgstr ""
+
+#: render/infobanners.php:228
+msgid "Displays the banner information"
+msgstr ""
+
+#: render/infobanners.php:235
+msgid "select styles for info banner"
+msgstr ""
+
+#: render/infobanners.php:247
+msgid "Picture box width"
+msgstr ""
+
+#: render/infobanners.php:249
+msgid "Set the width of picture box in percentage e.g 50"
+msgstr ""
+
+#: render/infobanners.php:258
+msgid "Content box width"
+msgstr ""
+
+#: render/infobanners.php:260
+msgid "Set the width of content box in percentage e.g 50"
+msgstr ""
+
+#: render/infobanners.php:280
+msgid "Gradient Background"
+msgstr ""
+
+#: render/infobanners.php:292
+msgid "Primary Color"
+msgstr ""
+
+#: render/infobanners.php:302
+msgid "Secondary Color"
+msgstr ""
+
+#: render/infobanners.php:312
+msgid "Gradient Angle"
+msgstr ""
+
+#: render/infobanners.php:333
+msgid "Background Options"
+msgstr ""
+
+#: render/infobanners.php:355
+#: render/infobanners.php:431
+msgid "Padding "
+msgstr ""
+
+#: render/infobanners.php:357
+#: render/infobanners.php:434
+msgid "top right bottom left"
+msgstr ""
+
+#: render/infobanners.php:386
+msgid "Banner image"
+msgstr ""
+
+#: render/infobanners.php:389
+msgid "Select image for banner logo"
+msgstr ""
+
+#: render/infobanners.php:404
+msgid "Image width"
+msgstr ""
+
+#: render/infobanners.php:406
+msgid "set image width e.g 100px or 100%"
+msgstr ""
+
+#: render/infobanners.php:411
+msgid "Image height"
+msgstr ""
+
+#: render/infobanners.php:413
+msgid "set image height in pixel e.g 100 or leave blank for default"
+msgstr ""
+
+#: render/infobanners.php:424
+msgid "write detail about info banner"
+msgstr ""
+
+#: render/infobanners.php:441
+msgid "Content Size [For Mobile]"
+msgstr ""
+
+#: render/infobanners.php:490
+msgid "Ribbon text"
+msgstr ""
+
+#: render/infobanners.php:492
+msgid "write ribbon text for special offer or leave blank"
+msgstr ""
+
+#: render/infobanners.php:500
+msgid "Ribbon text color"
+msgstr ""
+
+#: render/infobanners.php:508
+msgid "Ribbon background color"
+msgstr ""
+
+#: render/infobanners.php:517
+msgid "Select Icon"
+msgstr ""
+
+#: render/infobanners.php:531
+#: render/tm_carousel_son.php:266
+msgid "Button Height"
+msgstr ""
+
+#: render/infobanners.php:533
+msgid "button height. set in pixel e.g 20"
+msgstr ""
+
+#: render/infobanners.php:541
+#: render/tm_carousel_son.php:276
+msgid "Button Width"
+msgstr ""
+
+#: render/infobanners.php:543
+msgid "button width. set in pixel e.g 60"
+msgstr ""
+
+#: render/infobanners.php:568
+msgid "height style color"
+msgstr ""
+
+#: render/infobanners.php:615
+msgid "Hover Background"
+msgstr ""
+
+#: render/infobox.php:104
+msgid "Add icon box with custom font icon"
+msgstr ""
+
+#: render/infobox.php:111
+msgid "Choose info style"
+msgstr ""
+
+#: render/infobox.php:149
+msgid "Set the width in pixel e.g 80"
+msgstr ""
+
+#: render/infobox.php:158
+msgid "set the image border radius"
+msgstr ""
+
+#: render/infobox.php:191
+msgid "Height/Width"
+msgstr ""
+
+#: render/infobox.php:193
+msgid "height & width for icon, set in pixel"
+msgstr ""
+
+#: render/infobox.php:209
+#: render/modalPopup.php:301
+msgid "Hover Color"
+msgstr ""
+
+#: render/infobox.php:211
+msgid "icon color on hover"
+msgstr ""
+
+#: render/infobox.php:217
+msgid "Backgroud"
+msgstr ""
+
+#: render/infobox.php:224
+msgid "Hover Backgroud"
+msgstr ""
+
+#: render/infobox.php:232
+msgid "Box Shadow"
+msgstr ""
+
+#: render/infobox.php:242
+msgid "Hover Shadow"
+msgstr ""
+
+#: render/infobox.php:264
+msgid "Url Link"
+msgstr ""
+
+#: render/infobox.php:281
+msgid "Button Text color"
+msgstr ""
+
+#: render/infobox.php:283
+msgid "Set Button background color"
+msgstr ""
+
+#: render/infobox.php:300
+msgid "set the border radius around icon"
+msgstr ""
+
+#: render/infobox.php:317
+msgid "select the border width"
+msgstr ""
+
+#: render/infobox.php:351
+msgid "set the border color"
+msgstr ""
+
+#: render/infobox.php:362
+msgid "Set line height for text"
+msgstr ""
+
+#: render/infobox.php:370
+msgid "Write title for heading"
+msgstr ""
+
+#: render/infobox.php:375
+msgid "Title font size"
+msgstr ""
+
+#: render/infobox.php:377
+msgid "Set font size for title e.g 16"
+msgstr ""
+
+#: render/info_circle.php:264
+msgid "express info about your work"
+msgstr ""
+
+#: render/info_circle.php:269
+msgid "Caption Width"
+msgstr ""
+
+#: render/info_circle.php:271
+msgid "width of inner container in % eg, 60. "
+msgstr ""
+
+#: render/info_circle.php:278
+msgid "Hide Icon"
+msgstr ""
+
+#: render/info_circle.php:280
+msgid "hide icon for inner container"
+msgstr ""
+
+#: render/info_circle.php:285
+msgid "Heading Font size"
+msgstr ""
+
+#: render/info_circle.php:287
+msgid "set in pixel eg, 18"
+msgstr ""
+
+#: render/info_circle.php:294
+msgid "Description Font size"
+msgstr ""
+
+#: render/info_circle.php:296
+msgid "set in pixel eg, 15"
+msgstr ""
+
+#: render/info_circle.php:303
+msgid "Caption Text Color"
+msgstr ""
+
+#: render/info_circle.php:311
+msgid "background for inner container"
+msgstr ""
+
+#: render/info_circle.php:318
+msgid "border for outer container"
+msgstr ""
+
+#: render/info_circle.php:336
+msgid "Icon/Image"
+msgstr ""
+
+#: render/info_circle.php:338
+msgid "choose Icon or Image"
+msgstr ""
+
+#: render/info_circle.php:347
+msgid "Font Icon size"
+msgstr ""
+
+#: render/info_circle.php:349
+msgid "set in pixel eg, 25"
+msgstr ""
+
+#: render/info_circle.php:359
+msgid "color will apply on all icons"
+msgstr ""
+
+#: render/info_circle.php:367
+msgid "background will apply on all icons"
+msgstr ""
+
+#: render/info_circle.php:373
+msgid "Border"
+msgstr ""
+
+#: render/info_circle.php:375
+msgid "It will apply on all icons [width style color]"
+msgstr ""
+
+#: render/info_circle.php:393
+#: render/info_circle.php:423
+#: render/info_circle.php:453
+#: render/info_circle.php:483
+#: render/info_circle.php:513
+#: render/timeline_son.php:209
+#: render/tm_carousel_son.php:111
+msgid "Select Image"
+msgstr ""
+
+#: render/info_list_father.php:40
+msgid "Text blocks connected together in one list"
+msgstr ""
+
+#: render/info_list_father.php:47
+#: render/info_list_son.php:183
+#: render/social_son.php:100
+#: render/social_son.php:107
+msgid "choose style"
+msgstr ""
+
+#: render/info_list_father.php:57
+msgid "Connector Line Height"
+msgstr ""
+
+#: render/info_list_father.php:59
+msgid "line between to info list. set in pixel default 30"
+msgstr ""
+
+#: render/info_list_father.php:66
+msgid "Connector Width"
+msgstr ""
+
+#: render/info_list_father.php:68
+msgid "set connector line width for info list in pixel eg, 1"
+msgstr ""
+
+#: render/info_list_father.php:75
+#: render/tm_carousel_son.php:220
+msgid "Line Style"
+msgstr ""
+
+#: render/info_list_father.php:77
+msgid "set border style for info list"
+msgstr ""
+
+#: render/info_list_father.php:88
+msgid "Line color"
+msgstr ""
+
+#: render/info_list_father.php:90
+msgid "set connector line color for info list"
+msgstr ""
+
+#: render/info_list_father.php:97
+msgid "Design Options"
+msgstr ""
+
+#: render/info_list_son.php:109
+msgid "Info List Settings"
+msgstr ""
+
+#: render/info_list_son.php:113
+msgid "Info list for information"
+msgstr ""
+
+#: render/info_list_son.php:118
+#: render/statcounter.php:186
+msgid "Image/Icon"
+msgstr ""
+
+#: render/info_list_son.php:155
+msgid "icon font size in pixel eg, 30"
+msgstr ""
+
+#: render/info_list_son.php:165
+msgid "set width in pixel eg, 80"
+msgstr ""
+
+#: render/info_list_son.php:174
+msgid "set height in pixel eg, 80"
+msgstr ""
+
+#: render/info_list_son.php:181
+msgid "Image Style"
+msgstr ""
+
+#: render/info_list_son.php:194
+#: render/modalPopup.php:294
+#: render/modalPopup.php:358
+#: render/statcounter.php:379
+#: render/timeline_son.php:89
+msgid "Color"
+msgstr ""
+
+#: render/info_list_son.php:196
+#: render/info_list_son.php:204
+msgid "For icon"
+msgstr ""
+
+#: render/info_list_son.php:202
+msgid "Backgroud color"
+msgstr ""
+
+#: render/info_list_son.php:224
+msgid "set border width eg, 5"
+msgstr ""
+
+#: render/info_list_son.php:235
+msgid "select border style"
+msgstr ""
+
+#: render/info_list_son.php:252
+msgid "set border radius eg, 5px or 5%"
+msgstr ""
+
+#: render/info_list_son.php:261
+msgid "border color"
+msgstr ""
+
+#: render/info_list_son.php:277
+#: render/tm_carousel_son.php:167
+msgid "Title Font Size"
+msgstr ""
+
+#: render/info_list_son.php:279
+msgid "set in pixel, default 18"
+msgstr ""
+
+#: render/info_list_son.php:300
+#: render/statcounter.php:329
+#: render/statcounter.php:371
+#: render/tm_carousel_son.php:182
+msgid "Font Weight"
+msgstr ""
+
+#: render/interactivebanner.php:97
+msgid "great hover effects"
+msgstr ""
+
+#: render/interactivebanner.php:102
+msgid "Effects"
+msgstr ""
+
+#: render/interactivebanner.php:104
+msgid "10 More Effects in"
+msgstr ""
+
+#: render/interactivebanner.php:104
+#: render/price.php:80
+msgid "Pro Version"
+msgstr ""
+
+#: render/interactivebanner.php:146
+msgid "set custom width in pixel or leave blank"
+msgstr ""
+
+#: render/interactivebanner.php:154
+msgid "set custom height in pixel eg, 230 or leave blank"
+msgstr ""
+
+#: render/interactivebanner.php:160
+msgid "Url"
+msgstr ""
+
+#: render/interactivebanner.php:162
+msgid "write url for moving to specific link"
+msgstr ""
+
+#: render/interactivebanner.php:184
+msgid "write title"
+msgstr ""
+
+#: render/interactivebanner.php:189
+msgid "Heading Font Size"
+msgstr ""
+
+#: render/interactivebanner.php:191
+msgid "set in pixel e.g 18"
+msgstr ""
+
+#: render/interactivebanner.php:200
+msgid "write description"
+msgstr ""
+
+#: render/interactivebanner.php:206
+msgid "Description/Icon Font Size"
+msgstr ""
+
+#: render/interactivebanner.php:215
+msgid "Content Color"
+msgstr ""
+
+#: render/interactivebanner.php:217
+msgid "text color"
+msgstr ""
+
+#: render/interactivebanner.php:233
+msgid "First Icon"
+msgstr ""
+
+#: render/interactivebanner.php:236
+#: render/interactivebanner.php:253
+#: render/interactivebanner.php:270
+msgid "choose Icon or leave blank"
+msgstr ""
+
+#: render/interactivebanner.php:241
+msgid "First Icon URL"
+msgstr ""
+
+#: render/interactivebanner.php:244
+msgid "write first Icon URL eg, www.google.com"
+msgstr ""
+
+#: render/interactivebanner.php:250
+msgid "Second Icon"
+msgstr ""
+
+#: render/interactivebanner.php:258
+msgid "Second Icon URL"
+msgstr ""
+
+#: render/interactivebanner.php:261
+msgid "write second Icon URL eg, www.google.com"
+msgstr ""
+
+#: render/interactivebanner.php:267
+msgid "Third Icon"
+msgstr ""
+
+#: render/interactivebanner.php:275
+msgid "Third Icon URL"
+msgstr ""
+
+#: render/interactivebanner.php:278
+msgid "write third Icon URL eg, www.google.com"
+msgstr ""
+
+#: render/interactivebanner.php:287
+msgid "Heading Font Size (For Mobile)"
+msgstr ""
+
+#: render/interactivebanner.php:296
+msgid "Description/Icon Font Size (For Mobile)"
+msgstr ""
+
+#: render/interactivebanner.php:305
+msgid "Image Height (For Mobile)"
+msgstr ""
+
+#: render/interactivebanner.php:307
+msgid "set custom height in pixel eg, 200 or leave blank"
+msgstr ""
+
+#: render/modalPopup.php:96
+msgid "Add modal box in your content"
+msgstr ""
+
+#: render/modalPopup.php:101
+msgid "Animation Effect"
+msgstr ""
+
+#: render/modalPopup.php:103
+msgid "animation style on visible"
+msgstr ""
+
+#: render/modalPopup.php:145
+msgid "Top"
+msgstr ""
+
+#: render/modalPopup.php:147
+msgid "Popup position from top"
+msgstr ""
+
+#: render/modalPopup.php:148
+msgid "60"
+msgstr ""
+
+#: render/modalPopup.php:154
+msgid "Popup Width"
+msgstr ""
+
+#: render/modalPopup.php:156
+msgid "set in pixel"
+msgstr ""
+
+#: render/modalPopup.php:158
+msgid "600"
+msgstr ""
+
+#: render/modalPopup.php:163
+msgid "Popup Background"
+msgstr ""
+
+#: render/modalPopup.php:165
+msgid "Popup body background color"
+msgstr ""
+
+#: render/modalPopup.php:181
+msgid "it will show within text"
+msgstr ""
+
+#: render/modalPopup.php:215
+msgid "text for button"
+msgstr ""
+
+#: render/modalPopup.php:220
+msgid "Button Text 2"
+msgstr ""
+
+#: render/modalPopup.php:228
+#: render/modalPopup.php:238
+msgid "Padding"
+msgstr ""
+
+#: render/modalPopup.php:231
+msgid "top bottom"
+msgstr ""
+
+#: render/modalPopup.php:233
+#: render/modalPopup.php:280
+msgid "5"
+msgstr ""
+
+#: render/modalPopup.php:241
+msgid "left, right"
+msgstr ""
+
+#: render/modalPopup.php:243
+#: render/modalPopup.php:345
+#: render/social_son.php:188
+msgid "20"
+msgstr ""
+
+#: render/modalPopup.php:252
+#: render/texttyper.php:182
+#: render/texttyper.php:269
+msgid "18"
+msgstr ""
+
+#: render/modalPopup.php:315
+msgid "Background Hover Color"
+msgstr ""
+
+#: render/modalPopup.php:335
+msgid "title text"
+msgstr ""
+
+#: render/modalPopup.php:336
+msgid "Image Gallery"
+msgstr ""
+
+#: render/modalPopup.php:343
+msgid "write in pixel e.g 20"
+msgstr ""
+
+#: render/modalPopup.php:352
+msgid "it increases the title section height, default 2"
+msgstr ""
+
+#: render/modalPopup.php:353
+msgid "2"
+msgstr ""
+
+#: render/modalPopup.php:360
+#: render/timeline_father.php:66
+msgid "title color"
+msgstr ""
+
+#: render/modalPopup.php:367
+#: render/timeline_father.php:73
+msgid "title background color"
+msgstr ""
+
+#: render/modalPopup.php:374
+msgid "below title border color"
+msgstr ""
+
+#: render/modalPopup.php:381
+msgid "Content background color"
+msgstr ""
+
+#: render/modalPopup.php:405
+msgid "You can also use shortcode"
+msgstr ""
+
+#: render/price.php:72
+msgid "Create nice looking price tables"
+msgstr ""
+
+#: render/price.php:77
+msgid "Select Layout"
+msgstr ""
+
+#: render/price.php:80
+msgid "3 More Designs in"
+msgstr ""
+
+#: render/price.php:98
+msgid "Price Subtitle"
+msgstr ""
+
+#: render/price.php:100
+msgid "It will show with title"
+msgstr ""
+
+#: render/price.php:117
+msgid "Currency sign"
+msgstr ""
+
+#: render/price.php:119
+msgid "Write currency sign e.g \"$\""
+msgstr ""
+
+#: render/price.php:125
+msgid "Amount"
+msgstr ""
+
+#: render/price.php:127
+msgid "Write amount in number e.g 299"
+msgstr ""
+
+#: render/price.php:135
+msgid "Price plan e.g \"per month\""
+msgstr ""
+
+#: render/price.php:141
+msgid "Set Featured"
+msgstr ""
+
+#: render/price.php:152
+msgid "Scale Zoom"
+msgstr ""
+
+#: render/price.php:154
+msgid "It will prominent than others price table"
+msgstr ""
+
+#: render/price.php:229
+msgid "Write Button URL for link"
+msgstr ""
+
+#: render/price.php:239
+msgid "set price title color"
+msgstr ""
+
+#: render/price.php:244
+msgid "Price Amount Color"
+msgstr ""
+
+#: render/price.php:246
+msgid "set price amount color"
+msgstr ""
+
+#: render/price.php:269
+msgid "Set in pixel eg, 30 or leave blank for default"
+msgstr ""
+
+#: render/price.php:275
+msgid "Price Amount (Font Size)"
+msgstr ""
+
+#: render/price.php:277
+msgid "Set in pixel eg, 40 or leave blank for default"
+msgstr ""
+
+#: render/price.php:283
+msgid "Price Plan (Font Size)"
+msgstr ""
+
+#: render/price.php:285
+msgid "Set in pixel eg, 12 or leave blank for default"
+msgstr ""
+
+#: render/price.php:291
+msgid "Button Text (Font Size)"
+msgstr ""
+
+#: render/price.php:293
+msgid "Set in pixel eg, 17 or leave blank for default"
+msgstr ""
+
+#: render/social_father.php:29
+msgid "Social Icons"
+msgstr ""
+
+#: render/social_father.php:34
+msgid "social icons with animated effects"
+msgstr ""
+
+#: render/social_father.php:39
+msgid "Social Position"
+msgstr ""
+
+#: render/social_son.php:96
+msgid "Icon Setting"
+msgstr ""
+
+#: render/social_son.php:105
+msgid "Social Effects"
+msgstr ""
+
+#: render/social_son.php:122
+msgid "space between two social icons eg 10"
+msgstr ""
+
+#: render/social_son.php:125
+msgid "10"
+msgstr ""
+
+#: render/social_son.php:131
+msgid "social icon width in pixel"
+msgstr ""
+
+#: render/social_son.php:134
+#: render/social_son.php:144
+msgid "40"
+msgstr ""
+
+#: render/social_son.php:141
+msgid "social icon height in pixel"
+msgstr ""
+
+#: render/social_son.php:149
+msgid "Social URL"
+msgstr ""
+
+#: render/social_son.php:151
+msgid "write social url"
+msgstr ""
+
+#: render/social_son.php:153
+msgid "#0"
+msgstr ""
+
+#: render/social_son.php:166
+msgid "Social Icon"
+msgstr ""
+
+#: render/social_son.php:168
+msgid "choose social icon"
+msgstr ""
+
+#: render/social_son.php:174
+msgid "Icon Name"
+msgstr ""
+
+#: render/social_son.php:176
+msgid "It will show with icon"
+msgstr ""
+
+#: render/social_son.php:185
+msgid "icon font size in pixel"
+msgstr ""
+
+#: render/social_son.php:195
+msgid "border radius from edges eg, 5px or 50%"
+msgstr ""
+
+#: render/social_son.php:197
+msgid "0px"
+msgstr ""
+
+#: render/social_son.php:216
+msgid "Hover Icon Color"
+msgstr ""
+
+#: render/statcounter.php:163
+msgid "Stats counter"
+msgstr ""
+
+#: render/statcounter.php:166
+msgid "Your milestones, achievements etc"
+msgstr ""
+
+#: render/statcounter.php:171
+msgid "Counter styles"
+msgstr ""
+
+#: render/statcounter.php:173
+msgid "Select counter styles"
+msgstr ""
+
+#: render/statcounter.php:188
+msgid "Select Image or font Icon"
+msgstr ""
+
+#: render/statcounter.php:199
+msgid "select image for logo"
+msgstr ""
+
+#: render/statcounter.php:215
+#: render/timeline_son.php:126
+msgid "Font Icon"
+msgstr ""
+
+#: render/statcounter.php:217
+msgid "Select font icon"
+msgstr ""
+
+#: render/statcounter.php:223
+msgid "Icon font size"
+msgstr ""
+
+#: render/statcounter.php:225
+msgid "set font size in pixel e.g 25"
+msgstr ""
+
+#: render/statcounter.php:235
+msgid "Set custom width in pixel or leave blank e.g 100"
+msgstr ""
+
+#: render/statcounter.php:244
+msgid "Set custom height in pixel or leave blank e.g 100"
+msgstr ""
+
+#: render/statcounter.php:253
+msgid "Select icon color"
+msgstr ""
+
+#: render/statcounter.php:261
+msgid "background color for Icon"
+msgstr ""
+
+#: render/statcounter.php:269
+msgid "border radius for icon"
+msgstr ""
+
+#: render/statcounter.php:286
+msgid "[width style color]"
+msgstr ""
+
+#: render/statcounter.php:308
+msgid "set line height"
+msgstr ""
+
+#: render/statcounter.php:316
+msgid "write counter title for info"
+msgstr ""
+
+#: render/statcounter.php:323
+msgid "set title font size in pixel e.g 30"
+msgstr ""
+
+#: render/statcounter.php:331
+msgid "set font thickness with difference of 100 in numbers e.g 500"
+msgstr ""
+
+#: render/statcounter.php:339
+msgid "Select title color"
+msgstr ""
+
+#: render/statcounter.php:348
+msgid "Number"
+msgstr ""
+
+#: render/statcounter.php:350
+msgid "Here you can use integers: 12345, floats: 0.1234, formatted numbers: 1,234,567.00"
+msgstr ""
+
+#: render/statcounter.php:357
+msgid "After Text"
+msgstr ""
+
+#: render/statcounter.php:357
+msgid "Pro feature"
+msgstr ""
+
+#: render/statcounter.php:365
+msgid "set counter font size in pixel e.g 20"
+msgstr ""
+
+#: render/statcounter.php:373
+msgid "set counter font thickness with difference of 100 in numbers e.g 500"
+msgstr ""
+
+#: render/statcounter.php:381
+msgid "Select counter title color"
+msgstr ""
+
+#: render/statcounter.php:387
+msgid "Time"
+msgstr ""
+
+#: render/statcounter.php:390
+msgid "The total duration of the count up animation in milli second 1s=1000"
+msgstr ""
+
+#: render/statcounter.php:396
+msgid "Delay"
+msgstr ""
+
+#: render/statcounter.php:398
+msgid "The delay in milliseconds per number count up"
+msgstr ""
+
+#: render/statcounter.php:408
+msgid "Custom Styling"
+msgstr ""
+
+#: render/teamprofile.php:101
+msgid "Member Profile"
+msgstr ""
+
+#: render/teamprofile.php:104
+msgid "Show your awesome team"
+msgstr ""
+
+#: render/teamprofile.php:109
+msgid "Member Style"
+msgstr ""
+
+#: render/teamprofile.php:111
+msgid "Select style of member profile"
+msgstr ""
+
+#: render/teamprofile.php:130
+msgid "Team Profile Width"
+msgstr ""
+
+#: render/teamprofile.php:132
+msgid "custom size of profile container or leave blank for default"
+msgstr ""
+
+#: render/teamprofile.php:139
+msgid "Profile color"
+msgstr ""
+
+#: render/teamprofile.php:141
+msgid "color effects for the team meber"
+msgstr ""
+
+#: render/teamprofile.php:163
+msgid "Image 2"
+msgstr ""
+
+#: render/teamprofile.php:196
+msgid "Member name"
+msgstr ""
+
+#: render/teamprofile.php:198
+msgid "Write member name"
+msgstr ""
+
+#: render/teamprofile.php:203
+msgid "Profession"
+msgstr ""
+
+#: render/teamprofile.php:205
+msgid "Write member profession"
+msgstr ""
+
+#: render/teamprofile.php:211
+msgid "About"
+msgstr ""
+
+#: render/teamprofile.php:213
+msgid "Info about member in detail"
+msgstr ""
+
+#: render/teamprofile.php:221
+msgid "Email"
+msgstr ""
+
+#: render/teamprofile.php:224
+msgid "Write member email address or leave blank"
+msgstr ""
+
+#: render/teamprofile.php:230
+msgid "Site Url"
+msgstr ""
+
+#: render/teamprofile.php:233
+msgid "Write member site url or leave blank"
+msgstr ""
+
+#: render/teamprofile.php:239
+msgid "Contact number"
+msgstr ""
+
+#: render/teamprofile.php:242
+msgid "Write member contact number or leave blank"
+msgstr ""
+
+#: render/teamprofile.php:248
+msgid "Address"
+msgstr ""
+
+#: render/teamprofile.php:251
+msgid "Write member address or leave blank"
+msgstr ""
+
+#: render/teamprofile.php:259
+msgid "Skill 1"
+msgstr ""
+
+#: render/teamprofile.php:263
+#: render/teamprofile.php:284
+#: render/teamprofile.php:305
+#: render/teamprofile.php:325
+#: render/teamprofile.php:346
+msgid "write your skill e.g Wordpress or leave blank"
+msgstr ""
+
+#: render/teamprofile.php:269
+msgid "First percentage"
+msgstr ""
+
+#: render/teamprofile.php:273
+msgid "first skill percentage e.g 87 or leave blank"
+msgstr ""
+
+#: render/teamprofile.php:280
+msgid "Skill 2"
+msgstr ""
+
+#: render/teamprofile.php:290
+msgid "Second percentage"
+msgstr ""
+
+#: render/teamprofile.php:294
+msgid "second skill percentage e.g 83 or leave blank"
+msgstr ""
+
+#: render/teamprofile.php:301
+msgid "Skill 3"
+msgstr ""
+
+#: render/teamprofile.php:311
+msgid "Third percentage"
+msgstr ""
+
+#: render/teamprofile.php:315
+msgid "third skill percentage e.g 83 or leave blank"
+msgstr ""
+
+#: render/teamprofile.php:321
+msgid "Skill 4"
+msgstr ""
+
+#: render/teamprofile.php:331
+msgid "Fourth percentage"
+msgstr ""
+
+#: render/teamprofile.php:335
+msgid "fourth skill percentage e.g 83 or leave blank"
+msgstr ""
+
+#: render/teamprofile.php:342
+msgid "Skill 5"
+msgstr ""
+
+#: render/teamprofile.php:352
+msgid "Fifth percentage"
+msgstr ""
+
+#: render/teamprofile.php:356
+msgid "fifth skill percentage e.g 83 or leave blank"
+msgstr ""
+
+#: render/teamprofile.php:365
+msgid "Social icon"
+msgstr ""
+
+#: render/teamprofile.php:367
+msgid "choose icon for social upadate"
+msgstr ""
+
+#: render/teamprofile.php:373
+msgid "First Social Url"
+msgstr ""
+
+#: render/teamprofile.php:376
+msgid "first social url"
+msgstr ""
+
+#: render/teamprofile.php:382
+msgid "First Social color"
+msgstr ""
+
+#: render/teamprofile.php:391
+msgid "Second social icon"
+msgstr ""
+
+#: render/teamprofile.php:393
+#: render/teamprofile.php:418
+#: render/teamprofile.php:444
+#: render/teamprofile.php:469
+msgid "choose icon for social"
+msgstr ""
+
+#: render/teamprofile.php:399
+msgid "Second Social Url"
+msgstr ""
+
+#: render/teamprofile.php:402
+msgid "Second social url"
+msgstr ""
+
+#: render/teamprofile.php:408
+msgid "Second Social color"
+msgstr ""
+
+#: render/teamprofile.php:416
+msgid "Third social icon"
+msgstr ""
+
+#: render/teamprofile.php:424
+msgid "Third Social Url"
+msgstr ""
+
+#: render/teamprofile.php:427
+msgid "Third social url"
+msgstr ""
+
+#: render/teamprofile.php:433
+msgid "Third Social color"
+msgstr ""
+
+#: render/teamprofile.php:442
+msgid "Fourth social icon"
+msgstr ""
+
+#: render/teamprofile.php:450
+msgid "Fourth Social Url"
+msgstr ""
+
+#: render/teamprofile.php:453
+msgid "Fourth social url"
+msgstr ""
+
+#: render/teamprofile.php:459
+msgid "Fourth Social color"
+msgstr ""
+
+#: render/teamprofile.php:467
+msgid "Fifth social icon"
+msgstr ""
+
+#: render/teamprofile.php:475
+msgid "Fifth Social Url"
+msgstr ""
+
+#: render/teamprofile.php:478
+msgid "Fifth social url"
+msgstr ""
+
+#: render/teamprofile.php:484
+msgid "Fifth Social color"
+msgstr ""
+
+#: render/teamprofile.php:494
+msgid "About Tab Settings"
+msgstr ""
+
+#: render/teamprofile.php:500
+msgid "Color [Member - Profession]"
+msgstr ""
+
+#: render/teamprofile.php:508
+msgid "About Color"
+msgstr ""
+
+#: render/teamprofile.php:516
+msgid "Member Name [Font Size]"
+msgstr ""
+
+#: render/teamprofile.php:525
+msgid "About [Font Size]"
+msgstr ""
+
+#: render/teamprofile.php:534
+msgid "Profession [Font Size]"
+msgstr ""
+
+#: render/teamprofile.php:544
+msgid "Info Tab Settings"
+msgstr ""
+
+#: render/teamprofile.php:550
+msgid "Info [Font Size]"
+msgstr ""
+
+#: render/teamprofile.php:559
+msgid "Set color of all info text"
+msgstr ""
+
+#: render/teamprofile.php:567
+msgid "Social Tab Settings"
+msgstr ""
+
+#: render/teamprofile.php:573
+msgid "Social [Icon Size]"
+msgstr ""
+
+#. translators: %1$d is the testimonial rating value, between 1 and 5.
+#: render/testimonial.php:33
+#, php-format
+msgid "%1$d out of 5 stars"
+msgstr ""
+
+#: render/testimonial.php:216
+msgid "show client comments as testimonial"
+msgstr ""
+
+#: render/testimonial.php:237
+msgid "Rating"
+msgstr ""
+
+#: render/testimonial.php:251
+msgid "write url for open link"
+msgstr ""
+
+#: render/testimonial.php:279
+msgid "image width in pixel e.g 100"
+msgstr ""
+
+#: render/testimonial.php:288
+msgid "image border radius in pixel or percentage e,g 50"
+msgstr ""
+
+#: render/testimonial.php:298
+msgid "Client Name"
+msgstr ""
+
+#: render/testimonial.php:304
+msgid "Name Font Size"
+msgstr ""
+
+#: render/testimonial.php:308
+#: render/testimonial.php:330
+msgid "set in pixel e,g 14"
+msgstr ""
+
+#: render/testimonial.php:313
+msgid "Color of Name"
+msgstr ""
+
+#: render/testimonial.php:320
+msgid "Client Profession"
+msgstr ""
+
+#: render/testimonial.php:326
+msgid "Profession Font Size"
+msgstr ""
+
+#: render/testimonial.php:335
+msgid "Color of Profession"
+msgstr ""
+
+#: render/testimonial.php:342
+msgid "Comments Background"
+msgstr ""
+
+#: render/testimonial.php:348
+msgid "Client Comments"
+msgstr ""
+
+#: render/texttyper.php:136
+msgid "Text Type"
+msgstr ""
+
+#: render/texttyper.php:139
+msgid "Fancy line with animation effects"
+msgstr ""
+
+#: render/texttyper.php:144
+msgid "Text Align"
+msgstr ""
+
+#: render/texttyper.php:146
+msgid "set text align"
+msgstr ""
+
+#: render/texttyper.php:156
+msgid "Prefix"
+msgstr ""
+
+#: render/texttyper.php:158
+msgid "write text that will show before typer text or leave blank"
+msgstr ""
+
+#: render/texttyper.php:163
+msgid "Suffix"
+msgstr ""
+
+#: render/texttyper.php:165
+msgid "write text that will show after typer text or leave blank"
+msgstr ""
+
+#: render/texttyper.php:171
+msgid "Prefix/Suffix Text Font Size"
+msgstr ""
+
+#: render/texttyper.php:178
+#: render/texttyper.php:265
+#: render/tm_carousel_father.php:171
+msgid "On Desktop"
+msgstr ""
+
+#: render/texttyper.php:187
+#: render/texttyper.php:274
+#: render/tm_carousel_father.php:188
+msgid "On Mobile"
+msgstr ""
+
+#: render/texttyper.php:210
+msgid "Show Vertical line|"
+msgstr ""
+
+#: render/texttyper.php:212
+msgid "with and after typer text"
+msgstr ""
+
+#: render/texttyper.php:217
+msgid "Vertical line Color"
+msgstr ""
+
+#: render/texttyper.php:223
+msgid "Provide text to display (each per line) [ Text must be wrapped in html markup ]"
+msgstr ""
+
+#: render/texttyper.php:225
+msgid "Text must be wrapped in html markup."
+msgstr ""
+
+#: render/texttyper.php:226
+msgid "I'm hello world"
+msgstr ""
+
+#: render/texttyper.php:231
+msgid "Text type speed"
+msgstr ""
+
+#: render/texttyper.php:233
+msgid "in milli second, default 70 [1s = 1000]"
+msgstr ""
+
+#: render/texttyper.php:235
+msgid "70"
+msgstr ""
+
+#: render/texttyper.php:240
+msgid "Back delay speed"
+msgstr ""
+
+#: render/texttyper.php:242
+msgid "in milli second, default 500 [1s = 1000]"
+msgstr ""
+
+#: render/texttyper.php:244
+msgid "500"
+msgstr ""
+
+#: render/texttyper.php:249
+msgid "Loop"
+msgstr ""
+
+#: render/texttyper.php:251
+msgid "Repeat text"
+msgstr ""
+
+#: render/texttyper.php:258
+msgid "TextTyper Font Size"
+msgstr ""
+
+#: render/timeline_father.php:44
+#: render/timeline_son.php:76
+msgid "Add multiple images and text"
+msgstr ""
+
+#: render/timeline_father.php:51
+msgid "main title of timeline"
+msgstr ""
+
+#: render/timeline_father.php:58
+msgid "title font size in pixel e.g 17"
+msgstr ""
+
+#: render/timeline_father.php:78
+#: render/tm_carousel_son.php:210
+msgid "Line Width"
+msgstr ""
+
+#: render/timeline_father.php:80
+msgid "set timeline central line width in pixel default 4"
+msgstr ""
+
+#: render/timeline_father.php:86
+#: render/timeline_son.php:135
+msgid "Background"
+msgstr ""
+
+#: render/timeline_father.php:88
+msgid "central line background color"
+msgstr ""
+
+#: render/timeline_son.php:83
+msgid "Write timeline date e.g. Jan 15"
+msgstr ""
+
+#: render/timeline_son.php:91
+msgid "color of the date"
+msgstr ""
+
+#: render/timeline_son.php:99
+msgid "fone size of date in pixel e.g 17"
+msgstr ""
+
+#: render/timeline_son.php:114
+msgid "Select style"
+msgstr ""
+
+#: render/timeline_son.php:116
+msgid "style for center"
+msgstr ""
+
+#: render/timeline_son.php:128
+msgid "choose font awesome or leave blank"
+msgstr ""
+
+#: render/timeline_son.php:137
+msgid "Center dot background color"
+msgstr ""
+
+#: render/timeline_son.php:145
+msgid "Icon font size e.g 17"
+msgstr ""
+
+#: render/timeline_son.php:174
+msgid "Title size"
+msgstr ""
+
+#: render/timeline_son.php:183
+msgid "Padding [Top - Bottom]"
+msgstr ""
+
+#: render/timeline_son.php:224
+msgid "Content Details"
+msgstr ""
+
+#: render/timeline_son.php:226
+msgid "Add heading, details, pictures or video url"
+msgstr ""
+
+#: render/timeline_son.php:233
+msgid "Styles"
+msgstr ""
+
+#: render/tm_carousel_father.php:86
+#: render/tm_carousel_son.php:99
+msgid "show as slider"
+msgstr ""
+
+#: render/tm_carousel_father.php:91
+msgid "Select Theme"
+msgstr ""
+
+#: render/tm_carousel_father.php:93
+msgid "Use as carousel with image above content or as a slider with image over content"
+msgstr ""
+
+#: render/tm_carousel_father.php:102
+msgid "Slide Effect"
+msgstr ""
+
+#: render/tm_carousel_father.php:104
+msgid "choose slider effect"
+msgstr ""
+
+#: render/tm_carousel_father.php:114
+msgid "Autoplay"
+msgstr ""
+
+#: render/tm_carousel_father.php:116
+msgid "move auto or slide on click"
+msgstr ""
+
+#: render/tm_carousel_father.php:125
+msgid "Adaptive Height"
+msgstr ""
+
+#: render/tm_carousel_father.php:127
+msgid "resize height automatically to fill the gap If each slide has different height"
+msgstr ""
+
+#: render/tm_carousel_father.php:136
+msgid "Slider Speed"
+msgstr ""
+
+#: render/tm_carousel_father.php:139
+msgid "Required: write in ms eg, 2000 [1s = 1000]"
+msgstr ""
+
+#: render/tm_carousel_father.php:149
+msgid "Required: Slide/Fade animation speed in ms"
+msgstr ""
+
+#: render/tm_carousel_father.php:156
+msgid "Spaces between two items [px]"
+msgstr ""
+
+#: render/tm_carousel_father.php:164
+msgid "Slides to Show‏"
+msgstr ""
+
+#: render/tm_carousel_father.php:174
+msgid "set visible number of slides. default is 1"
+msgstr ""
+
+#: render/tm_carousel_father.php:180
+msgid "On Tabs"
+msgstr ""
+
+#: render/tm_carousel_father.php:196
+msgid "Slide To Scroll"
+msgstr ""
+
+#: render/tm_carousel_father.php:198
+msgid "allow user to multiple slide on click or drag. default is 1"
+msgstr ""
+
+#: render/tm_carousel_father.php:221
+msgid "Arrows"
+msgstr ""
+
+#: render/tm_carousel_father.php:223
+msgid "Show/Hide on left & right"
+msgstr ""
+
+#: render/tm_carousel_father.php:233
+msgid "Arrow Color"
+msgstr ""
+
+#: render/tm_carousel_father.php:241
+msgid "Arrow background"
+msgstr ""
+
+#: render/tm_carousel_father.php:248
+msgid "Arrow Font Size"
+msgstr ""
+
+#: render/tm_carousel_father.php:258
+#: render/tm_carousel_father.php:326
+msgid "Position [Pro Option]"
+msgstr ""
+
+#: render/tm_carousel_father.php:272
+msgid "Dot Settings"
+msgstr ""
+
+#: render/tm_carousel_father.php:278
+msgid "Dots"
+msgstr ""
+
+#: render/tm_carousel_father.php:280
+msgid "Show/Hide show at bottom"
+msgstr ""
+
+#: render/tm_carousel_father.php:290
+msgid "Dot/Border"
+msgstr ""
+
+#: render/tm_carousel_father.php:301
+msgid "Dot Color"
+msgstr ""
+
+#: render/tm_carousel_father.php:309
+msgid "Dot Size [px]"
+msgstr ""
+
+#: render/tm_carousel_father.php:337
+msgid "Carousel Height (For Mobile)"
+msgstr ""
+
+#: render/tm_carousel_father.php:339
+msgid "set in pixel eg, 250 or leave blank"
+msgstr ""
+
+#: render/tm_carousel_son.php:95
+msgid "Slider Settings"
+msgstr ""
+
+#: render/tm_carousel_son.php:126
+msgid "set in pixel or percentage or leave blank"
+msgstr ""
+
+#: render/tm_carousel_son.php:133
+msgid "set in pixel eg 100% or 500px or leave blank"
+msgstr ""
+
+#: render/tm_carousel_son.php:140
+msgid "border radius. set in pixel or percentage or leave blank"
+msgstr ""
+
+#: render/tm_carousel_son.php:200
+#: render/tm_carousel_son.php:231
+msgid "Enable/Disable"
+msgstr ""
+
+#: render/tm_carousel_son.php:286
+msgid "Button Border Radius"
+msgstr ""
+
+#: render/tm_carousel_son.php:322
+msgid "Padding Top"
+msgstr ""
+
+#: render/tm_carousel_son.php:324
+msgid "set in %. padding will apply from top for the content. It works only if you select theme \"Content Over Image\" from carousel settings."
+msgstr ""
+
+#: render/tm_carousel_son.php:331
+msgid "Carousel Detail"
+msgstr ""
+
+#: render/tooltip_icons.php:53
+msgid "show icons with tooltip"
+msgstr ""
+
+#: render/tooltip_icons.php:79
+msgid "ToolTip Text"
+msgstr ""
+
+#: render/tooltip_icons.php:81
+msgid "it will show on hover image"
+msgstr ""
+
+#: render/tooltip_icons.php:127
+msgid "Sets the duration of the animation, in milliseconds"
+msgstr ""
+
+#: render/tooltip_icons.php:146
+msgid "Choose Theme"
+msgstr ""
+
+#: render/tooltip_icons.php:160
+msgid "Posotion"
+msgstr ""
+
+#: render/tooltip_icons.php:172
+msgid "Interactive"
+msgstr ""

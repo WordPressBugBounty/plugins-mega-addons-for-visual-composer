@@ -38,18 +38,17 @@ class WPBakeryShortCode_mvc_advanced_button extends WPBakeryShortCode {
 			'google_fonts'	=>		'default',
 			'classname' 	=>	'',
 		), $atts ) );
-		$some_id = rand(5, 500);
+		$some_id = VC_MEGA::next_instance_id();
 		$btn_url = vc_build_link($btn_url);
-		wp_enqueue_style( 'advanced-button-css', plugins_url( '../css/advanced-buttons.css' , __FILE__ ));
+		wp_enqueue_style( 'advanced-button-css', plugins_url( '../css/advanced-buttons.css' , __FILE__ ), array(), VC_MEGA::VERSION);
 		$content = wpb_js_remove_wpautop($content, true);
 		$atts = vc_map_get_attributes( $this->getShortcode(), $atts );
 		$googleallfonts = "";
-		if($google_fonts != "default"){
+		if ( 'yes' !== $use_theme_fonts && is_string( $google_fonts ) && 'default' !== $google_fonts && '' !== trim( $google_fonts ) ) {
 			$fontsData = $this->getFontsData( $atts, 'google_fonts' );
 			$googleFontsStyles = $this->googleFontsStyles( $fontsData );
-			$this->enqueueGoogleFonts( $fontsData );
 			if (empty($googleFontsStyles) == false){
-				$googleallfonts = esc_attr( implode( ';', $googleFontsStyles ) );
+				$googleallfonts = implode( ';', $googleFontsStyles );
 			} else {
 				$googleallfonts = $googleFontsStyles;
 			}
@@ -337,6 +336,10 @@ class WPBakeryShortCode_mvc_advanced_button extends WPBakeryShortCode {
 	}
 
 	protected function getFontsData( $atts, $paramName ) {
+		if ( ! is_array( $atts ) || ! isset( $atts[ $paramName ] ) || ! is_string( $atts[ $paramName ] ) || '' === trim( $atts[ $paramName ] ) ) {
+			return '';
+		}
+
 		$googleFontsParam = new Vc_Google_Fonts();
 		$field = WPBMap::getParam( $this->shortcode, $paramName );
 		$fieldSettings = isset( $field['settings'], $field['settings']['fields'] ) ? $field['settings']['fields'] : array();
@@ -346,47 +349,42 @@ class WPBakeryShortCode_mvc_advanced_button extends WPBakeryShortCode {
 	}
 
 	protected function googleFontsStyles( $fontsData ) {
-		// Inline styles
-		$fontFamily = explode( ':', $fontsData['values']['font_family'] );
-		$styles[] = 'font-family:' . $fontFamily[0];
-		$fontStyles = explode( ':', $fontsData['values']['font_style'] );
-		if(count($fontStyles)>1){
-			$styles[] = 'font-weight:' . $fontStyles[1];
-			$styles[] = 'font-style:' . $fontStyles[2];
-			return $styles;
-		} else {
-			return "";
+		$fallback = array( 'font-family: Arial, sans-serif' );
+		if ( ! is_array( $fontsData ) || ! isset( $fontsData['values'] ) || ! is_array( $fontsData['values'] ) || ! isset( $fontsData['values']['font_family'] ) || ! is_string( $fontsData['values']['font_family'] ) ) {
+			return $fallback;
 		}
 
-	}
-
-	protected function enqueueGoogleFonts( $fontsData ) {
-		// Get extra subsets for settings (latin/cyrillic/etc)
-		$settings = get_option( 'wpb_js_google_fonts_subsets' );
-		if ( is_array( $settings ) && ! empty( $settings ) ) {
-			$subsets = '&subset=' . implode( ',', $settings );
-		} else {
-			$subsets = '';
+		$font_family = trim( explode( ':', $fontsData['values']['font_family'], 2 )[0] );
+		if ( '' === $font_family || 1 !== preg_match( '/^[\p{L}\p{M}\p{N}_ -]+$/u', $font_family ) ) {
+			return $fallback;
 		}
 
-		// We also need to enqueue font from googleapis
-		if ( isset( $fontsData['values']['font_family'] ) ) {
-			wp_enqueue_style( 'vc_google_fonts_' . vc_build_safe_css_class( $fontsData['values']['font_family'] ), '//fonts.googleapis.com/css?family=' . $fontsData['values']['font_family'] . $subsets );
+		$styles = array( 'font-family: "' . $font_family . '", Arial, sans-serif' );
+		if ( isset( $fontsData['values']['font_style'] ) && is_string( $fontsData['values']['font_style'] ) ) {
+			$font_style = explode( ':', $fontsData['values']['font_style'], 3 );
+			if ( isset( $font_style[1] ) && preg_match( '/^[1-9]00$/', $font_style[1] ) ) {
+				$styles[] = 'font-weight: ' . $font_style[1];
+			}
+			if ( isset( $font_style[2] ) && in_array( strtolower( $font_style[2] ), array( 'normal', 'italic' ), true ) ) {
+				$styles[] = 'font-style: ' . strtolower( $font_style[2] );
+			}
 		}
+
+		return $styles;
 	}
 }
 
 
 vc_map( array(
-	"name" 			=> __( 'Advanced Button', 'button' ),
+	"name" 			=> __( 'Advanced Button', 'mega-addons-for-visual-composer' ),
 	"base" 			=> "mvc_advanced_button",
-	"category" 		=> __('Mega Addons'),
-	"description" 	=> __('Animated style buttons', 'button'),
+	"category" 		=> __('Mega Addons', 'mega-addons-for-visual-composer'),
+	"description" 	=> __('Animated style buttons', 'mega-addons-for-visual-composer'),
 	"icon" => plugin_dir_url( __FILE__ ).'../icons/hoverbutton.png',
 	'params' => array(
 		array(
 			"type" 			=> 	"dropdown",
-			"heading" 		=> 	__( 'Button Align', 'button' ),
+			"heading" 		=> 	__( 'Button Align', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"align",
 			"group" 		=> 	'General',
 			"value"			=>	array(
@@ -397,9 +395,9 @@ vc_map( array(
 		),
 		array(
 			"type" 			=> 	"dropdown",
-			"heading" 		=> 	__( 'Button Effects', 'button' ),
+			"heading" 		=> 	__( 'Button Effects', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"btn_animation",
-			"description" 	=> __( 'Choose button style <a href="http://addons.topdigitaltrends.net/advanced-button/">See Demo</a>', 'button' ),
+			"description" 	=> esc_html__( 'Choose button style', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'General',
 			"value"			=>	array(
 				"Fade"				=>	"hvr-fade",
@@ -431,14 +429,14 @@ vc_map( array(
 
 		array(
 			"type" 			=> "iconpicker",
-			"heading" 		=> __( 'Select icon', 'button' ),
+			"heading" 		=> __( 'Select icon', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "btn_icon",
-			"description" 	=> __( 'it will be show within text', 'button' ),
+			"description" 	=> __( 'it will be show within text', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'General',
 		),
 		array(
 			"type" 			=> 	"dropdown",
-			"heading" 		=> 	__( 'Icon Align', 'button' ),
+			"heading" 		=> 	__( 'Icon Align', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"icon_position",
 			"group" 		=> 	'General',
 			"value"			=>	array(
@@ -448,45 +446,45 @@ vc_map( array(
 		),
 		array(
 			"type" 			=> "textfield",
-			"heading" 		=> __( 'Button text', 'button' ),
+			"heading" 		=> __( 'Button text', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "btn_text",
 			"value" 		=> "Start a Conversation",
 			'admin_label' 	=> 	true,
-			"description" 	=> __( 'Write button text', 'button' ),
+			"description" 	=> __( 'Write button text', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'General',
 		),
 		array(
 			"type" 			=> "textfield",
-			"heading" 		=> __( 'Button text 2', 'button' ),
+			"heading" 		=> __( 'Button text 2', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "btn_text2",
-			"description" 	=> 	__( 'it will show on hover', 'modal_popup' ),
+			"description" 	=> 	__( 'it will show on hover', 'mega-addons-for-visual-composer' ),
 			"value" 		=> "Click Me!",
 			"dependency" 	=> array('element' => "btn_animation", 'value' => array('button--winona', 'button--rayen')),
 			"group" 		=> 'General',
 		),
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Padding [Top Bottom]', 'button' ),
+			"heading" 		=> __( 'Padding [Top Bottom]', 'mega-addons-for-visual-composer' ),
 			"edit_field_class" => "vc_col-sm-6 wdo_items_to_show wdo_margin_bottom",
 			"param_name" 	=> "padding_top",
-			"description" 	=> __( 'It will increase height of button e.g 10', 'button' ),
+			"description" 	=> __( 'It will increase height of button e.g 10', 'mega-addons-for-visual-composer' ),
 			"value"			=>	"10",
 			"suffix" 		=> 'px',
 			"group" 		=> 'General',
 		),
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Padding [Left Right]', 'button' ),
+			"heading" 		=> __( 'Padding [Left Right]', 'mega-addons-for-visual-composer' ),
 			"edit_field_class" => "vc_col-sm-6 wdo_items_to_show wdo_margin_bottom",
 			"param_name" 	=> "padding_left",
-			"description" 	=> __( 'It will increase width of button e.g 20', 'button' ),
+			"description" 	=> __( 'It will increase width of button e.g 20', 'mega-addons-for-visual-composer' ),
 			"value"			=>	"25",
 			"suffix" 		=> 'px',
 			"group" 		=> 'General',
 		),
 		array(
 			"type" 			=> 	"checkbox",
-			"heading" 		=> 	__( 'Set Full Width Button?', 'button' ),
+			"heading" 		=> 	__( 'Set Full Width Button?', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"btn_block",
 			"group" 		=> 	'General',
 			"value" 		=> array(
@@ -495,15 +493,15 @@ vc_map( array(
 		),
 		array(
 			"type" 			=> "vc_link",
-			"heading" 		=> __( 'Button URL', 'button' ),
+			"heading" 		=> __( 'Button URL', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "btn_url",
-			"description" 	=> __( 'Write button url as link', 'button' ),
+			"description" 	=> __( 'Write button url as link', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'General',
 		),
 
 		array(
             "type" 			=> 	"textfield",
-			"heading" 		=> 	__( 'Extra class name', 'megaaddons' ),
+			"heading" 		=> 	__( 'Extra class name', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"classname",
 			"description" 	=> 	"Style particular content element differently - add a class name and refer to it in custom CSS.",
 			"group" 		=> 	'General',
@@ -513,7 +511,7 @@ vc_map( array(
 			"type" 			=> "vc_links",
 			"param_name" 	=> "caption_url",
 			"class"			=>	"ult_param_heading",
-			"description" 	=> __( '<span style="Background: #ddd;padding: 10px; display: block; color: #0073aa;font-weight:600;"><a href="https://1.envato.market/02aNL" target="_blank" style="text-decoration: none;">Get the Pro version for more stunning elements and customization options.</a></span>', 'ihover' ),
+			"description" 	=> '<span style="Background: #ddd;padding: 10px; display: block; color: #0073aa;font-weight:600;">' . '<a href="https://1.envato.market/02aNL" target="_blank" style="text-decoration: none;">' . esc_html__( 'Get the Pro version for more stunning elements and customization options.', 'mega-addons-for-visual-composer' ) . '</a>' . '</span>',
 			"group" 		=> 'General',
 		),
 
@@ -521,33 +519,33 @@ vc_map( array(
 
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Text color', 'button' ),
+			"heading" 		=> __( 'Text color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "btn_clr",
-			"description" 	=> __( 'Set color of text e.g #ffff', 'button' ),
+			"description" 	=> __( 'Set color of text e.g #ffff', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Color',
 		),
 
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Background color', 'button' ),
+			"heading" 		=> __( 'Background color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "btn_bg",
-			"description" 	=> __( 'Set color of background e.g #269CE9', 'button' ),
+			"description" 	=> __( 'Set color of background e.g #269CE9', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Color',
 		),
 
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Hover Text color', 'button' ),
+			"heading" 		=> __( 'Hover Text color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "btn_hvrclr",
-			"description" 	=> __( 'Set color of text on hover e.g #ffff', 'button' ),
+			"description" 	=> __( 'Set color of text on hover e.g #ffff', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Color',
 		),
 
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Background color', 'button' ),
+			"heading" 		=> __( 'Background color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "btn_hvrbg",
-			"description" 	=> __( 'Set color of background on hover e.g #269CE9', 'button' ),
+			"description" 	=> __( 'Set color of background on hover e.g #269CE9', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Color',
 		),
 
@@ -555,7 +553,7 @@ vc_map( array(
 			"type" 			=> "vc_links",
 			"param_name" 	=> "caption_url",
 			"class"			=>	"ult_param_heading",
-			"description" 	=> __( '<span style="Background: #ddd;padding: 10px; display: block; color: #302f2f;font-weight:600;">Border Styling</span>', 'ihover' ),
+			"description" 	=> '<span style="Background: #ddd;padding: 10px; display: block; color: #302f2f;font-weight:600;">' . esc_html__( 'Border Styling', 'mega-addons-for-visual-composer' ) . '</span>',
 			"group" 		=> 'Color',
 		),
 
@@ -563,7 +561,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Border Style', 'button' ),
+			"heading" 		=> __( 'Border Style', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "border_style",
 			"group" 		=> 'Color',
 			"value"			=>	array(
@@ -580,9 +578,9 @@ vc_map( array(
 
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Border width', 'button' ),
+			"heading" 		=> __( 'Border width', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "border_width",
-			"description" 	=> __( 'Set width of border in pixel e.g 1', 'button' ),
+			"description" 	=> __( 'Set width of border in pixel e.g 1', 'mega-addons-for-visual-composer' ),
 			"value"			=>	"0",
 			"suffix" 		=> 'px',
 			"group" 		=> 'Color',
@@ -590,16 +588,16 @@ vc_map( array(
 
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Border color', 'button' ),
+			"heading" 		=> __( 'Border color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "btn_border",
-			"description" 	=> __( 'Set color of border e.g #269CE9', 'button' ),
+			"description" 	=> __( 'Set color of border e.g #269CE9', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Color',
 		),
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Radius', 'button' ),
+			"heading" 		=> __( 'Radius', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "btn_radius",
-			"description" 	=> __( 'set button radius e.g 5', 'button' ),
+			"description" 	=> __( 'set button radius e.g 5', 'mega-addons-for-visual-composer' ),
 			"suffix" 		=> 'px',
 			"group" 		=> 'Color',
 		),
@@ -608,9 +606,9 @@ vc_map( array(
 		
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Text Size', 'button' ),
+			"heading" 		=> __( 'Text Size', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "btn_size",
-			"description" 	=> __( 'Set font size in pixel e.g 18', 'button' ),
+			"description" 	=> __( 'Set font size in pixel e.g 18', 'mega-addons-for-visual-composer' ),
 			"value"			=>	"18",
 			"suffix" 		=> 'px',
 			"group" 		=> 'Settings',
@@ -618,9 +616,9 @@ vc_map( array(
 
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Icon Size', 'button' ),
+			"heading" 		=> __( 'Icon Size', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "icon_size",
-			"description" 	=> __( 'Set font size in pixel e.g 18', 'button' ),
+			"description" 	=> __( 'Set font size in pixel e.g 18', 'mega-addons-for-visual-composer' ),
 			"value"			=>	"18",
 			"suffix" 		=> 'px',
 			"group" 		=> 'Settings',
@@ -628,7 +626,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Icon Text Space', 'button' ),
+			"heading" 		=> __( 'Icon Text Space', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "icon_space",
 			"value"			=>	"5",
 			"suffix" 		=> 'px',
@@ -639,13 +637,13 @@ vc_map( array(
 			"type" 			=> "vc_links",
 			"param_name" 	=> "caption_urls",
 			"class"			=>	"ult_param_heading",
-			"description" 	=> __( '<span style="Background: #ddd;padding: 10px; display: block; color: #302f2f;font-weight:600;">Typography</span>', 'ihover' ),
+			"description" 	=> '<span style="Background: #ddd;padding: 10px; display: block; color: #302f2f;font-weight:600;">' . esc_html__( 'Typography', 'mega-addons-for-visual-composer' ) . '</span>',
 			"group" 		=> 'Settings',
 		),
 
 		array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Transform', 'button' ),
+			"heading" 		=> __( 'Transform', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "transform",
 			"group" 		=> 'Settings',
 			"value"			=>	array(
@@ -659,7 +657,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Style', 'button' ),
+			"heading" 		=> __( 'Style', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "text_style",
 			"group" 		=> 'Settings',
 			"value"			=>	array(
@@ -672,7 +670,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Decoration', 'button' ),
+			"heading" 		=> __( 'Decoration', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "text_decoration",
 			"group" 		=> 'Settings',
 			"value"			=>	array(
@@ -686,7 +684,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Shadow', 'button' ),
+			"heading" 		=> __( 'Shadow', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "btn_shadow",
 			"group" 		=> 'Settings',
 			"value"			=>	array(
@@ -699,15 +697,15 @@ vc_map( array(
 			"type" 			=> "vc_links",
 			"param_name" 	=> "caption_urlss",
 			"class"			=>	"ult_param_heading",
-			"description" 	=> __( '<span style="Background: #ddd;padding: 10px; display: block; color: #302f2f;font-weight:600;">Google Fonts Option</span>', 'ihover' ),
+			"description" 	=> '<span style="Background: #ddd;padding: 10px; display: block; color: #302f2f;font-weight:600;">' . esc_html__( 'Google Fonts Option', 'mega-addons-for-visual-composer' ) . '</span>',
 			"group" 		=> 'Settings',
 		),
 
 		array(
 			"type" 			=> 	"checkbox",
-			"heading" 		=> 	__( 'Use theme default font family?', 'creativelink' ),
+			"heading" 		=> 	__( 'Use theme default font family?', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"use_theme_fonts",
-			"description" 	=> 	__( 'Use font family from the theme.', 'creativelink' ),
+			"description" 	=> 	__( 'Use font family from the theme.', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'Settings',
 			"value" 		=> array(
 					"Yes"		=> "yes",
@@ -720,8 +718,8 @@ vc_map( array(
 			'value' => 'default',
 			'settings' => array(
 				'fields' => array(
-					'font_family_description' => __( 'Select font family.', 'js_composer' ),
-					'font_style_description' => __( 'Select font styling.', 'js_composer' ),
+					'font_family_description' => __( 'Select font family.', 'mega-addons-for-visual-composer' ),
+					'font_style_description' => __( 'Select font styling.', 'mega-addons-for-visual-composer' ),
 				),
 			),
 			"group" 		=> 	'Settings',

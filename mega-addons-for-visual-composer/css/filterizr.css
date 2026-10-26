@@ -1,0 +1,21 @@
+/* Mega Addons Filterable Gallery presentation and Filterizr layout support. GPL-2.0-or-later. */
+.maw_portfolioGallery_container { width: 100%; min-width: 0; overflow: hidden; }
+.maw_portfolioGallery_container .maw_simplefilters_ul { display: flex; flex-wrap: wrap; justify-content: center; list-style: none; padding: 0; margin: 0 0 1rem; gap: .25rem 0; }
+.maw_portfolioGallery_container .maw_simplefilters_ul > li { position: relative; list-style: none; display: inline-block; text-align: center; }
+.maw_portfolioGallery_container .maw_simplefilters_ul > li.active { background-color: #1da1f5; color: #fff; }
+.maw_portfolioGallery_container .filter-container { position: relative; display: flex; flex-wrap: wrap; gap: 1rem; width: 100%; min-width: 0; padding: 0 !important; }
+.maw_portfolioGallery_container .filtr-item { box-sizing: border-box; margin: 0; padding: 0 0 var(--maw-gallery-row-gap, 0px); min-width: 0; }
+.maw_portfolioGallery_container .filtr-item[aria-hidden="true"] { visibility: hidden !important; pointer-events: none; }
+.maw_portfolioGallery_container .maw_portfolioGallery_ihe, .maw_portfolioGallery_container .a-tag { width: 100%; }
+.maw_portfolioGallery_container .maw_portfolioGallery_ihe .img img { display: block; width: 100%; max-width: 100%; object-fit: cover; }
+.maw_portfolioGallery_container .ih_item_fade_effect, .maw_portfolioGallery_container .ih_item_slide_up { position: relative; overflow: hidden; width: 100%; }
+.maw_portfolioGallery_container .info { position: absolute; inset: 0; text-align: center; opacity: 0; visibility: hidden; transition: opacity .25s ease, transform .25s ease; }
+.maw_portfolioGallery_container .ih_item_slide_up .info { transform: translateY(100%); }
+.maw_portfolioGallery_container .maw_portfolioGallery_ihe:hover .info, .maw_portfolioGallery_container .maw_portfolioGallery_ihe:focus-within .info { opacity: 1; visibility: visible; transform: translateY(0); }
+.maw_portfolioGallery_container .info a.ihe-fancybox { visibility: visible; }
+.maw_portfolioGallery_container a.ihe-fancybox:focus-visible { outline: 3px solid currentColor; outline-offset: 3px; }
+.maw_portfolioGallery_container .portfolio_icon { display: inline-block; width: 50px; height: 50px; line-height: 50px; border-radius: 50%; text-align: center; padding: 0; }
+.maw_portfolioGallery_container .maw-gallery-no-image .info { position: relative; opacity: 1; visibility: visible; transform: none; }
+@media (hover: none) { .maw_portfolioGallery_container .info { position: relative; opacity: 1; visibility: visible; transform: none !important; } }
+@media (hover: none) { .maw_portfolioGallery_container .ih_item_fade_effect, .maw_portfolioGallery_container .ih_item_slide_up { height: auto !important; } }
+@media (prefers-reduced-motion: reduce) { .maw_portfolioGallery_container .filtr-item, .maw_portfolioGallery_container .info { transition-duration: 0s !important; animation-duration: 0s !important; } }

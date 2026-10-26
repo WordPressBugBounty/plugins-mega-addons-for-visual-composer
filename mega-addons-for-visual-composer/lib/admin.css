@@ -115,3 +115,37 @@
 #addonsdata .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
     right: 0px; 
 }
+
+#addonsdata .nm-loading {
+	box-sizing: border-box;
+	display: inline-block;
+	position: relative;
+	width: 128px;
+	height: 15px;
+	margin-left: 6px;
+	vertical-align: -3px;
+}
+
+#addonsdata .nm-loading:before {
+	box-sizing: border-box;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 15px;
+	height: 15px;
+	border: 2px solid #dcdcde;
+	border-top-color: #2271b1;
+	border-radius: 50%;
+	content: "";
+	animation: nm-settings-spin 0.8s linear infinite;
+}
+
+@keyframes nm-settings-spin {
+	to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	#addonsdata .nm-loading:before {
+		animation: none;
+	}
+}

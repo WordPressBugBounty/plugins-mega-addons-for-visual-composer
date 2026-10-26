@@ -35,8 +35,8 @@ class WPBakeryShortCode_mvc_counter extends WPBakeryShortCode {
 			'start_from' 		=>		 '0',
 		), $atts ) );
 		$css_class = apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class( $css, ' ' ), $this->settings['base'], $atts );
-		wp_enqueue_style( 'counter-css', plugins_url( '../css/statcounter.css' , __FILE__ ));
-		wp_enqueue_script( 'count-to', plugins_url( '../js/count-up.js' , __FILE__ ), array('jquery') );
+		wp_enqueue_style( 'counter-css', plugins_url( '../css/statcounter.css' , __FILE__ ), array(), VC_MEGA::VERSION);
+		wp_enqueue_script( 'count-to', plugins_url( '../js/count-up.js' , __FILE__ ), array('jquery') , VC_MEGA::VERSION, false);
 		if ($image_id != '') {
 			$image_url = wp_get_attachment_url( $image_id );		
 		}
@@ -160,17 +160,17 @@ class WPBakeryShortCode_mvc_counter extends WPBakeryShortCode {
 
 
 vc_map( array(
-	"name" 			=> __( 'Stats counter', 'counter' ),
+	"name" 			=> __( 'Stats counter', 'mega-addons-for-visual-composer' ),
 	"base" 			=> "mvc_counter",
-	"category" 		=> __('Mega Addons'),
-	"description" 	=> __('Your milestones, achievements etc', 'counter'),
+	"category" 		=> __('Mega Addons', 'mega-addons-for-visual-composer'),
+	"description" 	=> __('Your milestones, achievements etc', 'mega-addons-for-visual-composer'),
 	"icon" => plugin_dir_url( __FILE__ ).'../icons/counter.png',
 	'params' => array(
 		array(
 			"type" 			=> 	"dropdown",
-			"heading" 		=> 	__( 'Counter styles', 'counter' ),
+			"heading" 		=> 	__( 'Counter styles', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"counter_style",
-			"description" 	=> 	__( 'Select counter styles <a href="http://addons.topdigitaltrends.net/stats-counter/">See demo</a>', 'counter' ),
+			"description" 	=> 	esc_html__( 'Select counter styles', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'General',
 			"value" 		=> array(
 				"Top logo bottom content"		=> "style", 
@@ -183,9 +183,9 @@ vc_map( array(
 
 		array(
 			"type" 			=> 	"dropdown",
-			"heading" 		=> 	__( 'Image/Icon', 'counter' ),
+			"heading" 		=> 	__( 'Image/Icon', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"sec_style",
-			"description" 	=> 	__( 'Select Image or font Icon', 'counter' ),
+			"description" 	=> 	__( 'Select Image or font Icon', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'General',
 			"value" => array(
 				"Image" => "image", 
@@ -194,35 +194,35 @@ vc_map( array(
 		),
 		array(
 			"type" 			=> 	"attach_image",
-			"heading" 		=> 	__( 'Image', 'counter' ),
+			"heading" 		=> 	__( 'Image', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"image_id",
-			"description" 	=> 	__( 'select image for logo', 'counter' ),
+			"description" 	=> 	__( 'select image for logo', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'General',
 			"dependency" => array('element' => "sec_style", 'value' => 'image'),
 		),
 
 		array(
             "type" 			=> 	"textfield",
-			"heading" 		=> 	__( 'Alternate Text', 'info-banner-vc' ),
+			"heading" 		=> 	__( 'Alternate Text', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"alt",
-			"description" 	=> 	__( 'It will be used as alt attribute of img tag', 'info-banner-vc' ),
+			"description" 	=> 	__( 'It will be used as alt attribute of img tag', 'mega-addons-for-visual-composer' ),
 			"dependency" => array('element' => "sec_style", 'value' => 'image'),
 			"group" 		=> 	'General',
         ),
 
 		array(
 			"type" 			=> 	"iconpicker",
-			"heading" 		=> 	__( 'Font Icon', 'counter' ),
+			"heading" 		=> 	__( 'Font Icon', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"count_icon",
-			"description" 	=> 	__( 'Select font icon', 'counter' ),
+			"description" 	=> 	__( 'Select font icon', 'mega-addons-for-visual-composer' ),
 			"dependency" => array('element' => "sec_style", 'value' => 'icon'),
 			"group" 		=> 	'General',
 		),
 		array(
 			"type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Icon font size', 'counter' ),
+			"heading" 		=> 	__( 'Icon font size', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"icon_size",
-			"description" 	=> 	__( 'set font size in pixel e.g 25', 'counter' ),
+			"description" 	=> 	__( 'set font size in pixel e.g 25', 'mega-addons-for-visual-composer' ),
 			"dependency" => array('element' => "sec_style", 'value' => 'icon'),
 			"value"			=>	"25",
 			"suffix" 		=> 	'px',
@@ -230,43 +230,43 @@ vc_map( array(
 		),
 		array(
 			"type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Width', 'counter' ),
+			"heading" 		=> 	__( 'Width', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"image_width",
-			"description" 	=> 	__( 'Set custom width in pixel or leave blank e.g 100', 'counter' ),
+			"description" 	=> 	__( 'Set custom width in pixel or leave blank e.g 100', 'mega-addons-for-visual-composer' ),
 			"value"			=>	"80",
 			"suffix" 		=> 	'px',
 			"group" 		=> 	'General',
 		),
 		array(
 			"type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Height', 'counter' ),
+			"heading" 		=> 	__( 'Height', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"image_height",
-			"description" 	=> 	__( 'Set custom height in pixel or leave blank e.g 100', 'counter' ),
+			"description" 	=> 	__( 'Set custom height in pixel or leave blank e.g 100', 'mega-addons-for-visual-composer' ),
 			"value"			=>	"",
 			"suffix" 		=> 	'px',
 			"group" 		=> 	'General',
 		),
 		array(
 			"type" 			=> 	"colorpicker",
-			"heading" 		=> 	__( 'Icon Color', 'counter' ),
+			"heading" 		=> 	__( 'Icon Color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"icon_clr",
-			"description" 	=> 	__( 'Select icon color', 'counter' ),
+			"description" 	=> 	__( 'Select icon color', 'mega-addons-for-visual-composer' ),
 			"dependency" => array('element' => "sec_style", 'value' => 'icon'),
 			"group" 		=> 	'General',
 		),
 		array(
 			"type" 			=> 	"colorpicker",
-			"heading" 		=> 	__( 'Icon Background', 'counter' ),
+			"heading" 		=> 	__( 'Icon Background', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"icon_bg",
-			"description" 	=> 	__( 'background color for Icon', 'counter' ),
+			"description" 	=> 	__( 'background color for Icon', 'mega-addons-for-visual-composer' ),
 			"dependency" => array('element' => "sec_style", 'value' => 'icon'),
 			"group" 		=> 	'General',
 		),
 		array(
 			"type" 			=> 	"dropdown",
-			"heading" 		=> 	__( 'Border Radius', 'counter' ),
+			"heading" 		=> 	__( 'Border Radius', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"icon_radius",
-			"description" 	=> 	__( 'border radius for icon', 'counter' ),
+			"description" 	=> 	__( 'border radius for icon', 'mega-addons-for-visual-composer' ),
 			"dependency" => array('element' => "sec_style", 'value' => 'icon'),
 			"group" 		=> 	'General',
 			"value" 		=> array(
@@ -281,9 +281,9 @@ vc_map( array(
 		),
 		array(
 			"type" 			=> 	"textfield",
-			"heading" 		=> 	__( 'Border Style', 'counter' ),
+			"heading" 		=> 	__( 'Border Style', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"icon_style",
-			"description" 	=> 	__( '[width style color]', 'counter' ),
+			"description" 	=> 	__( '[width style color]', 'mega-addons-for-visual-composer' ),
 			"dependency" => array('element' => "sec_style", 'value' => 'icon'),
 			"value"			=>	"0px solid #fff",
 			"group" 		=> 	'General',
@@ -293,7 +293,7 @@ vc_map( array(
 			"type" 			=> "vc_links",
 			"param_name" 	=> "caption_url",
 			"class"			=>	"ult_param_heading",
-			"description" 	=> __( '<span style="Background: #ddd;padding: 10px; display: block; color: #0073aa;font-weight:600;"><a href="https://1.envato.market/02aNL" target="_blank" style="text-decoration: none;">Get the Pro version for more stunning elements and customization options.</a></span>', 'ihover' ),
+			"description" 	=> '<span style="Background: #ddd;padding: 10px; display: block; color: #0073aa;font-weight:600;">' . '<a href="https://1.envato.market/02aNL" target="_blank" style="text-decoration: none;">' . esc_html__( 'Get the Pro version for more stunning elements and customization options.', 'mega-addons-for-visual-composer' ) . '</a>' . '</span>',
 			"group" 		=> 'General',
 		),
 
@@ -303,40 +303,40 @@ vc_map( array(
 		
 		array(
 			"type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Line Height', 'counter' ),
+			"heading" 		=> 	__( 'Line Height', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"lineheight",
-			"description" 	=> 	__( 'set line height', 'counter' ),
+			"description" 	=> 	__( 'set line height', 'mega-addons-for-visual-composer' ),
 			"value"			=>	"1",
 			"group" 		=> 	'Title',
 		),
 		array(
 			"type" 			=> 	"textfield",
-			"heading" 		=> 	__( 'Title', 'counter' ),
+			"heading" 		=> 	__( 'Title', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"count_title",
-			"description" 	=> 	__( 'write counter title for info', 'counter' ),
+			"description" 	=> 	__( 'write counter title for info', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'Title',
 		),
 		array(
 			"type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Font size', 'counter' ),
+			"heading" 		=> 	__( 'Font size', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"title_size",
-			"description" 	=> 	__( 'set title font size in pixel e.g 30', 'counter' ),
+			"description" 	=> 	__( 'set title font size in pixel e.g 30', 'mega-addons-for-visual-composer' ),
 			"suffix" 		=> 	'px',
 			"group" 		=> 	'Title',
 		),
 		array(
 			"type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Font Weight', 'counter' ),
+			"heading" 		=> 	__( 'Font Weight', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"title_font",
-			"description" 	=> 	__( 'set font thickness with difference of 100 in numbers e.g 500', 'counter' ),
+			"description" 	=> 	__( 'set font thickness with difference of 100 in numbers e.g 500', 'mega-addons-for-visual-composer' ),
 			"max"			=>	"",
 			"group" 		=> 	'Title',
 		),
 		array(
 			"type" 			=> 	"colorpicker",
-			"heading" 		=> 	__( 'Title Color', 'counter' ),
+			"heading" 		=> 	__( 'Title Color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"title_clr",
-			"description" 	=> 	__( 'Select title color', 'counter' ),
+			"description" 	=> 	__( 'Select title color', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'Title',
 		),
 
@@ -345,57 +345,57 @@ vc_map( array(
 		
 		array(
 			"type" 			=> 	"textfield",
-			"heading" 		=> 	__( 'Number', 'counter' ),
+			"heading" 		=> 	__( 'Number', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"stat_numb",
-			"description" 	=> 	__( 'Here you can use integers: 12345, floats: 0.1234, formatted numbers: 1,234,567.00', 'counter' ),
+			"description" 	=> 	__( 'Here you can use integers: 12345, floats: 0.1234, formatted numbers: 1,234,567.00', 'mega-addons-for-visual-composer' ),
 			"value"			=>	"4329",
 			"max"			=>	"",
 			"group" 		=> 	'Setting',
 		),
 		array(
 			"type" 			=> 	"textfield",
-			"heading" 		=> 	__( 'After Text <a href="https://1.envato.market/02aNL" target="_blank">Pro feature</a>', 'counter' ),
+			"heading" 		=> 	esc_html__( 'After Text', 'mega-addons-for-visual-composer' ) . ' ' . '<a href="https://1.envato.market/02aNL" target="_blank">' . esc_html__( 'Pro feature', 'mega-addons-for-visual-composer' ) . '</a>',
 			"param_name" 	=> 	"stat_numbs",
 			"group" 		=> 	'Setting',
 		),
 		array(
 			"type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Font size', 'counter' ),
+			"heading" 		=> 	__( 'Font size', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"stat_size",
-			"description" 	=> 	__( 'set counter font size in pixel e.g 20', 'counter' ),
+			"description" 	=> 	__( 'set counter font size in pixel e.g 20', 'mega-addons-for-visual-composer' ),
 			"suffix" 		=> 	'px',
 			"group" 		=> 	'Setting',
 		),
 		array(
 			"type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Font Weight', 'counter' ),
+			"heading" 		=> 	__( 'Font Weight', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"stat_font",
-			"description" 	=> 	__( 'set counter font thickness with difference of 100 in numbers e.g 500', 'counter' ),
+			"description" 	=> 	__( 'set counter font thickness with difference of 100 in numbers e.g 500', 'mega-addons-for-visual-composer' ),
 			"max"			=>	"",
 			"group" 		=> 	'Setting',
 		),
 		array(
 			"type" 			=> 	"colorpicker",
-			"heading" 		=> 	__( 'Color', 'counter' ),
+			"heading" 		=> 	__( 'Color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"stat_clr",
-			"description" 	=> 	__( 'Select counter title color', 'counter' ),
+			"description" 	=> 	__( 'Select counter title color', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'Setting',
 		),
 		
 		array(
 			"type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Time', 'counter' ),
+			"heading" 		=> 	__( 'Time', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"count_speed",
 			"value"			=>	"4000",
-			"description" 	=> 	__( 'The total duration of the count up animation in milli second 1s=1000', 'counter' ),
+			"description" 	=> 	__( 'The total duration of the count up animation in milli second 1s=1000', 'mega-addons-for-visual-composer' ),
 			"max"			=>	"",
 			"group" 		=> 	'Setting',
 		),
 		array(
 			"type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Delay', 'counter' ),
+			"heading" 		=> 	__( 'Delay', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"count_interv",
-			"description" 	=> 	__( 'The delay in milliseconds per number count up', 'counter' ),
+			"description" 	=> 	__( 'The delay in milliseconds per number count up', 'mega-addons-for-visual-composer' ),
 			"max"			=>	"",
 			"group" 		=> 	'Setting',
 		),
@@ -405,7 +405,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> 	"css_editor",
-			"heading" 		=> 	__( 'Custom Styling', 'counter' ),
+			"heading" 		=> 	__( 'Custom Styling', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"css",
 			"group" 		=> 	'Design Options',
 		),

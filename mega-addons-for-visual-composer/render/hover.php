@@ -56,33 +56,33 @@ class WPBakeryShortCode_mvc_ihe extends WPBakeryShortCode {
 
 
 vc_map( array(
-	"name" 			=> __( 'Image Hover Effects', 'ihover' ),
+	"name" 			=> __( 'Image Hover Effects', 'mega-addons-for-visual-composer' ),
 	"base" 			=> "mvc_ihe",
-	"category" 		=> __('Mega Addons'),
-	"description" 	=> __('Image Hover Effects', 'ihover'),
+	"category" 		=> __('Mega Addons', 'mega-addons-for-visual-composer'),
+	"description" 	=> __('Image Hover Effects', 'mega-addons-for-visual-composer'),
 	"icon" => plugin_dir_url( __FILE__ ).'../icons/ihe.png',
 	'params' => array(
 		array(
             "type" 			=> 	"attach_image",
-			"heading" 		=> 	__( 'Image', 'ihover' ),
+			"heading" 		=> 	__( 'Image', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"image_id",
-			"description" 	=> 	__( 'Select the image', 'ihover' ),
+			"description" 	=> 	__( 'Select the image', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'Image',
         ),
 
         array(
             "type" 			=> 	"textfield",
-			"heading" 		=> 	__( 'Image Alt', 'info-banner-vc' ),
+			"heading" 		=> 	__( 'Image Alt', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"alt",
-			"description" 	=> 	__( 'It will use as image alt attribute', 'info-banner-vc' ),
+			"description" 	=> 	__( 'It will use as image alt attribute', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'Image',
         ),
 
         array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Image Width', 'ich-vc' ),
+			"heading" 		=> __( 'Image Width', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "width",
-			"description" 	=> __( 'set in pixel e.g 250 or leave blank for default', 'ich-vc' ),
+			"description" 	=> __( 'set in pixel e.g 250 or leave blank for default', 'mega-addons-for-visual-composer' ),
 			"max"			=>	"",
 			"suffix" 		=> 'px',
 			"group" 		=> 'Image',
@@ -90,9 +90,9 @@ vc_map( array(
 
 	    array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Image Height', 'ich-vc' ),
+			"heading" 		=> __( 'Image Height', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "height",
-			"description" 	=> __( 'set in pixel e.g 250 or leave blank for default', 'ich-vc' ),
+			"description" 	=> __( 'set in pixel e.g 250 or leave blank for default', 'mega-addons-for-visual-composer' ),
 			"max"			=>	"",
 			"suffix" 		=> 'px',
 			"group" 		=> 'Image',
@@ -100,17 +100,17 @@ vc_map( array(
 
 		array(
 			"type" 			=> "vc_link",
-			"heading" 		=> __( 'Link To', 'ihover' ),
+			"heading" 		=> __( 'Link To', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "caption_url",
-			"description" 	=> __( 'Enter URL to link caption', 'ihover' ),
+			"description" 	=> __( 'Enter URL to link caption', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Image',
 		),
 
 		array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Lightbox (<a href="https://addons.topdigitaltrends.net/image-hover-effects-popup-demo/">Pro Version Demo</a>)', 'ihover' ),
+			"heading" 		=> __( 'Lightbox', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "popup",
-			"description" 	=> __( 'popup on click. paste image or video url in "Link To" field for opening popup on click', 'ihover' ),
+			"description" 	=> __( 'popup on click. paste image or video url in "Link To" field for opening popup on click', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Image',
 			"value" 		=> array(
 				'Disable'				=>	'disable',
@@ -123,7 +123,7 @@ vc_map( array(
 			"type" 			=> "vc_links",
 			"param_name" 	=> "caption_url",
 			"class"			=>	"ult_param_heading",
-			"description" 	=> __( '<span style="Background: #ddd;padding: 10px; display: block; color: #0073aa;font-weight:600;"><a href="https://1.envato.market/02aNL" target="_blank" style="text-decoration: none;">Get the Pro version for more stunning elements and customization options.</a></span>', 'ihover' ),
+			"description" 	=> '<span style="Background: #ddd;padding: 10px; display: block; color: #0073aa;font-weight:600;">' . '<a href="https://1.envato.market/02aNL" target="_blank" style="text-decoration: none;">' . esc_html__( 'Get the Pro version for more stunning elements and customization options.', 'mega-addons-for-visual-composer' ) . '</a>' . '</span>',
 			"group" 		=> 'Image',
 		),
 
@@ -133,16 +133,16 @@ vc_map( array(
 
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Caption Background Color', 'ihover' ),
+			"heading" 		=> __( 'Caption Background Color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "caption_bg",
-			"description" 	=> __( 'Background color for caption', 'ihover' ),
+			"description" 	=> __( 'Background color for caption', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Caption',
 		),
 		array(
 			"type" 			=> "textarea_html",
-			"heading" 		=> __( 'Caption Text', 'ihover' ),
+			"heading" 		=> __( 'Caption Text', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "content",
-			"description" 	=> __( 'Provide Caption Here', 'ihover' ),
+			"description" 	=> __( 'Provide Caption Here', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Caption',
 			"value"			=> '<h2>Caption Text Here</h2>'
 		),
@@ -151,9 +151,9 @@ vc_map( array(
 
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Border Width', 'ihover' ),
+			"heading" 		=> __( 'Border Width', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "border_width",
-			"description" 	=> __( 'Width of border, eg: 15. Leaving blank will disable border', 'ihover' ),
+			"description" 	=> __( 'Width of border, eg: 15. Leaving blank will disable border', 'mega-addons-for-visual-composer' ),
 			"value"			=>	"10",
 			"suffix" 		=> 'px',
 			"group" 		=> 'Border',
@@ -161,7 +161,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Border Style', 'ich-vc' ),
+			"heading" 		=> __( 'Border Style', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "border_style",
 			"group" 		=> 'Border',
 			"value"			=>	array(
@@ -177,9 +177,9 @@ vc_map( array(
 
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Border Color', 'ihover' ),
+			"heading" 		=> __( 'Border Color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "border_color",
-			"description" 	=> __( 'Select the color for border', 'ihover' ),
+			"description" 	=> __( 'Select the color for border', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Border',
 		),
 
@@ -187,9 +187,9 @@ vc_map( array(
 
 		array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Hover Effect', 'ihover' ),
+			"heading" 		=> __( 'Hover Effect', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "hover_effect",
-			"description" 	=> __( 'Choose hover effect <a href="http://gudh.github.io/ihover/dist/">See demo</a>', 'ihover' ),
+			"description" 	=> __( 'Choose hover effect <a href="http://gudh.github.io/ihover/dist/">See demo</a>', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Hover Effects',
 			"value" 		=>  array(
 				'Fade Effect'						=>		'ihe-fade square effect6 from_top_and_bottom',

@@ -1,7 +1,18 @@
 <?php 
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 class VC_MEGA
 {
+	const VERSION = '4.4.0';
+	public static function next_instance_id() {
+		static $instance_id = 0;
+		$instance_id++;
+		return $instance_id;
+	}
+
 	private $file;
 
 	function __construct($file)
@@ -31,16 +42,16 @@ class VC_MEGA
 
 	function adding_front_scripts () {
 		$saved_options = get_option('vc_save_data');
-		wp_enqueue_style( 'image-hover-effects-css', plugins_url( 'css/ihover.css' , __FILE__ ));
-		wp_enqueue_style( 'style-css', plugins_url( 'css/style.css' , __FILE__ ));
-		wp_enqueue_style( 'font-awesome-latest', plugins_url( 'css/font-awesome/css/all.css' , __FILE__ ));
+		wp_enqueue_style( 'image-hover-effects-css', plugins_url( 'css/ihover.css' , __FILE__ ), array(), '3.1.1');
+		wp_enqueue_style( 'style-css', plugins_url( 'css/style.css' , __FILE__ ), array(), VC_MEGA::VERSION);
+		wp_enqueue_style( 'font-awesome-latest', plugins_url( 'css/font-awesome/css/all.css' , __FILE__ ), array(), '5.12.0');
 	}
 
 	function vc_admin_script($slug) {
-		wp_enqueue_style( 'vc_admin_css', plugin_dir_url( __FILE__ ) . 'lib/style.css' );
+		wp_enqueue_style( 'vc_admin_css', plugin_dir_url( __FILE__ ) . 'lib/style.css' , array(), VC_MEGA::VERSION);
 		if ($slug == 'toplevel_page_mega-addons') {
-			wp_enqueue_style( 'vc_admin_style', plugin_dir_url( __FILE__ ) . 'lib/admin.css' );
-			wp_enqueue_script( 'vc_admin_js', plugin_dir_url( __FILE__ ) . 'lib/admin.js', array('jquery', 'jquery-ui-core'));
+			wp_enqueue_style( 'vc_admin_style', plugin_dir_url( __FILE__ ) . 'lib/admin.css' , array(), VC_MEGA::VERSION);
+			wp_enqueue_script( 'vc_admin_js', plugin_dir_url( __FILE__ ) . 'lib/admin.js', array('jquery', 'jquery-ui-core'), VC_MEGA::VERSION, false);
 		}
 	}
 
@@ -48,6 +59,10 @@ class VC_MEGA
 		
 	function vc_mega_addons() {
 		$saved_options = get_option('vc_save_data');
+		// Malformed legacy options must not break builder initialization.
+		if ( ! is_array( $saved_options ) ) {
+			$saved_options = array();
+		}
 		if (isset($saved_options['banner'])) {include 'render/infobanners.php';}
 		if (isset($saved_options['ihe'])) {include 'render/hover.php';}
 		if (isset($saved_options['price_table'])) {include 'render/price.php';}
@@ -85,13 +100,154 @@ class VC_MEGA
 	}
 
 	function vc_saving_data() {
-		if (isset($_REQUEST)) {
-
-			// Sanitizing $_REQUEST before saving
-			$vc_save_data = array_map( 'sanitize_text_field', $_REQUEST );
-			update_option( 'vc_save_data', $vc_save_data );
-
+		if ( ! current_user_can( 'manage_options' ) ) {
+			status_header( 403 );
+			wp_send_json_error(
+				array(
+					'code'    => 'forbidden',
+					'message' => __( 'You cannot change these settings.', 'mega-addons-for-visual-composer' ),
+				)
+			);
 		}
+		if ( ! isset( $_SERVER['REQUEST_METHOD'] ) || 'POST' !== $_SERVER['REQUEST_METHOD'] ) {
+			status_header( 405 );
+			wp_send_json_error(
+				array(
+					'code'    => 'method_not_allowed',
+					'message' => __( 'Settings must be submitted using POST.', 'mega-addons-for-visual-composer' ),
+				)
+			);
+		}
+		if ( ! is_array( $_POST ) ) {
+			status_header( 400 );
+			wp_send_json_error(
+				array(
+					'code'    => 'invalid_request',
+					'message' => __( 'Invalid settings request.', 'mega-addons-for-visual-composer' ),
+				)
+			);
+		}
+		// Core reads the nonce from REQUEST: require the very same token in POST.
+		if ( ! isset( $_POST['_ajax_nonce'], $_REQUEST['_ajax_nonce'] ) || ! is_string( $_POST['_ajax_nonce'] ) || ! is_string( $_REQUEST['_ajax_nonce'] ) || $_POST['_ajax_nonce'] !== $_REQUEST['_ajax_nonce'] || false === check_ajax_referer( 'mega_addons_vc_save_data', '_ajax_nonce', false ) ) {
+			status_header( 403 );
+			wp_send_json_error(
+				array(
+					'code'    => 'invalid_nonce',
+					'message' => __( 'Refresh this page and try saving again.', 'mega-addons-for-visual-composer' ),
+				)
+			);
+		}
+
+		// Exact ASCII action allowlist: neither slash removal nor permissive sanitization is needed.
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Validated against one fixed literal, not persisted as supplied.
+		if ( ! isset( $_POST['action'] ) || ! is_string( $_POST['action'] ) || 'vc_save_data' !== $_POST['action'] ) {
+			status_header( 400 );
+			wp_send_json_error(
+				array(
+					'code'    => 'invalid_request',
+					'message' => __( 'Invalid settings request.', 'mega-addons-for-visual-composer' ),
+				)
+			);
+		}
+
+		$toggle_keys  = array(
+			'banner',
+			'ihe',
+			'price_table',
+			'advance_price',
+			'info_box',
+			'advance_btn',
+			'team_prof',
+			'info_circle',
+			'counter',
+			'flip_box',
+			'timeline',
+			'countdown',
+			'creative_link',
+			'text_typer',
+			'social_icon',
+			'popup',
+			'interactive_banner',
+			'highlight_box',
+			'info_list',
+			'google_trend',
+			'tooltip',
+			'testimonial',
+			'adv_carousel',
+			'heading',
+			'img_swap',
+			'accordion',
+			'filter_gallery',
+		);
+		$allowed_keys = array_merge( $toggle_keys, array( 'action', '_ajax_nonce' ) );
+		$checked_keys = array();
+		foreach ( $_POST as $key => $value ) {
+			if ( ! in_array( $key, $allowed_keys, true ) || ! is_string( $value ) ) {
+				status_header( 400 );
+				wp_send_json_error(
+					array(
+						'code'    => 'invalid_settings',
+						'message' => __( 'Invalid settings fields or values.', 'mega-addons-for-visual-composer' ),
+					)
+				);
+			}
+			if ( in_array( $key, $toggle_keys, true ) ) {
+				$value = function_exists( 'wp_unslash' ) ? wp_unslash( $value ) : stripslashes_deep( $value );
+				if ( 'on' !== $value ) {
+					status_header( 400 );
+					wp_send_json_error(
+						array(
+							'code'    => 'invalid_settings',
+							'message' => __( 'Invalid settings fields or values.', 'mega-addons-for-visual-composer' ),
+						)
+					);
+				}
+				$checked_keys[] = $key;
+			}
+		}
+
+		$old_options = get_option( 'vc_save_data' );
+		if ( ! is_array( $old_options ) && $old_options ) {
+			status_header( 409 );
+			wp_send_json_error(
+				array(
+					'code'    => 'invalid_saved_settings',
+					'message' => __( 'Existing settings need administrator review before saving.', 'mega-addons-for-visual-composer' ),
+				)
+			);
+		}
+		$vc_save_data = is_array( $old_options ) ? $old_options : array();
+		foreach ( $toggle_keys as $key ) {
+			if ( isset( $vc_save_data[ $key ] ) && ( is_array( $vc_save_data[ $key ] ) || is_object( $vc_save_data[ $key ] ) ) ) {
+				status_header( 409 );
+				wp_send_json_error(
+					array(
+						'code'    => 'invalid_saved_settings',
+						'message' => __( 'Existing settings need administrator review before saving.', 'mega-addons-for-visual-composer' ),
+					)
+				);
+			}
+			unset( $vc_save_data[ $key ] );
+		}
+		foreach ( $checked_keys as $key ) {
+			$vc_save_data[ $key ] = 'on';
+		}
+		// Keep the legacy non-empty marker, including when every toggle is off.
+		$vc_save_data['action'] = 'vc_save_data';
+		if ( $old_options === $vc_save_data ) {
+			wp_send_json_success( array( 'changed' => false ) );
+		}
+		$changed = update_option( 'vc_save_data', $vc_save_data );
+		if ( ! $changed && get_option( 'vc_save_data' ) !== $vc_save_data ) {
+			status_header( 500 );
+			wp_send_json_error(
+				array(
+					'code'    => 'save_failed',
+					'message' => __( 'Settings were not saved. Please try again.', 'mega-addons-for-visual-composer' ),
+				)
+			);
+		}
+		wp_send_json_success( array( 'changed' => (bool) $changed ) );
 	}
 
 
@@ -110,7 +266,7 @@ class VC_MEGA
 		<h3 style="font-weight: 100;">Enable/Disable Element</h3>
 		<div class="mega-addons-version">
 			<div class="dashicons-before dashicons-shield"></div>
-			<p>Version 4.3.0</p>
+			<p>Version 4.4.0</p>
 		</div>
 		<?php include 'includes/settings.php'; ?>
 	</div>

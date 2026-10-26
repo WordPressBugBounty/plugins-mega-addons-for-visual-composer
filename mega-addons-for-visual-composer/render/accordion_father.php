@@ -22,11 +22,11 @@ class WPBakeryShortCode_accordion_father extends WPBakeryShortCodesContainer {
 			'title_mblsize' 	=> 		'',
 			'desc_mblsize' 		=> 		'',
 		), $atts ) );
-		$some_id = rand(5, 500);
+		$some_id = VC_MEGA::next_instance_id();
 		$GLOBALS['maw_accordion_margin'] = $titlemargin;
 		$content = wpb_js_remove_wpautop($content);
-		wp_enqueue_style( 'accordion-css', plugins_url( '../css/accordion.css' , __FILE__ ));
-		wp_enqueue_script( 'accordion-js', plugins_url( '../js/accordion.js' , __FILE__ ), array('jquery', 'jquery-ui-accordion'));
+		wp_enqueue_style( 'accordion-css', plugins_url( '../css/accordion.css' , __FILE__ ), array(), VC_MEGA::VERSION);
+		wp_enqueue_script( 'accordion-js', plugins_url( '../js/accordion.js' , __FILE__ ), array('jquery', 'jquery-ui-accordion'), VC_MEGA::VERSION, false);
 		ob_start(); ?>
 		<div class="mega-accordion maw_accordion_<?php echo esc_attr($some_id); ?> <?php echo esc_attr($class); ?>" data-active="<?php echo esc_attr($active); ?>" data-anim="<?php echo esc_attr($animation); ?>" data-event="<?php echo esc_attr($event); ?>" data-closeicons="<?php echo esc_attr($icon); ?>" data-activeicons="<?php echo esc_attr($activeicon); ?>">
 			<?php echo wp_kses_post($content); ?>
@@ -70,19 +70,19 @@ class WPBakeryShortCode_accordion_father extends WPBakeryShortCodesContainer {
 
 vc_map( array(
 	"base" 			=> "accordion_father",
-	"name" 			=> __( 'Accordion', 'accordion' ),
+	"name" 			=> __( 'Accordion', 'mega-addons-for-visual-composer' ),
 	"as_parent" 	=> array('only' => 'accordion_son'),
 	"content_element" => true,
 	"js_view" 		=> 'VcColumnView',
-	"category" 		=> __('Mega Addons'),
-	"description" 	=> __('vertically stacked list of items', ''),
+	"category" 		=> __('Mega Addons', 'mega-addons-for-visual-composer' ),
+	"description" 	=> __('vertically stacked list of items', 'mega-addons-for-visual-composer'),
 	"icon" => plugin_dir_url( __FILE__ ).'../icons/accordions.png',
 	'params' => array(
 			array(
 				"type" 			=> 	"dropdown",
-				"heading" 		=> 	__( 'Tab Open/Close', 'accordion' ),
+				"heading" 		=> 	__( 'Tab Open/Close', 'mega-addons-for-visual-composer' ),
 				"param_name" 	=> 	"active",
-				"description" 	=> 	__( 'click to <a href="https://addons.topdigitaltrends.net/accordion/" target="_blank">See Demo</a>', 'accordion' ),
+				"description" 	=> 	__( 'click to expand or collapse', 'mega-addons-for-visual-composer' ),
 				"group" 		=> 'General',
 				"value"			=> array(
 					"Close"		=>	"false",
@@ -92,9 +92,9 @@ vc_map( array(
 
 			array(
 	            "type" 			=> 	"vc_number",
-				"heading" 		=> 	__( 'Animation Speed', 'accordion' ),
+				"heading" 		=> 	__( 'Animation Speed', 'mega-addons-for-visual-composer' ),
 				"param_name" 	=> 	"animation",
-				"description" 	=> 	__( 'in millisecond', 'accordion' ),
+				"description" 	=> 	__( 'in millisecond', 'mega-addons-for-visual-composer' ),
 				"value"			=>	"350",
 				"suffix" 		=> 	'ms',
 				"group" 		=> 	'General',
@@ -102,9 +102,9 @@ vc_map( array(
 
 			array(
 				"type" 			=> 	"dropdown",
-				"heading" 		=> 	__( 'Event', 'accordion' ),
+				"heading" 		=> 	__( 'Event', 'mega-addons-for-visual-composer' ),
 				"param_name" 	=> 	"event",
-				"description" 	=> 	__( 'select', 'accordion' ),
+				"description" 	=> 	__( 'select', 'mega-addons-for-visual-composer' ),
 				"group" 		=> 'General',
 				"value"			=> array(
 					"Click"			=>	"click",
@@ -114,9 +114,9 @@ vc_map( array(
 
 			array(
 	            "type" 			=> 	"vc_number",
-				"heading" 		=> 	__( 'Margin', 'accordion' ),
+				"heading" 		=> 	__( 'Margin', 'mega-addons-for-visual-composer' ),
 				"param_name" 	=> 	"titlemargin",
-				"description" 	=> 	__( 'margin between accordion titles.', 'accordion' ),
+				"description" 	=> 	__( 'margin between accordion titles.', 'mega-addons-for-visual-composer' ),
 				"value"			=>	"0",
 				"suffix" 		=> 	'px',
 				"group" 		=> 	'General',
@@ -124,23 +124,23 @@ vc_map( array(
 
 	        array(
 	            "type" 			=> 	"colorpicker",
-				"heading" 		=> 	__( 'Active Tab Background', 'accordion' ),
+				"heading" 		=> 	__( 'Active Tab Background', 'mega-addons-for-visual-composer' ),
 				"param_name" 	=> 	"activetabbg",
 				"group" 		=> 	'General',
 	        ),
 
 	        array(
 	            "type" 			=> 	"colorpicker",
-				"heading" 		=> 	__( 'Active Tab Hover Color', 'accordion' ),
+				"heading" 		=> 	__( 'Active Tab Hover Color', 'mega-addons-for-visual-composer' ),
 				"param_name" 	=> 	"activetabclr",
 				"group" 		=> 	'General',
 	        ),
 
 			array(
 	            "type" 			=> 	"textfield",
-				"heading" 		=> 	__( 'Extra Class', 'int_banner' ),
+				"heading" 		=> 	__( 'Extra Class', 'mega-addons-for-visual-composer' ),
 				"param_name" 	=> 	"class",
-				"description" 	=> 	__( 'Add extra class name that will be applied to the accordion, and you can use this class for your customizations.', 'int_banner' ),
+				"description" 	=> 	__( 'Add extra class name that will be applied to the accordion, and you can use this class for your customizations.', 'mega-addons-for-visual-composer' ),
 				"group" 		=> 	"General",
 	        ),
 
@@ -148,13 +148,13 @@ vc_map( array(
 				"type" 			=> "vc_links",
 				"param_name" 	=> "caption_url",
 				"class"			=>	"ult_param_heading",
-				"description" 	=> __( '<span style="Background: #ddd;padding: 10px; display: block; color: #0073aa;font-weight:600;"><a href="https://1.envato.market/02aNL" target="_blank" style="text-decoration: none;">Get the Pro version for more stunning elements and customization options.</a></span>', 'ihover' ),
+				"description" 	=> '<span style="Background: #ddd;padding: 10px; display: block; color: #0073aa;font-weight:600;">' . '<a href="https://1.envato.market/02aNL" target="_blank" style="text-decoration: none;">' . esc_html__( 'Get the Pro version for more stunning elements and customization options.', 'mega-addons-for-visual-composer' ) . '</a>' . '</span>',
 				"group" 		=> 'General',
 			),
 
 			array(
 	            "type" 			=> 	"vc_number",
-				"heading" 		=> 	__( 'Icon Font Size', 'accordion' ),
+				"heading" 		=> 	__( 'Icon Font Size', 'mega-addons-for-visual-composer' ),
 				"param_name" 	=> 	"iconsize",
 				"suffix" 		=> 	'px',
 				"value"			=>	"15",
@@ -163,23 +163,23 @@ vc_map( array(
 
 			array(
 				"type" 			=> "iconpicker",
-				"heading" 		=> __( 'Icon', 'accordion' ),
+				"heading" 		=> __( 'Icon', 'mega-addons-for-visual-composer' ),
 				"param_name" 	=> "icon",
-				"description" 	=> __( 'it will show by default', 'accordion' ),
+				"description" 	=> __( 'it will show by default', 'mega-addons-for-visual-composer' ),
 				"group" 		=> 'Icon',
 			),
 
 			array(
 				"type" 			=> "iconpicker",
-				"heading" 		=> __( 'Active Icon', 'accordion' ),
+				"heading" 		=> __( 'Active Icon', 'mega-addons-for-visual-composer' ),
 				"param_name" 	=> "activeicon",
-				"description" 	=> __( 'it will show when accordion is active', 'accordion' ),
+				"description" 	=> __( 'it will show when accordion is active', 'mega-addons-for-visual-composer' ),
 				"group" 		=> 'Icon',
 			),
 
 			array(
 	            "type" 			=> 	"vc_number",
-				"heading" 		=> 	__( 'Icon Size [For Mobile]', 'accordion' ),
+				"heading" 		=> 	__( 'Icon Size [For Mobile]', 'mega-addons-for-visual-composer' ),
 				"param_name" 	=> 	"icon_mblsize",
 				"suffix" 		=> 	'px',
 				"group" 		=> 	'Typography',
@@ -187,7 +187,7 @@ vc_map( array(
 
 			array(
 	            "type" 			=> 	"vc_number",
-				"heading" 		=> 	__( 'Title Size [For Mobile]', 'accordion' ),
+				"heading" 		=> 	__( 'Title Size [For Mobile]', 'mega-addons-for-visual-composer' ),
 				"param_name" 	=> 	"title_mblsize",
 				"suffix" 		=> 	'px',
 				"group" 		=> 	'Typography',
@@ -195,7 +195,7 @@ vc_map( array(
 
 	        array(
 	            "type" 			=> 	"vc_number",
-				"heading" 		=> 	__( 'Description Size [For Mobile]', 'accordion' ),
+				"heading" 		=> 	__( 'Description Size [For Mobile]', 'mega-addons-for-visual-composer' ),
 				"param_name" 	=> 	"desc_mblsize",
 				"suffix" 		=> 	'px',
 				"group" 		=> 	'Typography',

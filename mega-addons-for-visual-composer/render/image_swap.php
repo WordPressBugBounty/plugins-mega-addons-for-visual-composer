@@ -25,7 +25,7 @@ class WPBakeryShortCode_image_swap extends WPBakeryShortCode {
 			'hover_effect' 			=> 'maw_img_swap_fade',
 			'img_align' 			=> 'left',
 		), $atts ) );
-		$img_swap_rand_id = rand(5, 500);
+		$img_swap_rand_id = VC_MEGA::next_instance_id();
 		$caption_url = vc_build_link($caption_url);
 		if ($image_id != '') {
 			$image_url = wp_get_attachment_url( $image_id );		
@@ -101,49 +101,49 @@ class WPBakeryShortCode_image_swap extends WPBakeryShortCode {
 
 
 vc_map( array(
-	"name" 			=> __( 'Image Swap', 'swap' ),
+	"name" 			=> __( 'Image Swap', 'mega-addons-for-visual-composer' ),
 	"base" 			=> "image_swap",
-	"category" 		=> __('Mega Addons'),
-	"description" 	=> __('Image over image hover effects', 'swap'),
+	"category" 		=> __('Mega Addons', 'mega-addons-for-visual-composer'),
+	"description" 	=> __('Image over image hover effects', 'mega-addons-for-visual-composer'),
 	"icon" => plugin_dir_url( __FILE__ ).'../icons/img-swap.png',
 	'params' => array(
 		array(
             "type" 			=> 	"attach_image",
-			"heading" 		=> 	__( 'Front Image', 'swap' ),
+			"heading" 		=> 	__( 'Front Image', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"image_id",
-			"description" 	=> 	__( 'Select the image', 'swap' ),
+			"description" 	=> 	__( 'Select the image', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'Image',
         ),
 
         array(
             "type" 			=> 	"textfield",
-			"heading" 		=> 	__( 'Alternate Text', 'info-banner-vc' ),
+			"heading" 		=> 	__( 'Alternate Text', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"alt",
-			"description" 	=> 	__( 'It will be used as alt attribute of img tag', 'info-banner-vc' ),
+			"description" 	=> 	__( 'It will be used as alt attribute of img tag', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'Image',
         ),
 
         array(
             "type" 			=> 	"attach_image",
-			"heading" 		=> 	__( 'Flip Image', 'swap' ),
+			"heading" 		=> 	__( 'Flip Image', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"image_id2",
-			"description" 	=> 	__( 'It will show on hover', 'swap' ),
+			"description" 	=> 	__( 'It will show on hover', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'Image',
         ),
 
         array(
             "type" 			=> 	"textfield",
-			"heading" 		=> 	__( 'Alternate Text', 'info-banner-vc' ),
+			"heading" 		=> 	__( 'Alternate Text', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"alt2",
-			"description" 	=> 	__( 'It will be used as alt attribute of img tag', 'info-banner-vc' ),
+			"description" 	=> 	__( 'It will be used as alt attribute of img tag', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'Image',
         ),
 
         array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Image Width', 'ich-vc' ),
+			"heading" 		=> __( 'Image Width', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "width",
-			"description" 	=> __( 'set in pixel e.g 250 or leave blank for default', 'ich-vc' ),
+			"description" 	=> __( 'set in pixel e.g 250 or leave blank for default', 'mega-addons-for-visual-composer' ),
 			"max"			=>	"",
 			"suffix" 		=> 'px',
 			"group" 		=> 'Image',
@@ -151,9 +151,9 @@ vc_map( array(
 
 	    array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Image Height', 'ich-vc' ),
+			"heading" 		=> __( 'Image Height', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "height",
-			"description" 	=> __( 'set in pixel e.g 250 or leave blank for default', 'ich-vc' ),
+			"description" 	=> __( 'set in pixel e.g 250 or leave blank for default', 'mega-addons-for-visual-composer' ),
 			"max"			=>	"",
 			"suffix" 		=> 'px',
 			"group" 		=> 'Image',
@@ -161,9 +161,9 @@ vc_map( array(
 
 		array(
 			"type" 			=> "vc_link",
-			"heading" 		=> __( 'Link To', 'swap' ),
+			"heading" 		=> __( 'Link To', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "caption_url",
-			"description" 	=> __( 'Enter URL to link caption', 'swap' ),
+			"description" 	=> __( 'Enter URL to link caption', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Image',
 		),
 
@@ -171,7 +171,7 @@ vc_map( array(
 			"type" 			=> "vc_links",
 			"param_name" 	=> "caption_url",
 			"class"			=>	"ult_param_heading",
-			"description" 	=> __( '<span style="Background: #ddd;padding: 10px; display: block; color: #0073aa;font-weight:600;"><a href="https://1.envato.market/02aNL" target="_blank" style="text-decoration: none;">Get the Pro version for more stunning elements and customization options.</a></span>', 'ihover' ),
+			"description" 	=> '<span style="Background: #ddd;padding: 10px; display: block; color: #0073aa;font-weight:600;">' . '<a href="https://1.envato.market/02aNL" target="_blank" style="text-decoration: none;">' . esc_html__( 'Get the Pro version for more stunning elements and customization options.', 'mega-addons-for-visual-composer' ) . '</a>' . '</span>',
 			"group" 		=> 'Image',
 		),
 
@@ -180,15 +180,15 @@ vc_map( array(
 
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Border Width', 'swap' ),
+			"heading" 		=> __( 'Border Width', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "border_width",
-			"description" 	=> __( 'Width of border, eg: 15. Leaving blank will disable border', 'swap' ),
+			"description" 	=> __( 'Width of border, eg: 15. Leaving blank will disable border', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Border',
 		),
 
 		array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Border Style', 'swap' ),
+			"heading" 		=> __( 'Border Style', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "border_style",
 			"group" 		=> 'Border',
 			"value"			=>	array(
@@ -204,9 +204,9 @@ vc_map( array(
 
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Border Color', 'swap' ),
+			"heading" 		=> __( 'Border Color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "border_color",
-			"description" 	=> __( 'Select the color for border', 'swap' ),
+			"description" 	=> __( 'Select the color for border', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Border',
 		),
 
@@ -214,7 +214,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Alignment', 'swap' ),
+			"heading" 		=> __( 'Alignment', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "img_align",
 			"group" 		=> 'Settings',
 			"value" 		=> array(
@@ -226,9 +226,9 @@ vc_map( array(
 
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Animation Speed', 'ich-vc' ),
+			"heading" 		=> __( 'Animation Speed', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "front_anim_speed",
-			"description" 	=> __( 'write value in ms, 1s = 1000ms', 'ich-vc' ),
+			"description" 	=> __( 'write value in ms, 1s = 1000ms', 'mega-addons-for-visual-composer' ),
 			"min"			=>	"0",
 			"max"			=>	"3000",
 			"suffix" 		=> 'ms',
@@ -238,9 +238,9 @@ vc_map( array(
 
 		array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Hover Effect', 'swap' ),
+			"heading" 		=> __( 'Hover Effect', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "hover_effect",
-			"description" 	=> __( 'Choose hover effect <a href="https://addons.topdigitaltrends.net/image-swap/" target="_blank">See Demo</a>', 'swap' ),
+			"description" 	=> __( 'Choose hover effect', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Settings',
 			"value" 		=> array(
 				'Fade'      				=>      'maw_img_swap_fade',
@@ -288,13 +288,13 @@ vc_map( array(
 			"type" 			=> "vc_links",
 			"param_name" 	=> "caption_urls",
 			"class"			=>	"ult_param_heading",
-			"description" 	=> __( '<span style="Background: #ddd;padding: 10px; display: block; color: #302f2f;font-weight:600;">Image Size For Mobile</span>', 'megaaddons' ),
+			"description" 	=> '<span style="Background: #ddd;padding: 10px; display: block; color: #302f2f;font-weight:600;">' . esc_html__( 'Image Size For Mobile', 'mega-addons-for-visual-composer' ) . '</span>',
 			"group" 		=> 'Settings',
 		),
 
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Image Width', 'ich-vc' ),
+			"heading" 		=> __( 'Image Width', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "img_width",
 			"max"			=>	"",
 			"suffix" 		=> 'px',
@@ -303,7 +303,7 @@ vc_map( array(
 
 	    array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Image Height', 'ich-vc' ),
+			"heading" 		=> __( 'Image Height', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "img_height",
 			"max"			=>	"",
 			"suffix" 		=> 'px',

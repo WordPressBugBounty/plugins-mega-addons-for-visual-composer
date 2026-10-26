@@ -1,3 +1,4 @@
+<?php if ( ! defined( 'ABSPATH' ) ) { exit; } ?>
 <!-- /**** Float Style****/ -->	
 <?php if ($member_visibility == 'float') { ?>
 	<div class="mega_team_case_2 <?php echo esc_attr($classname); ?>" style="width: <?php echo esc_attr($pro_size); ?>px;">

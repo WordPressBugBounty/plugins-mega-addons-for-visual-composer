@@ -1,3 +1,4 @@
+<?php if ( ! defined( 'ABSPATH' ) ) { exit; } ?>
 <?php if ($member_visibility == 'grow') { ?>
 	<div class="mega_team_case <?php echo esc_attr($classname); ?>" style="width: <?php echo esc_attr($pro_size); ?>px;">
 		<div class="mega_team_wrap">

@@ -1,3 +1,4 @@
+<?php if ( ! defined( 'ABSPATH' ) ) { exit; } ?>
 <div class="<?php echo esc_attr($style); ?> wow bounce" data-wow-duration="1's" style="visibility: visible; animation-name: bounce;">
   <div class="pricing-table">
     <div class="plan featured" style="background: <?php echo esc_attr($price_bg); ?>; border: 2px solid <?php echo esc_attr($top_bg); ?>; transform: scale(1.0<?php echo esc_attr($zoom); ?>);">

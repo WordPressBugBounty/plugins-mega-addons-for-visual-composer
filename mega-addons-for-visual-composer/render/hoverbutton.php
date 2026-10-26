@@ -33,7 +33,45 @@ class WPBakeryShortCode_mvc_button extends WPBakeryShortCode {
 			'btn_hvrbg' => 'adsa',
 		), $atts ) );
 		$btn_url = vc_build_link($btn_url);
-		wp_enqueue_style( 'hvr-btn-css', plugins_url( '../css/hoverbtn.css' , __FILE__ ));
+		// WPBakery's colorpicker can retain CSS color values beyond opaque hex.
+		// Accept only complete color tokens here; esc_attr() alone is not a CSS
+		// sanitizer, and this value is also used in the speech-bubble declaration.
+		$css_color_names = array(
+			'aliceblue', 'antiquewhite', 'aqua', 'aquamarine', 'azure', 'beige', 'bisque', 'black', 'blanchedalmond',
+			'blue', 'blueviolet', 'brown', 'burlywood', 'cadetblue', 'chartreuse', 'chocolate', 'coral', 'cornflowerblue',
+			'cornsilk', 'crimson', 'cyan', 'darkblue', 'darkcyan', 'darkgoldenrod', 'darkgray', 'darkgrey', 'darkgreen',
+			'darkkhaki', 'darkmagenta', 'darkolivegreen', 'darkorange', 'darkorchid', 'darkred', 'darksalmon',
+			'darkseagreen', 'darkslateblue', 'darkslategray', 'darkslategrey', 'darkturquoise', 'darkviolet',
+			'deeppink', 'deepskyblue', 'dimgray', 'dimgrey', 'dodgerblue', 'firebrick', 'floralwhite', 'forestgreen',
+			'fuchsia', 'gainsboro', 'ghostwhite', 'gold', 'goldenrod', 'gray', 'grey', 'green', 'greenyellow',
+			'honeydew', 'hotpink', 'indianred', 'indigo', 'ivory', 'khaki', 'lavender', 'lavenderblush', 'lawngreen',
+			'lemonchiffon', 'lightblue', 'lightcoral', 'lightcyan', 'lightgoldenrodyellow', 'lightgray', 'lightgrey',
+			'lightgreen', 'lightpink', 'lightsalmon', 'lightseagreen', 'lightskyblue', 'lightslategray', 'lightslategrey',
+			'lightsteelblue', 'lightyellow', 'lime', 'limegreen', 'linen', 'magenta', 'maroon', 'mediumaquamarine',
+			'mediumblue', 'mediumorchid', 'mediumpurple', 'mediumseagreen', 'mediumslateblue', 'mediumspringgreen',
+			'mediumturquoise', 'mediumvioletred', 'midnightblue', 'mintcream', 'mistyrose', 'moccasin', 'navajowhite',
+			'navy', 'oldlace', 'olive', 'olivedrab', 'orange', 'orangered', 'orchid', 'palegoldenrod', 'palegreen',
+			'paleturquoise', 'palevioletred', 'papayawhip', 'peachpuff', 'peru', 'pink', 'plum', 'powderblue',
+			'purple', 'rebeccapurple', 'red', 'rosybrown', 'royalblue', 'saddlebrown', 'salmon', 'sandybrown',
+			'seagreen', 'seashell', 'sienna', 'silver', 'skyblue', 'slateblue', 'slategray', 'slategrey', 'snow',
+			'springgreen', 'steelblue', 'tan', 'teal', 'thistle', 'tomato', 'turquoise', 'violet', 'wheat', 'white',
+			'whitesmoke', 'yellow', 'yellowgreen', 'transparent', 'currentcolor',
+		);
+		$valid_hex = is_string( $btn_bg ) && preg_match( '/^(?:#[0-9a-fA-F]{3}|#[0-9a-fA-F]{4}|#[0-9a-fA-F]{6}|#[0-9a-fA-F]{8})$/D', $btn_bg );
+		$valid_rgb = is_string( $btn_bg ) && preg_match( '/^rgb\(\s*\d{1,3}%?\s*,\s*\d{1,3}%?\s*,\s*\d{1,3}%?\s*\)$/iD', $btn_bg );
+		$valid_rgba = is_string( $btn_bg ) && preg_match( '/^rgba\(\s*\d{1,3}%?\s*,\s*\d{1,3}%?\s*,\s*\d{1,3}%?\s*,\s*(?:0(?:\.\d+)?|1(?:\.0+)?|\d+(?:\.\d+)?%)\s*\)$/iD', $btn_bg );
+		$valid_hsl = is_string( $btn_bg ) && preg_match( '/^hsl\(\s*\d+(?:\.\d+)?(?:deg|rad|turn)?\s*,\s*\d+(?:\.\d+)?%\s*,\s*\d+(?:\.\d+)?%\s*\)$/iD', $btn_bg );
+		$valid_hsla = is_string( $btn_bg ) && preg_match( '/^hsla\(\s*\d+(?:\.\d+)?(?:deg|rad|turn)?\s*,\s*\d+(?:\.\d+)?%\s*,\s*\d+(?:\.\d+)?%\s*,\s*(?:0(?:\.\d+)?|1(?:\.0+)?|\d+(?:\.\d+)?%)\s*\)$/iD', $btn_bg );
+		$valid_named = is_string( $btn_bg ) && in_array( strtolower( $btn_bg ), $css_color_names, true );
+		if ( ! ( $valid_hex || $valid_rgb || $valid_rgba || $valid_hsl || $valid_hsla || $valid_named ) ) {
+			$btn_bg = '';
+		}
+		$bubble_border = '';
+		if ( $bubble_trans == 'hvr-bubble-bottom' || $bubble_trans == 'hvr-bubble-float-top' || $bubble_trans == 'hvr-bubble-float-bottom' ) { $bubble_border = 'border-color: ' . $btn_bg . ' transparent transparent transparent;'; }
+		elseif ( $bubble_trans == 'hvr-bubble-float-right' || $bubble_trans == 'hvr-bubble-right' ) { $bubble_border = 'border-color: transparent transparent transparent ' . $btn_bg . ';'; }
+		elseif ( $bubble_trans == 'hvr-bubble-top' || $bubble_trans == 'hvr-bubble-float-top' ) { $bubble_border = 'border-color: transparent transparent ' . $btn_bg . ' transparent;'; }
+		elseif ( $bubble_trans == 'hvr-bubble-left' || $bubble_trans == 'hvr-bubble-float-left' ) { $bubble_border = 'border-color: transparent ' . $btn_bg . ' transparent transparent;'; }
+		wp_enqueue_style( 'hvr-btn-css', plugins_url( '../css/hoverbtn.css' , __FILE__ ), array(), '2.0.2');
 		$content = wpb_js_remove_wpautop($content, true);
 		ob_start(); ?>
 		
@@ -69,10 +107,7 @@ class WPBakeryShortCode_mvc_button extends WPBakeryShortCode {
 			<?php if ($btn_style == 'animated' && $anim_style == 'speech_bubbles') { ?>
 				<a data-onhovercolor="<?php echo esc_attr($btn_hvrclr); ?>" data-onleavecolor="<?php echo esc_attr($btn_clr); ?>" href="<?php echo esc_url($btn_url['url']); ?>" target="<?php echo esc_attr($btn_url['target']); ?>" title="<?php echo esc_html($btn_url['title']); ?>" class="mega_hvr_btn <?php echo esc_attr($bubble_trans); ?>" style="padding: <?php echo esc_attr($padding_top); ?>px <?php echo esc_attr($padding_left); ?>px; border:<?php echo esc_attr($border_width); ?>px solid <?php echo esc_attr($btn_border); ?>; font-size: <?php echo esc_attr($btn_size); ?>px; color: <?php echo esc_attr($btn_clr); ?>; background-color: <?php echo esc_attr($btn_bg); ?>; border-radius: <?php echo esc_attr($btn_radius); ?>px">
 					<span style="
-						<?php echo esc_attr(($bubble_trans) == 'hvr-bubble-bottom' || $bubble_trans == 'hvr-bubble-float-top' || $bubble_trans == 'hvr-bubble-float-bottom') ? 'border-color: '.$btn_bg.' transparent transparent transparent;' : '' ; ?>
-						<?php echo esc_attr(($bubble_trans) == 'hvr-bubble-float-right' || $bubble_trans == 'hvr-bubble-right') ? 'border-color: transparent transparent transparent '.$btn_bg.' ;' : '' ; ?>
-						<?php echo esc_attr(($bubble_trans) == 'hvr-bubble-top' || $bubble_trans == 'hvr-bubble-float-top') ? 'border-color: transparent transparent '.$btn_bg.' transparent;' : '' ; ?>
-						<?php echo esc_attr(($bubble_trans) == 'hvr-bubble-left' || $bubble_trans == 'hvr-bubble-float-left') ? 'border-color: transparent '.$btn_bg.' transparent transparent;' : '' ; ?>
+						<?php echo esc_attr( $bubble_border ); ?>
 					"></span><i class="<?php echo esc_attr($btn_icon); ?>"></i> <?php echo esc_attr($btn_text); ?>
 				</a>
 			<?php } ?>
@@ -93,17 +128,17 @@ class WPBakeryShortCode_mvc_button extends WPBakeryShortCode {
 
 
 vc_map( array(
-	"name" 			=> __( 'CSS3 Button (OLD)', 'button' ),
+	"name" 			=> __( 'CSS3 Button (OLD)', 'mega-addons-for-visual-composer' ),
 	"base" 			=> "mvc_button",
 	// "category" 		=> __('Mega Addons'),
-	"description" 	=> __('Animated style buttons', 'button'),
+	"description" 	=> __('Animated style buttons', 'mega-addons-for-visual-composer'),
 	"icon" => plugin_dir_url( __FILE__ ).'../icons/hoverbutton.png',
 	'params' => array(
 		array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Style', 'button' ),
+			"heading" 		=> __( 'Style', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "btn_style",
-			"description" 	=> __( 'Choose button style <a href="http://addons.topdigitaltrends.net/advanced-button-2/">See Demo</a>', 'button' ),
+			"description" 	=> __( 'Choose button style', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'General',
 			"value" 		=> array(
 				'Animated Button' =>  'animated',
@@ -112,9 +147,9 @@ vc_map( array(
 		),
 		array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Animation Style', 'button' ),
+			"heading" 		=> __( 'Animation Style', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "anim_style",
-			"description" 	=> __( 'Choose animation style on hover', 'button' ),
+			"description" 	=> __( 'Choose animation style on hover', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'General',
 			"dependency" => array('element' => "btn_style", 'value' => 'animated'),
 			"value" 		=> array(
@@ -127,9 +162,9 @@ vc_map( array(
 		),
 		array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( '2D Transition', 'button' ),
+			"heading" 		=> __( '2D Transition', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "anim_trans",
-			"description" 	=> __( 'Choose animation style on hover', 'button' ),
+			"description" 	=> __( 'Choose animation style on hover', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'General',
 			"dependency" => array('element' => "anim_style", 'value' => 'transition'),
 			"value" 		=> array(
@@ -164,9 +199,9 @@ vc_map( array(
 		),
 		array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Background Transition', 'button' ),
+			"heading" 		=> __( 'Background Transition', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "bg_trans",
-			"description" 	=> __( 'Choose animation style on hover', 'button' ),
+			"description" 	=> __( 'Choose animation style on hover', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'General',
 			"dependency" => array('element' => "anim_style", 'value' => 'bg_transition'),
 			"value" 		=> array(
@@ -192,9 +227,9 @@ vc_map( array(
 		),
 		array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Border Transition', 'button' ),
+			"heading" 		=> __( 'Border Transition', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "brdr_trans",
-			"description" 	=> __( 'Choose animation style on hover', 'button' ),
+			"description" 	=> __( 'Choose animation style on hover', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'General',
 			"dependency" => array('element' => "anim_style", 'value' => 'brdr_transition'),
 			"value" 		=> array(
@@ -211,9 +246,9 @@ vc_map( array(
 		),
 		array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Speech Bubbles', 'button' ),
+			"heading" 		=> __( 'Speech Bubbles', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "bubble_trans",
-			"description" 	=> __( 'Choose animation style on hover', 'button' ),
+			"description" 	=> __( 'Choose animation style on hover', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'General',
 			"dependency" => array('element' => "anim_style", 'value' => 'speech_bubbles'),
 			"value" 		=> array(
@@ -229,9 +264,9 @@ vc_map( array(
 		),
 		array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Shadow and Glow', 'button' ),
+			"heading" 		=> __( 'Shadow and Glow', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "shadow_trans",
-			"description" 	=> __( 'Choose animation style on hover', 'button' ),
+			"description" 	=> __( 'Choose animation style on hover', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'General',
 			"dependency" => array('element' => "anim_style", 'value' => 'shadow'),
 			"value" 		=> array(
@@ -247,9 +282,9 @@ vc_map( array(
 		),
 		array(
 			"type" 			=> 	"dropdown",
-			"heading" 		=> 	__( 'Button Align', 'button' ),
+			"heading" 		=> 	__( 'Button Align', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"align",
-			"description" 	=> 	__( 'select text align', 'button' ),
+			"description" 	=> 	__( 'select text align', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'General',
 				"value" 		=> array(
 					"Left"		=> "left",
@@ -259,27 +294,27 @@ vc_map( array(
 		),
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Padding [Top Bottom]', 'button' ),
+			"heading" 		=> __( 'Padding [Top Bottom]', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "padding_top",
-			"description" 	=> __( 'It will increase height of button e.g 10', 'button' ),
+			"description" 	=> __( 'It will increase height of button e.g 10', 'mega-addons-for-visual-composer' ),
 			"value"			=>	"5",
 			"suffix" 		=> 'px',
 			"group" 		=> 'General',
 		),
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Padding [Left Right]', 'button' ),
+			"heading" 		=> __( 'Padding [Left Right]', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "padding_left",
-			"description" 	=> __( 'It will increase width of button e.g 20', 'button' ),
+			"description" 	=> __( 'It will increase width of button e.g 20', 'mega-addons-for-visual-composer' ),
 			"value"			=>	"10",
 			"suffix" 		=> 'px',
 			"group" 		=> 'General',
 		),
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Radius', 'button' ),
+			"heading" 		=> __( 'Radius', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "btn_radius",
-			"description" 	=> __( 'set button radius e.g 5', 'button' ),
+			"description" 	=> __( 'set button radius e.g 5', 'mega-addons-for-visual-composer' ),
 			"dependency" => array('element' => "btn_style", 'value' => 'animated'),
 			"suffix" 		=> 'px',
 			"group" 		=> 'General',
@@ -288,37 +323,37 @@ vc_map( array(
 			"type" 			=> "vc_links",
 			"param_name" 	=> "caption_url",
 			"class"			=>	"ult_param_heading",
-			"description" 	=> __( '<span style="Background: #ddd;padding: 10px; display: block; color: #0073aa;font-weight:600;"><a href="https://1.envato.market/02aNL" target="_blank" style="text-decoration: none;">Get the Pro version for more stunning elements and customization options.</a></span>', 'ihover' ),
+			"description" 	=> '<span style="Background: #ddd;padding: 10px; display: block; color: #0073aa;font-weight:600;">' . '<a href="https://1.envato.market/02aNL" target="_blank" style="text-decoration: none;">' . esc_html__( 'Get the Pro version for more stunning elements and customization options.', 'mega-addons-for-visual-composer' ) . '</a>' . '</span>',
 			"group" 		=> 'General',
 		),
 		array(
 			"type" 			=> "iconpicker",
-			"heading" 		=> __( 'Select icon', 'button' ),
+			"heading" 		=> __( 'Select icon', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "btn_icon",
-			"description" 	=> __( 'it will be show within text', 'button' ),
+			"description" 	=> __( 'it will be show within text', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Text',
 		),
 		array(
 			"type" 			=> "textfield",
-			"heading" 		=> __( 'Button text', 'button' ),
+			"heading" 		=> __( 'Button text', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "btn_text",
-			"description" 	=> __( 'Write button text', 'button' ),
+			"description" 	=> __( 'Write button text', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Text',
 		),
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Text font size', 'button' ),
+			"heading" 		=> __( 'Text font size', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "btn_size",
-			"description" 	=> __( 'Set font size in pixel e.g 18', 'button' ),
+			"description" 	=> __( 'Set font size in pixel e.g 18', 'mega-addons-for-visual-composer' ),
 			"value"			=>	"18",
 			"suffix" 		=> 'px',
 			"group" 		=> 'Text',
 		),
 		array(
 			"type" 			=> "vc_link",
-			"heading" 		=> __( 'Button URL', 'button' ),
+			"heading" 		=> __( 'Button URL', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "btn_url",
-			"description" 	=> __( 'Write button url as link', 'button' ),
+			"description" 	=> __( 'Write button url as link', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Text',
 		),
 
@@ -326,17 +361,17 @@ vc_map( array(
 
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Border color', 'button' ),
+			"heading" 		=> __( 'Border color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "btn_border",
-			"description" 	=> __( 'Set color of border e.g #269CE9', 'button' ),
+			"description" 	=> __( 'Set color of border e.g #269CE9', 'mega-addons-for-visual-composer' ),
 			"dependency" => array('element' => "btn_style", 'value' => 'animated'),
 			"group" 		=> 'Border',
 		),
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Border width', 'button' ),
+			"heading" 		=> __( 'Border width', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "border_width",
-			"description" 	=> __( 'Set width of border in pixel e.g 1', 'button' ),
+			"description" 	=> __( 'Set width of border in pixel e.g 1', 'mega-addons-for-visual-composer' ),
 			"dependency" => array('element' => "btn_style", 'value' => 'animated'),
 			"value"			=>	"1",
 			"suffix" 		=> 'px',
@@ -348,43 +383,43 @@ vc_map( array(
 
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Text color', 'button' ),
+			"heading" 		=> __( 'Text color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "btn_clr",
-			"description" 	=> __( 'Set color of text e.g #ffff', 'button' ),
+			"description" 	=> __( 'Set color of text e.g #ffff', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Color',
 		),
 
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Background color', 'button' ),
+			"heading" 		=> __( 'Background color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "btn_bg",
-			"description" 	=> __( 'Set color of background e.g #269CE9', 'button' ),
+			"description" 	=> __( 'Set color of background e.g #269CE9', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Color',
 		),
 
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Background Shadow color', 'button' ),
+			"heading" 		=> __( 'Background Shadow color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "btn_shadow",
-			"description" 	=> __( 'keep it same and much dark from background color', 'button' ),
+			"description" 	=> __( 'keep it same and much dark from background color', 'mega-addons-for-visual-composer' ),
 			"dependency" => array('element' => "btn_style", 'value' => '3D'),
 			"group" 		=> 'Color',
 		),
 
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Hover Text color', 'button' ),
+			"heading" 		=> __( 'Hover Text color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "btn_hvrclr",
-			"description" 	=> __( 'Set color of text on hover e.g #ffff', 'button' ),
+			"description" 	=> __( 'Set color of text on hover e.g #ffff', 'mega-addons-for-visual-composer' ),
 			"dependency" => array('element' => "btn_style", 'value' => 'animated'),
 			"group" 		=> 'Color',
 		),
 
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Background color', 'button' ),
+			"heading" 		=> __( 'Background color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "btn_hvrbg",
-			"description" 	=> __( 'Set color of background on hover e.g #269CE9', 'button' ),
+			"description" 	=> __( 'Set color of background on hover e.g #269CE9', 'mega-addons-for-visual-composer' ),
 			"dependency" => array('element' => "btn_style", 'value' => 'animated'),
 			"group" 		=> 'Color',
 		),

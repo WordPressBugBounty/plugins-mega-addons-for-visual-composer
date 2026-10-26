@@ -37,15 +37,17 @@ class WPBakeryShortCode_filter_gallery_wrap extends WPBakeryShortCodesContainer 
 			'categ_activeclr'	=>		'',
 			'categ_activebg'	=>		'',
 		), $atts ) );
-		$randomPort_id = rand(5, 500);
+		// Monotonic request-local IDs keep multiple Gallery groups distinct.
+		static $gallery_instance = 0;
+		$randomPort_id = ++$gallery_instance;
 		$GLOBALS['maw_filtergal_effect'] = $hover_effect; $GLOBALS['maw_filtergal_linkicon'] = $link_icon;
 		$GLOBALS['maw_filtergal_popupicon'] = $popup_icon; $GLOBALS['maw_filtergal_imgheight'] = $img_height;
 		$GLOBALS['maw_filtergal_Gid'] = $randomPort_id;
 		$content = wpb_js_remove_wpautop($content, true);
-		wp_enqueue_style( 'filterizr-css', plugins_url( '../css/filterizr.css' , __FILE__ ));
-		wp_enqueue_script( 'filterizr-min-js', plugins_url( '../js/filterizr.min.js' , __FILE__ ), array('jquery'));
-		wp_enqueue_script( 'custom-filterizr-js', plugins_url( '../js/filterizr.js' , __FILE__ ));
-		wp_enqueue_script( 'custom-fslightbox-js', plugins_url( '../js/fslightbox.js' , __FILE__ ));
+		wp_enqueue_style( 'filterizr-css', plugins_url( '../css/filterizr.css' , __FILE__ ), array(), '4.4.0-ma04b16' );
+		wp_enqueue_script( 'filterizr-min-js', plugins_url( '../js/filterizr.min.js' , __FILE__ ), array(), '2.2.4', true );
+		wp_enqueue_script( 'custom-filterizr-js', plugins_url( '../js/filterizr.js' , __FILE__ ), array('filterizr-min-js'), '4.4.0-ma04b16', true );
+		wp_enqueue_script( 'custom-fslightbox-js', plugins_url( '../js/fslightbox.js' , __FILE__ ), array(), '3.8.0', true );
 		ob_start(); ?>
 		<div class="maw_portfolioGallery_container">
 			<div class="filtrContainer">
@@ -144,24 +146,24 @@ class WPBakeryShortCode_filter_gallery_wrap extends WPBakeryShortCodesContainer 
 
 vc_map( array(
 	"base" 			=> "filter_gallery_wrap",
-	"name" 			=> __( 'Filterable Gallery', 'megaaddons' ),
+	"name" 			=> __( 'Filterable Gallery', 'mega-addons-for-visual-composer' ),
 	"as_parent" 	=> array('only' => 'filter_gallery_son'),
 	"content_element" => true,
 	"js_view" 		=> 'VcColumnView',
-	"category" 		=> __('Mega Addons'),
-	"description" 	=> __('Display images with separate categories', 'megaaddons'),
+	"category" 		=> __('Mega Addons', 'mega-addons-for-visual-composer'),
+	"description" 	=> __('Display images with separate categories', 'mega-addons-for-visual-composer'),
 	"icon" => plugin_dir_url( __FILE__ ).'../icons/filtergallery.png',
 	'params' => array(
 		array(
 			"type" 			=> "vc_links",
 			"param_name" 	=> "caption_urls",
 			"class"			=>	"ult_param_heading",
-			"description" 	=> __( '<span style="Background: #ddd;padding: 10px; display: block; color: #302f2f;font-weight:600;">Number of Items Display In Row <a target="_blank" href="https://addons.topdigitaltrends.net/filterable-gallery">Demo</a></span>', 'megaaddons' ),
+			"description" 	=> '<span style="Background: #ddd;padding: 10px; display: block; color: #302f2f;font-weight:600;">' . esc_html__( 'Number of Items Display In Row', 'mega-addons-for-visual-composer' ) . '</span>',
 			"group" 		=> 'General',
 		),
 		array(
             "type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Columns [For PC]', 'megaaddons' ),
+			"heading" 		=> 	__( 'Columns [For PC]', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"columns",
 			"edit_field_class" => "vc_col-sm-4 wdo_items_to_show wdo_margin_bottom",
 			"value" 		=> 	"4",
@@ -170,7 +172,7 @@ vc_map( array(
 
         array(
             "type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Columns [For Tab]', 'megaaddons' ),
+			"heading" 		=> 	__( 'Columns [For Tab]', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"columnstab",
 			"edit_field_class" => "vc_col-sm-4 wdo_items_to_show wdo_margin_bottom",
 			"value" 		=> 	"3",
@@ -179,7 +181,7 @@ vc_map( array(
 
         array(
             "type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Columns [Mobile]', 'megaaddons' ),
+			"heading" 		=> 	__( 'Columns [Mobile]', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"columnsmbl",
 			"edit_field_class" => "vc_col-sm-4 wdo_items_to_show wdo_margin_bottom",
 			"value" 		=> 	"2",
@@ -199,7 +201,7 @@ vc_map( array(
 
 		array(
             "type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Image Height', 'megaaddons' ),
+			"heading" 		=> 	__( 'Image Height', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"img_height",
 			"edit_field_class" => "vc_col-sm-4 wdo_items_to_show wdo_margin_bottom",
 			"suffix"		=>	"px",
@@ -208,7 +210,7 @@ vc_map( array(
 
         array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Caption Background', 'megaaddons' ),
+			"heading" 		=> __( 'Caption Background', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "caption_bg",
 			"edit_field_class" => "vc_col-sm-4 wdo_items_to_show wdo_margin_bottom",
 			"value"			=>	"rgba(29,161,245,0.7)",
@@ -217,7 +219,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Hover Effect', 'ihover' ),
+			"heading" 		=> __( 'Hover Effect', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "hover_effect",
 			"group" 		=> 'General',
 			"value" 		=>  array(
@@ -230,7 +232,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "iconpicker",
-			"heading" 		=> __( 'Link Icon', 'accordion' ),
+			"heading" 		=> __( 'Link Icon', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "link_icon",
 			"value" 		=> "fas fa-link",
 			"group" 		=> 'General',
@@ -238,7 +240,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "iconpicker",
-			"heading" 		=> __( 'Lightbox Icon', 'accordion' ),
+			"heading" 		=> __( 'Lightbox Icon', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "popup_icon",
 			"value" 		=> "fas fa-search-plus",
 			"group" 		=> 'General',
@@ -246,7 +248,7 @@ vc_map( array(
 
 		array(
             "type" 			=> 	"textfield",
-			"heading" 		=> 	__( 'Extra Class Name', 'megaaddons' ),
+			"heading" 		=> 	__( 'Extra Class Name', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"classname",
 			"description" 	=> 	"Style particular content element differently - add a class name and refer to it in custom CSS.",
 			"group" 		=> 	'General',
@@ -256,7 +258,7 @@ vc_map( array(
 			"type" 			=> "vc_links",
 			"param_name" 	=> "caption_url",
 			"class"			=>	"ult_param_heading",
-			"description" 	=> __( '<span style="Background: #ddd;padding: 10px; display: block; color: #0073aa;font-weight:600;"><a href="https://1.envato.market/02aNL" target="_blank" style="text-decoration: none;">Get the Pro version for more stunning elements and customization options.</a></span>', 'ihover' ),
+			"description" 	=> '<span style="Background: #ddd;padding: 10px; display: block; color: #0073aa;font-weight:600;">' . '<a href="https://1.envato.market/02aNL" target="_blank" style="text-decoration: none;">' . esc_html__( 'Get the Pro version for more stunning elements and customization options.', 'mega-addons-for-visual-composer' ) . '</a>' . '</span>',
 			"group" 		=> 'General',
 		),
 
@@ -264,7 +266,7 @@ vc_map( array(
 		
 		array(
             "type" 			=> 	"textfield",
-			"heading" 		=> 	__( 'Gallery All Label', 'megaaddons' ),
+			"heading" 		=> 	__( 'Gallery All Label', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"all_label",
 			"value"			=>	"ALL",
 			"group" 		=> 	'Filterable Controls',
@@ -272,7 +274,7 @@ vc_map( array(
 
         array(
             "type" 			=> 	"textarea",
-			"heading" 		=> 	__( 'Categories Name', 'megaaddons' ),
+			"heading" 		=> 	__( 'Categories Name', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"filter_cat",
 			"value"			=>	"tech, innovation, brand",
 			"description"		=>	"write all categories name seprated with comma e.g tech, innovation, brand",
@@ -281,7 +283,7 @@ vc_map( array(
 
         array(
             "type" 			=> 	"checkbox",
-			"heading" 		=> 	__( 'Shuffle Button', 'megaaddons' ),
+			"heading" 		=> 	__( 'Shuffle Button', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"shuffle_checked",
 			"edit_field_class" => "vc_col-sm-4 wdo_items_to_show wdo_margin_bottom",
 			"value"			=>	"",
@@ -299,7 +301,7 @@ vc_map( array(
 
         array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Text Transform', 'megaaddons' ),
+			"heading" 		=> __( 'Text Transform', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "txt_transform",
 			"edit_field_class" => "vc_col-sm-4 wdo_items_to_show wdo_margin_bottom",
 			"group" 		=> 'Filterable Controls',
@@ -316,13 +318,13 @@ vc_map( array(
 			"type" 			=> "vc_links",
 			"param_name" 	=> "caption_urls",
 			"class"			=>	"ult_param_heading",
-			"description" 	=> __( '<span style="Background: #ddd;padding: 10px; display: block; color: #302f2f;font-weight:600;">Category Control Styles</span>', 'megaaddons' ),
+			"description" 	=> '<span style="Background: #ddd;padding: 10px; display: block; color: #302f2f;font-weight:600;">' . esc_html__( 'Category Control Styles', 'mega-addons-for-visual-composer' ) . '</span>',
 			"group" 		=> 'Filterable Controls',
 		),
 
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Padding [Top Bottom]', 'megaaddons' ),
+			"heading" 		=> __( 'Padding [Top Bottom]', 'mega-addons-for-visual-composer' ),
 			"edit_field_class" => "vc_col-sm-4 wdo_items_to_show wdo_margin_bottom",
 			"param_name" 	=> "categ_tbpadding",
 			"value"			=>	"8",
@@ -332,7 +334,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Padding [Right Left]', 'megaaddons' ),
+			"heading" 		=> __( 'Padding [Right Left]', 'mega-addons-for-visual-composer' ),
 			"edit_field_class" => "vc_col-sm-4 wdo_items_to_show wdo_margin_bottom",
 			"param_name" 	=> "categ_rlpadding",
 			"value"			=>	"25",
@@ -342,7 +344,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Margin [Right Left]', 'megaaddons' ),
+			"heading" 		=> __( 'Margin [Right Left]', 'mega-addons-for-visual-composer' ),
 			"edit_field_class" => "vc_col-sm-4 wdo_items_to_show wdo_margin_bottom",
 			"param_name" 	=> "categ_rlmargin",
 			"value"			=>	"5",
@@ -352,7 +354,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Boder Radius', 'megaaddons' ),
+			"heading" 		=> __( 'Boder Radius', 'mega-addons-for-visual-composer' ),
 			"edit_field_class" => "vc_col-sm-4 wdo_items_to_show wdo_margin_bottom",
 			"param_name" 	=> "categ_radius",
 			"suffix"		=>	"px",
@@ -361,7 +363,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Category [Font Size]', 'megaaddons' ),
+			"heading" 		=> __( 'Category [Font Size]', 'mega-addons-for-visual-composer' ),
 			"edit_field_class" => "vc_col-sm-4 wdo_items_to_show wdo_margin_bottom",
 			"param_name" 	=> "categ_textsize",
 			"value"			=>	"17",
@@ -371,7 +373,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Margin [Bottom]', 'megaaddons' ),
+			"heading" 		=> __( 'Margin [Bottom]', 'mega-addons-for-visual-composer' ),
 			"edit_field_class" => "vc_col-sm-4 wdo_items_to_show wdo_margin_bottom",
 			"param_name" 	=> "categ_bmargin",
 			"suffix"		=>	"px",
@@ -380,7 +382,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Border Width', 'ihover' ),
+			"heading" 		=> __( 'Border Width', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "categ_borderwidth",
 			"edit_field_class" => "vc_col-sm-4 wdo_items_to_show wdo_margin_bottom",
 			"value"			=>	"0",
@@ -390,7 +392,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Border Style', 'ich-vc' ),
+			"heading" 		=> __( 'Border Style', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "categ_borderstyle",
 			"edit_field_class" => "vc_col-sm-4 wdo_items_to_show wdo_margin_bottom",
 			"group" 		=> 'Filterable Controls',
@@ -407,7 +409,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Border Color', 'ihover' ),
+			"heading" 		=> __( 'Border Color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "categ_borderclr",
 			"edit_field_class" => "vc_col-sm-4 wdo_items_to_show wdo_margin_bottom",
 			"group" 		=> 'Filterable Controls',
@@ -419,13 +421,13 @@ vc_map( array(
 			"type" 			=> "vc_links",
 			"param_name" 	=> "caption_urls",
 			"class"			=>	"ult_param_heading",
-			"description" 	=> __( '<span style="Background: #ddd;padding: 10px; display: block; color: #302f2f;font-weight:600;">Color Settings</span>', 'megaaddons' ),
+			"description" 	=> '<span style="Background: #ddd;padding: 10px; display: block; color: #302f2f;font-weight:600;">' . esc_html__( 'Color Settings', 'mega-addons-for-visual-composer' ) . '</span>',
 			"group" 		=> 'Filterable Controls',
 		),
 
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Text Color', 'ihover' ),
+			"heading" 		=> __( 'Text Color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "categ_textclr",
 			"edit_field_class" => "vc_col-sm-6 wdo_items_to_show wdo_margin_bottom",
 			"group" 		=> 'Filterable Controls',
@@ -433,7 +435,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Background Color', 'ihover' ),
+			"heading" 		=> __( 'Background Color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "categ_textbg",
 			"edit_field_class" => "vc_col-sm-6 wdo_items_to_show wdo_margin_bottom",
 			"group" 		=> 'Filterable Controls',
@@ -441,7 +443,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Active Text Color', 'ihover' ),
+			"heading" 		=> __( 'Active Text Color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "categ_activeclr",
 			"edit_field_class" => "vc_col-sm-6 wdo_items_to_show wdo_margin_bottom",
 			"group" 		=> 'Filterable Controls',
@@ -449,7 +451,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Active Background', 'ihover' ),
+			"heading" 		=> __( 'Active Background', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "categ_activebg",
 			"edit_field_class" => "vc_col-sm-6 wdo_items_to_show wdo_margin_bottom",
 			"group" 		=> 'Filterable Controls',

@@ -1,3 +1,4 @@
+<?php if ( ! defined( 'ABSPATH' ) ) { exit; } ?>
 <!-- Outset Style -->
 <?php if ($member_visibility == 'outset') { ?>
 	<div class="mega_team_case_3 <?php echo esc_attr($classname); ?>" style="width: <?php echo esc_attr($pro_size); ?>px;">

@@ -1,11 +1,28 @@
 // Typed Text
 jQuery(document).ready(function($) {
     jQuery('.type-wrap').each(function(index, el) {
-        var typed = $(this).find('.typed');
-        var shahzaib_cont = $(this).find('.typed-strings');
+        var wrapper = $(this);
+        var typed = wrapper.find('.typed');
+        var shahzaib_cont = wrapper.find('.typed-strings');
+        var accessible_text = wrapper.find('.texttyper-accessible-text');
+        var reduced_motion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         var typespeed = $(this).data('typespeed');
         var backspeed = $(this).data('backspeed');
         var loop = false;
+        var strings_text = shahzaib_cont.children().map(function() {
+            return $.trim($(this).text());
+        }).get().join(' ');
+
+        // Keep one stable, non-live text representation for assistive technology.
+        accessible_text.text(strings_text);
+        shahzaib_cont.attr('aria-hidden', 'true');
+        typed.attr('aria-hidden', 'true');
+
+        if (reduced_motion) {
+            wrapper.addClass('texttyper-reduced-motion');
+            return;
+        }
+
         if($(this).attr('data-loop') == ''){
             loop = true;
         } else {

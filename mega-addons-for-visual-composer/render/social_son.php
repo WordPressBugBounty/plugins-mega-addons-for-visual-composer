@@ -25,7 +25,7 @@ class WPBakeryShortCode_social_vc_son extends WPBakeryShortCode {
 		), $atts ) );
 		$url = vc_build_link($url);
 		$content = wpb_js_remove_wpautop($content, true);
-		wp_enqueue_style( 'social-icons-css', plugins_url( '../css/socialicons.css' , __FILE__ ));
+		wp_enqueue_style( 'social-icons-css', plugins_url( '../css/socialicons.css' , __FILE__ ), array(), VC_MEGA::VERSION);
 		ob_start(); ?>
 		<?php if ($style == 'default') { ?>
 			<div id="mega-social-btn" style="margin: 0 <?php echo esc_attr($margin); ?>px;">
@@ -93,18 +93,18 @@ class WPBakeryShortCode_social_vc_son extends WPBakeryShortCode {
 
 vc_map( array(
 	"base" 			=> "social_vc_son",
-	"name" 			=> __( 'Icon Setting', 'socialicon' ),
+	"name" 			=> __( 'Icon Setting', 'mega-addons-for-visual-composer' ),
 	"as_child" 		=> array('only' => 'social_vc_father'),
 	"content_element" => true,
-	"category" 		=> __('Mega Addons'),
-	"description" 	=> __('choose style', ''),
+	"category" 		=> __('Mega Addons', 'mega-addons-for-visual-composer' ),
+	"description" 	=> __('choose style', 'mega-addons-for-visual-composer'),
 	"icon" => plugin_dir_url( __FILE__ ).'../icons/social.png',
 	'params' => array(
 		array(
 			"type" 			=> 	"dropdown",
-			"heading" 		=> 	__( 'Social Effects', 'socialicon' ),
+			"heading" 		=> 	__( 'Social Effects', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"style",
-			"description" 	=> 	__( 'choose style <a href="https://addons.topdigitaltrends.net/advanced-social-icons/" target="_blank">See Demo</a>', 'socialicon' ),
+			"description" 	=> 	__( 'choose style', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'General',
 			"value" 		=> 	array(
 				"Defaul" 			=> 	"default",
@@ -117,110 +117,110 @@ vc_map( array(
 		),
 		array(
 			"type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Margin', 'socialicon' ),
+			"heading" 		=> 	__( 'Margin', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"margin",
-			"description" 	=> 	__( 'space between two social icons eg 10', 'socialicon' ),
+			"description" 	=> 	__( 'space between two social icons eg 10', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'General',
 			"suffix" 		=> 'px',
-			'value' 		=> __( "10", 'socialicon' ),
+			'value' 		=> __( "10", 'mega-addons-for-visual-composer' ),
 		),
 		array(
 			"type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Width', 'socialicon' ),
+			"heading" 		=> 	__( 'Width', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"width",
-			"description" 	=> 	__( 'social icon width in pixel', 'socialicon' ),
+			"description" 	=> 	__( 'social icon width in pixel', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'General',
 			"suffix" 		=> 'px',
-			'value' 		=> __( "40", 'socialicon' ),
+			'value' 		=> __( "40", 'mega-addons-for-visual-composer' ),
 		),
 
 		array(
 			"type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Height', 'socialicon' ),
+			"heading" 		=> 	__( 'Height', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"height",
-			"description" 	=> 	__( 'social icon height in pixel', 'socialicon' ),
+			"description" 	=> 	__( 'social icon height in pixel', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'General',
 			"suffix" 		=> 'px',
-			'value' 		=> __( "40", 'socialicon' ),
+			'value' 		=> __( "40", 'mega-addons-for-visual-composer' ),
 		),
 
 		array(
 			"type" 			=> 	"vc_link",
-			"heading" 		=> 	__( 'Social URL', 'socialicon' ),
+			"heading" 		=> 	__( 'Social URL', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"url",
-			"description" 	=> 	__( 'write social url', 'socialicon' ),
+			"description" 	=> 	__( 'write social url', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'General',
-			'value' 		=> __( "#0", 'socialicon' ),
+			'value' 		=> __( "#0", 'mega-addons-for-visual-composer' ),
 		),
 
 		array(
 			"type" 			=> "vc_links",
 			"param_name" 	=> "caption_url",
 			"class"			=>	"ult_param_heading",
-			"description" 	=> __( '<span style="Background: #ddd;padding: 10px; display: block; color: #0073aa;font-weight:600;"><a href="https://1.envato.market/02aNL" target="_blank" style="text-decoration: none;">Get the Pro version for more stunning elements and customization options.</a></span>', 'ihover' ),
+			"description" 	=> '<span style="Background: #ddd;padding: 10px; display: block; color: #0073aa;font-weight:600;">' . '<a href="https://1.envato.market/02aNL" target="_blank" style="text-decoration: none;">' . esc_html__( 'Get the Pro version for more stunning elements and customization options.', 'mega-addons-for-visual-composer' ) . '</a>' . '</span>',
 			"group" 		=> 'General',
 		),
 
 		array(
 			"type" 			=> 	"iconpicker",
-			"heading" 		=> 	__( 'Social Icon', 'socialicon' ),
+			"heading" 		=> 	__( 'Social Icon', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"icon",
-			"description" 	=> 	__( 'choose social icon', 'socialicon' ),
+			"description" 	=> 	__( 'choose social icon', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Font Icon',
 		),
 
 		array(
 			"type" 			=> 	"textfield",
-			"heading" 		=> 	__( 'Icon Name', 'socialicon' ),
+			"heading" 		=> 	__( 'Icon Name', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"text",
-			"description" 	=> 	__( 'It will show with icon', 'socialicon' ),
+			"description" 	=> 	__( 'It will show with icon', 'mega-addons-for-visual-composer' ),
 			"dependency" => array('element' => "style", 'value' => 'effect4'),
 			"group" 		=> 'Font Icon',
 		),
 
 		array(
 			"type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Font size', 'socialicon' ),
+			"heading" 		=> 	__( 'Font size', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"size",
-			"description" 	=> 	__( 'icon font size in pixel', 'socialicon' ),
+			"description" 	=> 	__( 'icon font size in pixel', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Font Icon',
 			"suffix" 		=> 'px',
-			'value' 		=> __( "20", 'socialicon' ),
+			'value' 		=> __( "20", 'mega-addons-for-visual-composer' ),
 		),
 
 		array(
 			"type" 			=> 	"textfield",
-			"heading" 		=> 	__( 'Border Radius', 'socialicon' ),
+			"heading" 		=> 	__( 'Border Radius', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"radius",
-			"description" 	=> 	__( 'border radius from edges eg, 5px or 50%', 'socialicon' ),
+			"description" 	=> 	__( 'border radius from edges eg, 5px or 50%', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Font Icon',
-			'value' 		=> __( "0px", 'socialicon' ),
+			'value' 		=> __( "0px", 'mega-addons-for-visual-composer' ),
 		),
 
 		array(
 			"type" 			=> 	"colorpicker",
-			"heading" 		=> 	__( 'Icon Color', 'socialicon' ),
+			"heading" 		=> 	__( 'Icon Color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"clr",
 			"group" 		=> 'Color',
 		),
 
 		array(
 			"type" 			=> 	"colorpicker",
-			"heading" 		=> 	__( 'Background Color', 'socialicon' ),
+			"heading" 		=> 	__( 'Background Color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"bgclr",
 			"group" 		=> 'Color',
 		),
 
 		array(
 			"type" 			=> 	"colorpicker",
-			"heading" 		=> 	__( 'Hover Icon Color', 'socialicon' ),
+			"heading" 		=> 	__( 'Hover Icon Color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"hoverclr",
 			"group" 		=> 'Color',
 		),
 
 		array(
 			"type" 			=> 	"colorpicker",
-			"heading" 		=> 	__( 'Hover Background Color', 'socialicon' ),
+			"heading" 		=> 	__( 'Hover Background Color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"hoverbg",
 			"group" 		=> 'Color',
 		),

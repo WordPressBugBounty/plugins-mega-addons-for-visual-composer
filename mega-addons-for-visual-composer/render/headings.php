@@ -28,20 +28,19 @@ class WPBakeryShortCode_vc_headings extends WPBakeryShortCode {
 			'transform' 	=>		'default',
 			'classname' 	=>		'',
 		), $atts ) );
-		$some_id = rand(5, 500);
+		$some_id = VC_MEGA::next_instance_id();
 		if ($image_id != '') {
 			$image_url = wp_get_attachment_url( $image_id );		
 		}
 		$content = wpb_js_remove_wpautop($content, true);
-		wp_enqueue_style( 'vc-heading-css', plugins_url( '../css/heading.css' , __FILE__ ));
+		wp_enqueue_style( 'vc-heading-css', plugins_url( '../css/heading.css' , __FILE__ ), array(), VC_MEGA::VERSION);
 		$atts = vc_map_get_attributes( $this->getShortcode(), $atts );
 		$googleallfonts = "";
-		if($google_fonts != "default"){
+		if ( 'yes' !== $use_theme_fonts && is_string( $google_fonts ) && 'default' !== $google_fonts && '' !== trim( $google_fonts ) ) {
 			$fontsData = $this->getFontsData( $atts, 'google_fonts' );
 			$googleFontsStyles = $this->googleFontsStyles( $fontsData );
-			$this->enqueueGoogleFonts( $fontsData );
 			if (empty($googleFontsStyles) == false){
-				$googleallfonts = esc_attr( implode( ';', $googleFontsStyles ) );
+				$googleallfonts = implode( ';', $googleFontsStyles );
 			} else {
 				$googleallfonts = $googleFontsStyles;
 			}
@@ -159,6 +158,10 @@ class WPBakeryShortCode_vc_headings extends WPBakeryShortCode {
 	}
 
 	protected function getFontsData( $atts, $paramName ) {
+		if ( ! is_array( $atts ) || ! isset( $atts[ $paramName ] ) || ! is_string( $atts[ $paramName ] ) || '' === trim( $atts[ $paramName ] ) ) {
+			return '';
+		}
+
 		$googleFontsParam = new Vc_Google_Fonts();
 		$field = WPBMap::getParam( $this->shortcode, $paramName );
 		$fieldSettings = isset( $field['settings'], $field['settings']['fields'] ) ? $field['settings']['fields'] : array();
@@ -168,48 +171,44 @@ class WPBakeryShortCode_vc_headings extends WPBakeryShortCode {
 	}
 
 	protected function googleFontsStyles( $fontsData ) {
-		// Inline styles
-		$fontFamily = explode( ':', $fontsData['values']['font_family'] );
-		$styles[] = 'font-family:' . $fontFamily[0];
-		$fontStyles = explode( ':', $fontsData['values']['font_style'] );
-		if(count($fontStyles)>1){
-			$styles[] = 'font-weight:' . $fontStyles[1];
-			$styles[] = 'font-style:' . $fontStyles[2];
-			return $styles;
-		} else {
-			return "";
-		}
-	}
-
-	protected function enqueueGoogleFonts( $fontsData ) {
-		// Get extra subsets for settings (latin/cyrillic/etc)
-		$settings = get_option( 'wpb_js_google_fonts_subsets' );
-		if ( is_array( $settings ) && ! empty( $settings ) ) {
-			$subsets = '&subset=' . implode( ',', $settings );
-		} else {
-			$subsets = '';
+		$fallback = array( 'font-family: Arial, sans-serif' );
+		if ( ! is_array( $fontsData ) || ! isset( $fontsData['values'] ) || ! is_array( $fontsData['values'] ) || ! isset( $fontsData['values']['font_family'] ) || ! is_string( $fontsData['values']['font_family'] ) ) {
+			return $fallback;
 		}
 
-		// We also need to enqueue font from googleapis
-		if ( isset( $fontsData['values']['font_family'] ) ) {
-			wp_enqueue_style( 'vc_google_fonts_' . vc_build_safe_css_class( $fontsData['values']['font_family'] ), '//fonts.googleapis.com/css?family=' . $fontsData['values']['font_family'] . $subsets );
+		$font_family = trim( explode( ':', $fontsData['values']['font_family'], 2 )[0] );
+		if ( '' === $font_family || 1 !== preg_match( '/^[\p{L}\p{M}\p{N}_ -]+$/u', $font_family ) ) {
+			return $fallback;
 		}
+
+		$styles = array( 'font-family: "' . $font_family . '", Arial, sans-serif' );
+		if ( isset( $fontsData['values']['font_style'] ) && is_string( $fontsData['values']['font_style'] ) ) {
+			$font_style = explode( ':', $fontsData['values']['font_style'], 3 );
+			if ( isset( $font_style[1] ) && preg_match( '/^[1-9]00$/', $font_style[1] ) ) {
+				$styles[] = 'font-weight: ' . $font_style[1];
+			}
+			if ( isset( $font_style[2] ) && in_array( strtolower( $font_style[2] ), array( 'normal', 'italic' ), true ) ) {
+				$styles[] = 'font-style: ' . strtolower( $font_style[2] );
+			}
+		}
+
+		return $styles;
 	}
 }
 
 
 vc_map( array(
-	"name" 			=> __( 'Heading', 'heading' ),
+	"name" 			=> __( 'Heading', 'mega-addons-for-visual-composer' ),
 	"base" 			=> "vc_headings",
-	"category" 		=> __('Mega Addons'),
-	"description" 	=> __('Display stylish headings', 'heading'),
+	"category" 		=> __('Mega Addons', 'mega-addons-for-visual-composer'),
+	"description" 	=> __('Display stylish headings', 'mega-addons-for-visual-composer'),
 	"icon" => plugin_dir_url( __FILE__ ).'../icons/heading.png',
 	'params' => array(
 		array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Select Style', 'heading' ),
+			"heading" 		=> __( 'Select Style', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "style",
-			"description" 	=> 'click to <a href="https://addons.topdigitaltrends.net/headings/" target="_blank">See Demo</a>',
+			"description" 	=> 'Click to choose a heading style',
 			"group" 		=> "General",
 			"value"			=>	array(
 				"Simple Top Line"		=>	"theme1",
@@ -223,7 +222,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Line length', 'heading' ),
+			"heading" 		=> __( 'Line length', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "linewidth",
 			"edit_field_class" => "vc_col-sm-4",
 			"suffix" 		=> 	'px',
@@ -234,7 +233,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Border Width', 'heading' ),
+			"heading" 		=> __( 'Border Width', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "borderwidth",
 			"edit_field_class" => "vc_col-sm-4",
 			"value"			=>	"2",
@@ -244,7 +243,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Border Color', 'heading' ),
+			"heading" 		=> __( 'Border Color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "borderclr",
 			"edit_field_class" => "vc_col-sm-4",
 			"value"			=>	"#000",
@@ -253,7 +252,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Seclect Icon/Image', 'heading' ),
+			"heading" 		=> __( 'Seclect Icon/Image', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "style2",
 			"dependency" => array('element' => "style", 'value' => array('theme4', 'theme5', 'theme6')),
 			"group" 		=> "General",
@@ -267,7 +266,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "iconpicker",
-			"heading" 		=> __( 'Choose Icon', 'heading' ),
+			"heading" 		=> __( 'Choose Icon', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "icon",
 			"dependency" => array('element' => "style2", 'value' => 'icon'),
 			"group" 		=> "General",
@@ -275,7 +274,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Icon Alignment', 'heading' ),
+			"heading" 		=> __( 'Icon Alignment', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "iconalign",
 			"dependency" => array('element' => "style2", 'value' => 'icon'),
 			"group" 		=> "General",
@@ -288,7 +287,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Color for Icon', 'heading' ),
+			"heading" 		=> __( 'Color for Icon', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "iconclr",
 			"dependency" => array('element' => "style2", 'value' => 'icon'),
 			"group" 		=> "General",
@@ -296,7 +295,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "attach_image",
-			"heading" 		=> __( 'Choose Image', 'heading' ),
+			"heading" 		=> __( 'Choose Image', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "image_id",
 			"dependency" => array('element' => "style2", 'value' => 'image'),
 			"group" 		=> "General",
@@ -304,7 +303,7 @@ vc_map( array(
 
 		array(
             "type" 			=> 	"textfield",
-			"heading" 		=> 	__( 'Extra class name', 'megaaddons' ),
+			"heading" 		=> 	__( 'Extra class name', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"classname",
 			"description" 	=> 	"Style particular content element differently - add a class name and refer to it in custom CSS.",
 			"group" 		=> 	'General',
@@ -314,7 +313,7 @@ vc_map( array(
 			"type" 			=> "vc_links",
 			"param_name" 	=> "caption_url",
 			"class"			=>	"ult_param_heading",
-			"description" 	=> __( '<span style="Background: #ddd;padding: 12px; display: block; color: #0073aa;font-weight:600;"><a href="https://1.envato.market/02aNL" target="_blank" style="text-decoration: none;">Get the Pro version for more stunning elements and customization options.</a></span>', 'ihover' ),
+			"description" 	=> '<span style="Background: #ddd;padding: 12px; display: block; color: #0073aa;font-weight:600;">' . '<a href="https://1.envato.market/02aNL" target="_blank" style="text-decoration: none;">' . esc_html__( 'Get the Pro version for more stunning elements and customization options.', 'mega-addons-for-visual-composer' ) . '</a>' . '</span>',
 			"group" 		=> 'General',
 		),
 
@@ -322,7 +321,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "textfield",
-			"heading" 		=> __( 'Title', 'heading' ),
+			"heading" 		=> __( 'Title', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "title",
 			"value"			=>	"Title Here",
 			"group" 		=> "Heading",
@@ -330,7 +329,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Heading Alignment', 'heading' ),
+			"heading" 		=> __( 'Heading Alignment', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "align",
 			"group" 		=> "Heading",
 			"value"			=>	array(
@@ -342,7 +341,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "textarea_html",
-			"heading" 		=> __( 'Description', 'heading' ),
+			"heading" 		=> __( 'Description', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "content",
 			"value"			=>	"write your detail or leave blank",
 			"group" 		=> "Heading",
@@ -352,15 +351,15 @@ vc_map( array(
 			"type" 			=> "vc_links",
 			"param_name" 	=> "caption_urls",
 			"class"			=>	"ult_param_heading",
-			"description" 	=> __( '<span style="Background: #ddd;padding: 10px; display: block; color: #302f2f;font-weight:600;">Google Fonts Option</span>', 'ihover' ),
+			"description" 	=> '<span style="Background: #ddd;padding: 10px; display: block; color: #302f2f;font-weight:600;">' . esc_html__( 'Google Fonts Option', 'mega-addons-for-visual-composer' ) . '</span>',
 			"group" 		=> 'Typography',
 		),
 
 		array(
 			"type" 			=> 	"checkbox",
-			"heading" 		=> 	__( 'Use theme default font family?', 'creativelink' ),
+			"heading" 		=> 	__( 'Use theme default font family?', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"use_theme_fonts",
-			"description" 	=> 	__( 'Use font family from the theme.', 'creativelink' ),
+			"description" 	=> 	__( 'Use font family from the theme.', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'Typography',
 			"value" 		=> array(
 					"Yes"		=> "yes",
@@ -373,8 +372,8 @@ vc_map( array(
 			'value' => 'default',
 			'settings' => array(
 				'fields' => array(
-					'font_family_description' => __( 'Select font family.', 'js_composer' ),
-					'font_style_description' => __( 'Select font styling.', 'js_composer' ),
+					'font_family_description' => __( 'Select font family.', 'mega-addons-for-visual-composer' ),
+					'font_style_description' => __( 'Select font styling.', 'mega-addons-for-visual-composer' ),
 				),
 			),
 			"group" 		=> 	'Typography',
@@ -389,13 +388,13 @@ vc_map( array(
 			"type" 			=> "vc_links",
 			"param_name" 	=> "caption_urlss",
 			"class"			=>	"ult_param_heading",
-			"description" 	=> __( '<span style="Background: #ddd;padding: 10px; display: block; color: #302f2f;font-weight:600;">Title Settings</span>', 'ihover' ),
+			"description" 	=> '<span style="Background: #ddd;padding: 10px; display: block; color: #302f2f;font-weight:600;">' . esc_html__( 'Title Settings', 'mega-addons-for-visual-composer' ) . '</span>',
 			"group" 		=> 'Typography',
 		),
 
 		array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Transform', 'button' ),
+			"heading" 		=> __( 'Transform', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "transform",
 			"group" 		=> 'Typography',
 			"value"			=>	array(
@@ -409,17 +408,17 @@ vc_map( array(
 
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Line Height', 'heading' ),
+			"heading" 		=> __( 'Line Height', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "lineheight",
 			"edit_field_class" => "vc_col-sm-6",
-			"description" 	=> __('margin between line and headings', 'heading'),
+			"description" 	=> __('margin between line and headings', 'mega-addons-for-visual-composer'),
 			"value"			=>	"1",
 			"group" 		=> "Typography",
 		),
 
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Title [Font Size]', 'heading' ),
+			"heading" 		=> __( 'Title [Font Size]', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "titlesize",
 			"edit_field_class" => "vc_col-sm-6",
 			"value"			=>	"22",
@@ -429,7 +428,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Title Color', 'heading' ),
+			"heading" 		=> __( 'Title Color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "titleclr",
 			"value"			=>	"#000",
 			"group" 		=> "Typography",
@@ -439,13 +438,13 @@ vc_map( array(
 			"type" 			=> "vc_links",
 			"param_name" 	=> "caption_urldesc",
 			"class"			=>	"ult_param_heading",
-			"description" 	=> __( '<span style="Background: #ddd;padding: 10px; display: block; color: #302f2f;font-weight:600;">Description Settings</span>', 'ihover' ),
+			"description" 	=> '<span style="Background: #ddd;padding: 10px; display: block; color: #302f2f;font-weight:600;">' . esc_html__( 'Description Settings', 'mega-addons-for-visual-composer' ) . '</span>',
 			"group" 		=> 'Typography',
 		),
 
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Description [Font Size]', 'ihover' ),
+			"heading" 		=> __( 'Description [Font Size]', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "desc_size",
 			"suffix" 		=> 'px',
 			"group" 		=> 'Typography',

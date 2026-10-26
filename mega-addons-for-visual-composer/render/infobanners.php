@@ -52,17 +52,16 @@ class WPBakeryShortCode_info_banner_vc extends WPBakeryShortCode {
 		if ($image_id != '') {
 			$image_url = wp_get_attachment_url( $image_id );		
 		}
-		$some_id = rand(5, 500);
-		wp_enqueue_style( 'infobanner-css', plugins_url( '../css/infobanner.css' , __FILE__ ));
+		$some_id = VC_MEGA::next_instance_id();
+		wp_enqueue_style( 'infobanner-css', plugins_url( '../css/infobanner.css' , __FILE__ ), array(), VC_MEGA::VERSION);
 		$content = wpb_js_remove_wpautop($content, true);
 		$atts = vc_map_get_attributes( $this->getShortcode(), $atts );
 		$googleallfonts = "";
-		if($google_fonts != "default"){
+		if ( 'yes' !== $use_theme_fonts && is_string( $google_fonts ) && 'default' !== $google_fonts && '' !== trim( $google_fonts ) ) {
 			$fontsData = $this->getFontsData( $atts, 'google_fonts' );
 			$googleFontsStyles = $this->googleFontsStyles( $fontsData );
-			$this->enqueueGoogleFonts( $fontsData );
 			if (empty($googleFontsStyles) == false){
-				$googleallfonts = esc_attr( implode( ';', $googleFontsStyles ) );
+				$googleallfonts = implode( ';', $googleFontsStyles );
 			} else {
 				$googleallfonts = $googleFontsStyles;
 			}
@@ -170,7 +169,7 @@ class WPBakeryShortCode_info_banner_vc extends WPBakeryShortCode {
     			background: <?php echo esc_attr($btn_hvrbg) ?> !important;
 			}
 			.maw_infobanner_wrap<?php echo esc_attr($some_id); ?> .info_bn_box *{
-				<?php echo esc_attr($googleallfonts); ?>;
+				<?php echo wp_kses( safecss_filter_attr( $googleallfonts ), array() ); ?>;
 			}
 			@media only screen and (max-width: 480px) {
 				.maw_infobanner_wrap<?php echo esc_attr($some_id); ?> .info_bn_box .mega_content *{
@@ -183,6 +182,10 @@ class WPBakeryShortCode_info_banner_vc extends WPBakeryShortCode {
 	}
 
 	protected function getFontsData( $atts, $paramName ) {
+		if ( ! is_array( $atts ) || ! isset( $atts[ $paramName ] ) || ! is_string( $atts[ $paramName ] ) || '' === trim( $atts[ $paramName ] ) ) {
+			return '';
+		}
+
 		$googleFontsParam = new Vc_Google_Fonts();
 		$field = WPBMap::getParam( $this->shortcode, $paramName );
 		$fieldSettings = isset( $field['settings'], $field['settings']['fields'] ) ? $field['settings']['fields'] : array();
@@ -192,49 +195,44 @@ class WPBakeryShortCode_info_banner_vc extends WPBakeryShortCode {
 	}
 
 	protected function googleFontsStyles( $fontsData ) {
-		// Inline styles
-		$fontFamily = explode( ':', $fontsData['values']['font_family'] );
-		$styles[] = 'font-family:' . $fontFamily[0];
-		$fontStyles = explode( ':', $fontsData['values']['font_style'] );
-		if(count($fontStyles)>1){
-			$styles[] = 'font-weight:' . $fontStyles[1];
-			$styles[] = 'font-style:' . $fontStyles[2];
-			return $styles;
-		} else {
-			return "";
+		$fallback = array( 'font-family: Arial, sans-serif' );
+		if ( ! is_array( $fontsData ) || ! isset( $fontsData['values'] ) || ! is_array( $fontsData['values'] ) || ! isset( $fontsData['values']['font_family'] ) || ! is_string( $fontsData['values']['font_family'] ) ) {
+			return $fallback;
 		}
 
-	}
-
-	protected function enqueueGoogleFonts( $fontsData ) {
-		// Get extra subsets for settings (latin/cyrillic/etc)
-		$settings = get_option( 'wpb_js_google_fonts_subsets' );
-		if ( is_array( $settings ) && ! empty( $settings ) ) {
-			$subsets = '&subset=' . implode( ',', $settings );
-		} else {
-			$subsets = '';
+		$font_family = trim( explode( ':', $fontsData['values']['font_family'], 2 )[0] );
+		if ( '' === $font_family || 1 !== preg_match( '/^[\p{L}\p{M}\p{N}_ -]+$/u', $font_family ) ) {
+			return $fallback;
 		}
 
-		// We also need to enqueue font from googleapis
-		if ( isset( $fontsData['values']['font_family'] ) ) {
-			wp_enqueue_style( 'vc_google_fonts_' . vc_build_safe_css_class( $fontsData['values']['font_family'] ), '//fonts.googleapis.com/css?family=' . $fontsData['values']['font_family'] . $subsets );
+		$styles = array( 'font-family: "' . $font_family . '", Arial, sans-serif' );
+		if ( isset( $fontsData['values']['font_style'] ) && is_string( $fontsData['values']['font_style'] ) ) {
+			$font_style = explode( ':', $fontsData['values']['font_style'], 3 );
+			if ( isset( $font_style[1] ) && preg_match( '/^[1-9]00$/', $font_style[1] ) ) {
+				$styles[] = 'font-weight: ' . $font_style[1];
+			}
+			if ( isset( $font_style[2] ) && in_array( strtolower( $font_style[2] ), array( 'normal', 'italic' ), true ) ) {
+				$styles[] = 'font-style: ' . strtolower( $font_style[2] );
+			}
 		}
+
+		return $styles;
 	}
 }
 
 
 vc_map( array(
-	"name" 			=> __( 'Info Banner', 'info-banner-vc' ),
+	"name" 			=> __( 'Info Banner', 'mega-addons-for-visual-composer' ),
 	"base" 			=> "info_banner_vc",
-	"category" 		=> __('Mega Addons'),
-	"description" 	=> __('Displays the banner information', 'info-banner-vc'),
+	"category" 		=> __('Mega Addons', 'mega-addons-for-visual-composer'),
+	"description" 	=> __('Displays the banner information', 'mega-addons-for-visual-composer'),
 	"icon" => plugin_dir_url( __FILE__ ).'../icons/infobanner.png',
 	'params' => array(
 		array(
             "type" 			=> 	"dropdown",
-			"heading" 		=> 	__( 'Style', 'info-banner-vc' ),
+			"heading" 		=> 	__( 'Style', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"style_visibility",
-			"description" 	=> 	__( 'select styles for info banner <a href="http://addons.topdigitaltrends.net/info-banner/">See Demo</a>', 'info-banner-vc' ),
+			"description" 	=> 	esc_html__( 'select styles for info banner', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'General',
 			"value" 		=>  array(
 				'Top Image Bottom Content' =>  'top_to_bottom',
@@ -246,9 +244,9 @@ vc_map( array(
 
         array(
             "type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Picture box width', 'info-banner-vc' ),
+			"heading" 		=> 	__( 'Picture box width', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"pic_width",
-			"description" 	=> 	__( 'Set the width of picture box in percentage e.g 50', 'info-banner-vc' ),
+			"description" 	=> 	__( 'Set the width of picture box in percentage e.g 50', 'mega-addons-for-visual-composer' ),
 			"dependency" => array('element' => "style_visibility", 'value' => array('left', 'right', 'button')),
 			"value"			=>	"50",
 			"suffix" 		=> '%',
@@ -257,9 +255,9 @@ vc_map( array(
 
         array(
             "type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Content box width', 'info-banner-vc' ),
+			"heading" 		=> 	__( 'Content box width', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"content_width",
-			"description" 	=> 	__( 'Set the width of content box in percentage e.g 50', 'info-banner-vc' ),
+			"description" 	=> 	__( 'Set the width of content box in percentage e.g 50', 'mega-addons-for-visual-composer' ),
 			"dependency" => array('element' => "style_visibility", 'value' => array('left', 'right', 'button')),
 			"value"			=>	"50",
 			"suffix" 		=> 	'%',
@@ -268,7 +266,7 @@ vc_map( array(
 
         array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Shadow', 'button' ),
+			"heading" 		=> __( 'Shadow', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "box_shadow",
 			"group" 		=> 'General',
 			"value"			=>	array(
@@ -279,7 +277,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Gradient Background', 'button' ),
+			"heading" 		=> __( 'Gradient Background', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "gradient_bg",
 			"description" 	=> 'if true then leave empty background color and image from Design Options.',
 			"group" 		=> 'General',
@@ -291,7 +289,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Primary Color', 'info-banner-vc' ),
+			"heading" 		=> __( 'Primary Color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "gr_primclr",
 			"edit_field_class" => "vc_col-sm-4",
 			"dependency" 	=> array('element' => "gradient_bg", 'value' => 'show'),
@@ -301,7 +299,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Secondary Color', 'info-banner-vc' ),
+			"heading" 		=> __( 'Secondary Color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "gr_secndclr",
 			"edit_field_class" => "vc_col-sm-4",
 			"dependency" 	=> array('element' => "gradient_bg", 'value' => 'show'),
@@ -311,7 +309,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Gradient Angle', 'info-banner-vc' ),
+			"heading" 		=> __( 'Gradient Angle', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "gr_angle",
 			"edit_field_class" => "vc_col-sm-4",
 			"dependency" 	=> array('element' => "gradient_bg", 'value' => 'show'),
@@ -322,7 +320,7 @@ vc_map( array(
 
 		array(
             "type" 			=> 	"textfield",
-			"heading" 		=> 	__( 'Extra Class Name', 'megaaddons' ),
+			"heading" 		=> 	__( 'Extra Class Name', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"classname",
 			"description" 	=> 	"Style particular content element differently - add a class name and refer to it in custom CSS.",
 			"group" 		=> 	'General',
@@ -332,7 +330,7 @@ vc_map( array(
 			"type" 			=> "vc_links",
 			"param_name" 	=> "caption_urls",
 			"class"			=>	"ult_param_heading",
-			"description" 	=> __( '<span style="Background: #ddd;padding: 10px; display: block; color: #0073aa;font-weight:600;">Background Options</span>', 'ihover' ),
+			"description" 	=> '<span style="Background: #ddd;padding: 10px; display: block; color: #0073aa;font-weight:600;">' . esc_html__( 'Background Options', 'mega-addons-for-visual-composer' ) . '</span>',
 			"group" 		=> 'General',
 		),
 
@@ -346,7 +344,7 @@ vc_map( array(
 			"type" 			=> "vc_links",
 			"param_name" 	=> "caption_url",
 			"class"			=>	"ult_param_heading",
-			"description" 	=> __( '<span style="Background: #ddd;padding: 10px; display: block; color: #0073aa;font-weight:600;"><a href="https://1.envato.market/02aNL" target="_blank" style="text-decoration: none;">Get the Pro version for more stunning elements and customization options.</a></span>', 'ihover' ),
+			"description" 	=> '<span style="Background: #ddd;padding: 10px; display: block; color: #0073aa;font-weight:600;">' . '<a href="https://1.envato.market/02aNL" target="_blank" style="text-decoration: none;">' . esc_html__( 'Get the Pro version for more stunning elements and customization options.', 'mega-addons-for-visual-composer' ) . '</a>' . '</span>',
 			"group" 		=> 'General',
 		),
 
@@ -354,9 +352,9 @@ vc_map( array(
 
         array(
             "type" 			=> 	"textfield",
-			"heading" 		=> 	__( 'Padding ', 'info-banner-vc' ),
+			"heading" 		=> 	__( 'Padding ', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"img_padding",
-			"description" 	=> 	__( 'top right bottom left', 'info-banner-vc' ),
+			"description" 	=> 	__( 'top right bottom left', 'mega-addons-for-visual-composer' ),
 			"edit_field_class" => "vc_col-sm-4 edit_field_padding_top",
 			"value"			=>	"0px 0px 0px 0px",
 			"group" 		=> 	'Image',
@@ -364,7 +362,7 @@ vc_map( array(
 
         array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Shadow', 'button' ),
+			"heading" 		=> __( 'Shadow', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "img_shadow",
 			"edit_field_class" => "vc_col-sm-4 edit_field_padding_top",
 			"group" 		=> 'Image',
@@ -376,7 +374,7 @@ vc_map( array(
 
 		array(
             "type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Border Radius', 'info-banner-vc' ),
+			"heading" 		=> 	__( 'Border Radius', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"img_radius",
 			"edit_field_class" => "vc_col-sm-4 edit_field_padding_top",
 			"suffix" 		=> 	'px',
@@ -385,34 +383,34 @@ vc_map( array(
 
         array(
             "type" 			=> 	"attach_image",
-			"heading" 		=> 	__( 'Banner image', 'info-banner-vc' ),
+			"heading" 		=> 	__( 'Banner image', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"image_id",
 			"edit_field_class" => "vc_col-sm-4",
-			"description" 	=> 	__( 'Select image for banner logo', 'info-banner-vc' ),
+			"description" 	=> 	__( 'Select image for banner logo', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'Image',
         ),
 
         array(
             "type" 			=> 	"textfield",
-			"heading" 		=> 	__( 'Alternate Text', 'info-banner-vc' ),
+			"heading" 		=> 	__( 'Alternate Text', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"alt",
 			"edit_field_class" => "vc_col-sm-8",
-			"description" 	=> 	__( 'It will be used as alt attribute of img tag', 'info-banner-vc' ),
+			"description" 	=> 	__( 'It will be used as alt attribute of img tag', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'Image',
         ),
 
         array(
             "type" 			=> 	"textfield",
-			"heading" 		=> 	__( 'Image width', 'info-banner-vc' ),
+			"heading" 		=> 	__( 'Image width', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"pic_size",
-			"description" 	=> 	__( 'set image width e.g 100px or 100%', 'info-banner-vc' ),
+			"description" 	=> 	__( 'set image width e.g 100px or 100%', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'Image',
         ),
         array(
             "type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Image height', 'info-banner-vc' ),
+			"heading" 		=> 	__( 'Image height', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"pic_height",
-			"description" 	=> 	__( 'set image height in pixel e.g 100 or leave blank for default', 'info-banner-vc' ),
+			"description" 	=> 	__( 'set image height in pixel e.g 100 or leave blank for default', 'mega-addons-for-visual-composer' ),
 			"suffix" 		=> 	'px',
 			"group" 		=> 	'Image',
         ),
@@ -421,26 +419,26 @@ vc_map( array(
 
         array(
             "type" 			=> 	"textarea_html",
-			"heading" 		=> 	__( 'Description', 'info-banner-vc' ),
+			"heading" 		=> 	__( 'Description', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"content",
-			"description" 	=> 	__( 'write detail about info banner', 'info-banner-vc' ),
+			"description" 	=> 	__( 'write detail about info banner', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'Content',
 			"value"			=> '<h2>Caption Title</h2><p>caption detail here</p>'
         ),
 
         array(
             "type" 			=> 	"textfield",
-			"heading" 		=> 	__( 'Padding ', 'info-banner-vc' ),
+			"heading" 		=> 	__( 'Padding ', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"text_padding",
 			"edit_field_class" => "vc_col-sm-6",
-			"description" 	=> 	__( 'top right bottom left', 'info-banner-vc' ),
+			"description" 	=> 	__( 'top right bottom left', 'mega-addons-for-visual-composer' ),
 			"value"			=>	"0px 0px 0px 0px",
 			"group" 		=> 	'Content',
         ),
 
         array(
             "type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Content Size [For Mobile]', 'info-banner-vc' ),
+			"heading" 		=> 	__( 'Content Size [For Mobile]', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"descsize",
 			"edit_field_class" => "vc_col-sm-6",
 			"suffix" 		=> 'px',
@@ -451,15 +449,15 @@ vc_map( array(
 			"type" 			=> "vc_links",
 			"param_name" 	=> "caption_urlss",
 			"class"			=>	"ult_param_heading",
-			"description" 	=> __( '<span style="Background: #ddd;padding: 10px; display: block; color: #302f2f;font-weight:600;">Google Fonts Option</span>', 'ihover' ),
+			"description" 	=> '<span style="Background: #ddd;padding: 10px; display: block; color: #302f2f;font-weight:600;">' . esc_html__( 'Google Fonts Option', 'mega-addons-for-visual-composer' ) . '</span>',
 			"group" 		=> 'Content',
 		),
 
         array(
 			"type" 			=> 	"checkbox",
-			"heading" 		=> 	__( 'Use theme default font family?', 'creativelink' ),
+			"heading" 		=> 	__( 'Use theme default font family?', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"use_theme_fonts",
-			"description" 	=> 	__( 'Use font family from the theme.', 'creativelink' ),
+			"description" 	=> 	__( 'Use font family from the theme.', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'Content',
 			"value" 		=> array(
 					"Yes"		=> "yes",
@@ -472,8 +470,8 @@ vc_map( array(
 			'value' => 'default',
 			'settings' => array(
 				'fields' => array(
-					'font_family_description' => __( 'Select font family.', 'js_composer' ),
-					'font_style_description' => __( 'Select font styling.', 'js_composer' ),
+					'font_family_description' => __( 'Select font family.', 'mega-addons-for-visual-composer' ),
+					'font_style_description' => __( 'Select font styling.', 'mega-addons-for-visual-composer' ),
 				),
 			),
 			"group" 		=> 	'Content',
@@ -489,25 +487,25 @@ vc_map( array(
 
         array(
 			"type" 			=> "textfield",
-			"heading" 		=> __( 'Ribbon text', 'info-banner-vc' ),
+			"heading" 		=> __( 'Ribbon text', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "ribbon_text",
-			"description" 	=> __( 'write ribbon text for special offer or leave blank', 'info-banner-vc' ),
+			"description" 	=> __( 'write ribbon text for special offer or leave blank', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Ribbon',
 		),
 
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Text color', 'info-banner-vc' ),
+			"heading" 		=> __( 'Text color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "ribbon_clr",
-			"description" 	=> __( 'Ribbon text color', 'info-banner-vc' ),
+			"description" 	=> __( 'Ribbon text color', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Ribbon',
 		),
 
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Background color', 'info-banner-vc' ),
+			"heading" 		=> __( 'Background color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "ribbon_bg",
-			"description" 	=> __( 'Ribbon background color', 'info-banner-vc' ),
+			"description" 	=> __( 'Ribbon background color', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Ribbon',
 		),
 
@@ -516,23 +514,23 @@ vc_map( array(
 
 		array(
 			"type" 			=> "iconpicker",
-			"heading" 		=> __( 'Select Icon', 'info-banner-vc' ),
+			"heading" 		=> __( 'Select Icon', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "btn_icon",
-			"description" 	=> __( 'it will be show within text', 'info-banner-vc' ),
+			"description" 	=> __( 'it will be show within text', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Button',
 		),
 		array(
 			"type" 			=> "textfield",
-			"heading" 		=> __( 'Button text', 'info-banner-vc' ),
+			"heading" 		=> __( 'Button text', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "btn_text",
-			"description" 	=> __( 'Write button text', 'info-banner-vc' ),
+			"description" 	=> __( 'Write button text', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Button',
 		),
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Button Height', 'info-banner-vc' ),
+			"heading" 		=> __( 'Button Height', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "btn_ptop",
-			"description" 	=> __( 'button height. set in pixel e.g 20', 'info-banner-vc' ),
+			"description" 	=> __( 'button height. set in pixel e.g 20', 'mega-addons-for-visual-composer' ),
 			"value"			=>	"20",
 			"suffix" 		=> 'px',
 			"group" 		=> 'Button',
@@ -540,40 +538,40 @@ vc_map( array(
 
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Button Width', 'info-banner-vc' ),
+			"heading" 		=> __( 'Button Width', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "btn_pleft",
-			"description" 	=> __( 'button width. set in pixel e.g 60', 'info-banner-vc' ),
+			"description" 	=> __( 'button width. set in pixel e.g 60', 'mega-addons-for-visual-composer' ),
 			"value"			=>	"60",
 			"suffix" 		=> 'px',
 			"group" 		=> 'Button',
 		),
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Text font size', 'info-banner-vc' ),
+			"heading" 		=> __( 'Text font size', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "btn_size",
-			"description" 	=> __( 'Set font size in pixel e.g 18', 'info-banner-vc' ),
+			"description" 	=> __( 'Set font size in pixel e.g 18', 'mega-addons-for-visual-composer' ),
 			"value"			=>	"18",
 			"suffix" 		=> 'px',
 			"group" 		=> 'Button',
 		),
 		array(
 			"type" 			=> "vc_link",
-			"heading" 		=> __( 'Button URL', 'info-banner-vc' ),
+			"heading" 		=> __( 'Button URL', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "url",
-			"description" 	=> __( 'Write button url as link', 'info-banner-vc' ),
+			"description" 	=> __( 'Write button url as link', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Button',
 		),
 		array(
 			"type" 			=> "textfield",
-			"heading" 		=> __( 'Border Style', 'info-banner-vc' ),
+			"heading" 		=> __( 'Border Style', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "border_style",
-			"description" 	=> __( 'height style color', 'info-banner-vc' ),
+			"description" 	=> __( 'height style color', 'mega-addons-for-visual-composer' ),
 			"value"			=>	"0px solid #fff",
 			"group" 		=> 'Button',
 		),
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Border Radius', 'info-banner-vc' ),
+			"heading" 		=> __( 'Border Radius', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "btn_radius",
 			"value"			=>	"5",
 			"suffix" 		=> 'px',
@@ -582,7 +580,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Shadow', 'button' ),
+			"heading" 		=> __( 'Shadow', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "btn_shadow",
 			"group" 		=> 'Button',
 			"value"			=>	array(
@@ -593,28 +591,28 @@ vc_map( array(
 
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Text color', 'info-banner-vc' ),
+			"heading" 		=> __( 'Text color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "btn_clr",
 			"group" 		=> 'Button',
 		),
 
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Background color', 'info-banner-vc' ),
+			"heading" 		=> __( 'Background color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "btn_bg",
 			"group" 		=> 'Button',
 		),
 
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Hover Text color', 'info-banner-vc' ),
+			"heading" 		=> __( 'Hover Text color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "btn_hvrclr",
 			"group" 		=> 'Button',
 		),
 
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Hover Background', 'info-banner-vc' ),
+			"heading" 		=> __( 'Hover Background', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "btn_hvrbg",
 			"group" 		=> 'Button',
 		),

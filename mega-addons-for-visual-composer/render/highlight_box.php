@@ -25,9 +25,9 @@ class WPBakeryShortCode_highlight_box extends WPBakeryShortCode {
 			'btn_shadow' 	=>	'none',
 			'google_fonts'	=>		'default',
 		), $atts ) );
-		$some_id = rand(5, 500);
+		$some_id = VC_MEGA::next_instance_id();
 		$url = vc_build_link($url);
-		wp_enqueue_style( 'highlight-box', plugins_url( '../css/highlight-box.css' , __FILE__ ));
+		wp_enqueue_style( 'highlight-box', plugins_url( '../css/highlight-box.css' , __FILE__ ), array(), VC_MEGA::VERSION);
 		$content = wpb_js_remove_wpautop($content, true);
 		ob_start(); ?>
 			<div class="highlight_box_<?php echo esc_attr($some_id); ?>" style="display: table; width: 100%;height: 100%;">
@@ -74,17 +74,17 @@ class WPBakeryShortCode_highlight_box extends WPBakeryShortCode {
 
 
 vc_map( array(
-	"name" 			=> __( 'Highlight Box', 'highlight' ),
+	"name" 			=> __( 'Highlight Box', 'mega-addons-for-visual-composer' ),
 	"base" 			=> "highlight_box",
-	"category" 		=> __('Mega Addons'),
-	"description" 	=> __('Beautiful designed buttons for highlight', 'highlight'),
+	"category" 		=> __('Mega Addons', 'mega-addons-for-visual-composer'),
+	"description" 	=> __('Beautiful designed buttons for highlight', 'mega-addons-for-visual-composer'),
 	"icon" => plugin_dir_url( __FILE__ ).'../icons/creatives.png',
 	'params' => array(
 		array(
 			"type" 			=> 	"dropdown",
-			"heading" 		=> 	__( 'Style', 'highlight' ),
+			"heading" 		=> 	__( 'Style', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"style",
-			"description" 	=> 	__( 'highlight style'),
+			"description" 	=> 	__( 'highlight style', 'mega-addons-for-visual-composer'),
 			"group" 		=> 	'General',
 			"value"			=>	array(
 				"Slide Top"					=>		"btn-5a",
@@ -97,18 +97,18 @@ vc_map( array(
 		),
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Box Height', 'highlight' ),
+			"heading" 		=> __( 'Box Height', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "height",
-			"description" 	=> 	__( 'set in pixel eg, 140'),
+			"description" 	=> 	__( 'set in pixel eg, 140', 'mega-addons-for-visual-composer'),
 			"value"			=>	"140",
 			"suffix" 		=> 'px',
 			"group" 		=> "General",
 		),
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'line height', 'highlight' ),
+			"heading" 		=> __( 'line height', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "lineheight",
-			"description" 	=> 	__( 'between text and Icon'),
+			"description" 	=> 	__( 'between text and Icon', 'mega-addons-for-visual-composer'),
 			"dependency" => array('element' => "style", 'value' => 'fade2'),
 			"value"			=>	"2",
 			"group" 		=> "General",
@@ -116,30 +116,30 @@ vc_map( array(
 
 		array(
 			"type" 			=> "iconpicker",
-			"heading" 		=> __( 'Choose Icon', 'highlight' ),
+			"heading" 		=> __( 'Choose Icon', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "icon",
 			"group" 		=> "General",
 		),
 
 		array(
 			"type" 			=> "textarea",
-			"heading" 		=> __( 'Text', 'highlight' ),
+			"heading" 		=> __( 'Text', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "text",
-			"description" 	=> 	__( 'display heighlight box text'),
+			"description" 	=> 	__( 'display heighlight box text', 'mega-addons-for-visual-composer'),
 			"group" 		=> "General",
 		),
 
 		array(
 			"type" 			=> "textarea",
-			"heading" 		=> __( 'Text 2', 'highlight' ),
+			"heading" 		=> __( 'Text 2', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "text2",
-			"description" 	=> 	__( 'It will show in 2nd line or leave blank'),
+			"description" 	=> 	__( 'It will show in 2nd line or leave blank', 'mega-addons-for-visual-composer'),
 			"group" 		=> "General",
 		),
 
 		array(
 			"type" 			=> "vc_link",
-			"heading" 		=> __( 'Box URL', 'highlight' ),
+			"heading" 		=> __( 'Box URL', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "url",
 			"value"			=>	"#0",
 			"group" 		=> "General",
@@ -149,7 +149,7 @@ vc_map( array(
 			"type" 			=> "vc_links",
 			"param_name" 	=> "caption_url",
 			"class"			=>	"ult_param_heading",
-			"description" 	=> __( '<span style="Background: #ddd;padding: 10px; display: block; color: #0073aa;font-weight:600;"><a href="https://1.envato.market/02aNL" target="_blank" style="text-decoration: none;">Get the Pro version for more stunning elements and customization options.</a></span>', 'ihover' ),
+			"description" 	=> '<span style="Background: #ddd;padding: 10px; display: block; color: #0073aa;font-weight:600;">' . '<a href="https://1.envato.market/02aNL" target="_blank" style="text-decoration: none;">' . esc_html__( 'Get the Pro version for more stunning elements and customization options.', 'mega-addons-for-visual-composer' ) . '</a>' . '</span>',
 			"group" 		=> 'General',
 		),
 
@@ -157,21 +157,21 @@ vc_map( array(
 
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Text Color', 'highlight' ),
+			"heading" 		=> __( 'Text Color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "clr",
 			"group" 		=> "Color",
 		),
 
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Background Color', 'highlight' ),
+			"heading" 		=> __( 'Background Color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "bgclr",
 			"group" 		=> "Color",
 		),
 
 		array(
 			"type" 			=> "colorpicker",
-			"heading" 		=> __( 'Hover Background Color', 'highlight' ),
+			"heading" 		=> __( 'Hover Background Color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "hoverbg",
 			"group" 		=> "Color",
 		),
@@ -180,7 +180,7 @@ vc_map( array(
 		
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Text [Font Size]', 'highlight' ),
+			"heading" 		=> __( 'Text [Font Size]', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "textsize",
 			"value"			=>	"35",
 			"suffix" 		=> 'px',
@@ -189,7 +189,7 @@ vc_map( array(
 		
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Icon [Font Size]', 'highlight' ),
+			"heading" 		=> __( 'Icon [Font Size]', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "iconsize",
 			"value"			=>	"30",
 			"suffix" 		=> 'px',
@@ -198,16 +198,16 @@ vc_map( array(
 
 		array(
 			"type" 			=> "vc_number",
-			"heading" 		=> __( 'Radius', 'button' ),
+			"heading" 		=> __( 'Radius', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "btn_radius",
-			"description" 	=> __( 'set button radius e.g 5', 'button' ),
+			"description" 	=> __( 'set button radius e.g 5', 'mega-addons-for-visual-composer' ),
 			"suffix" 		=> 'px',
 			"group" 		=> 'Settings',
 		),
 
 		array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Transform', 'button' ),
+			"heading" 		=> __( 'Transform', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "transform",
 			"group" 		=> 'Settings',
 			"value"			=>	array(
@@ -221,7 +221,7 @@ vc_map( array(
 
 		array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Shadow', 'button' ),
+			"heading" 		=> __( 'Shadow', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "btn_shadow",
 			"group" 		=> 'Settings',
 			"value"			=>	array(

@@ -1,3 +1,4 @@
+<?php if ( ! defined( 'ABSPATH' ) ) { exit; } ?>
 <div class="price_table_1" style="background-color: <?php echo esc_attr($price_bg); ?>; box-shadow: 0 0 9px rgba(0,0,0,0.5), 0 -3px 0px <?php echo esc_attr($top_bg); ?> inset;">
 	<div class="type" style="background-color: <?php echo esc_attr($top_bg); ?>;">
 		<div class="ribbon-right" style="display: <?php echo esc_attr($offer_visibility); ?>;">

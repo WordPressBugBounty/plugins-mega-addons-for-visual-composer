@@ -11,7 +11,7 @@ class WPBakeryShortCode_social_vc_father extends WPBakeryShortCodesContainer {
 			'align' 	=> 'left',
 		), $atts ) );
 		$content = wpb_js_remove_wpautop($content, true);
-		wp_enqueue_style( 'social-icons-css', plugins_url( 'css/socialicons.css' , __FILE__ ));
+		wp_enqueue_style( 'social-icons-css', plugins_url( 'css/socialicons.css' , __FILE__ ), array(), VC_MEGA::VERSION);
 		ob_start(); ?>
 		<div style="text-align: <?php echo esc_attr($align); ?>;">
 			<div id="mega_social_icons" style="display: inline-flex;">
@@ -26,17 +26,17 @@ class WPBakeryShortCode_social_vc_father extends WPBakeryShortCodesContainer {
 
 vc_map( array(
 	"base" 			=> "social_vc_father",
-	"name" 			=> __( 'Social Icons', 'socialicon' ),
+	"name" 			=> __( 'Social Icons', 'mega-addons-for-visual-composer' ),
 	"as_parent" 	=> array('only' => 'social_vc_son'),
 	"content_element" => true,
 	"js_view" 		=> 'VcColumnView',
-	"category" 		=> __('Mega Addons'),
-	"description" 	=> __('social icons with animated effects', ''),
+	"category" 		=> __('Mega Addons', 'mega-addons-for-visual-composer' ),
+	"description" 	=> __('social icons with animated effects', 'mega-addons-for-visual-composer'),
 	"icon" => plugin_dir_url( __FILE__ ).'../icons/social.png',
 	'params' => array(
 		array(
 				"type" 			=> 	"dropdown",
-				"heading" 		=> 	__( 'Social Position', 'socialicon' ),
+				"heading" 		=> 	__( 'Social Position', 'mega-addons-for-visual-composer' ),
 				"param_name" 	=> 	"align",
 				"group" 		=> 'General',
 				"value" 		=> 	array(

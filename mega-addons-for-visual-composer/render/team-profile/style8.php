@@ -1,3 +1,4 @@
+<?php if ( ! defined( 'ABSPATH' ) ) { exit; } ?>
 <div class="mega_team_case_8 <?php echo esc_attr($classname); ?>">
     <div class="maw_team_wrap" style="background: <?php echo esc_attr($member_clr); ?>; max-width: <?php echo esc_attr($pro_size); ?>px; width: 100%;">
         <div class="maw_team_photo_wrapper">

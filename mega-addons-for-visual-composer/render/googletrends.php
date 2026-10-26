@@ -7,16 +7,15 @@ class WPBakeryShortCode_google_trends extends WPBakeryShortCode {
 
 	protected function content( $atts, $content = null ) {
 
+		$atts = is_array( $atts ) ? $atts : array();
 		extract( shortcode_atts( array(
 			'css'		=>		'',
 		), $atts ) );
+		$css = is_string( $css ) ? $css : '';
 		$css_class = apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class( $css, ' ' ), $this->settings['base'], $atts );
-		$content = wpb_js_remove_wpautop($content, true);
 		ob_start(); ?>
 		<div class="mega-google-trends <?php echo esc_attr($css_class); ?>">
-			<div class="googletrend-code">
-				<?php echo wp_kses_post($content); ?>
-			</div>
+			<p class="mega-google-trends__fallback" role="status"><?php echo esc_html__( 'The embedded chart is currently unavailable.', 'mega-addons-for-visual-composer' ); ?></p>
 		</div>
 		<?php
 		return ob_get_clean();
@@ -25,30 +24,30 @@ class WPBakeryShortCode_google_trends extends WPBakeryShortCode {
 
 
 vc_map( array(
-	"name" 			=> __( 'Google Trends', 'trends' ),
+	"name" 			=> __( 'Google Trends', 'mega-addons-for-visual-composer' ),
 	"base" 			=> "google_trends",
-	"category" 		=> __('Mega Addons'),
-	"description" 	=> __('show google trends', 'trends'),
+	"category" 		=> __('Mega Addons', 'mega-addons-for-visual-composer'),
+	"description" 	=> __('show google trends', 'mega-addons-for-visual-composer'),
 	"icon" => plugin_dir_url( __FILE__ ).'../icons/trend.png',
 	'params' => array(
 		array(
 			"type" 			=> 	"textarea_html",
-			"heading" 		=> 	__( 'Google Trend Embed Code', 'trends' ),
+			"heading" 		=> 	__( 'Google Trend Embed Code', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"content",
-			"description" 	=> 	__( 'Visit <a href="https://www.google.com/trends/explore?date=all&q=Basketball,%20Rugby,%20Handball&hl=en-US">Google Trends</a> to create your map (Step by step: 1) Find Google Trend 2) Click the cog symbol in the right corner and select "embed code" 3) On modal window copy "Embed code on left side" 4) Copy code and paste it).', 'trends' ),
-			"value"			=>	__('<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/884_RC03/embed_loader.js"></script> <script type="text/javascript"> trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"Basketball","geo":"","time":"all"},{"keyword":"Rugby","geo":"","time":"all"},{"keyword":"Handball","geo":"","time":"all"}],"category":0,"property":""}, {"exploreQuery":"date=all&q=Basketball,Rugby,Handball&hl=en-US"}); </script> '),
+			"description" 	=> __( 'Google Trends chart rendering is currently unavailable. Existing saved content is retained but not executed or displayed.', 'mega-addons-for-visual-composer' ),
+			"value"			=> '',
 			"group" 		=> 	'Embed Code',
 		),
 		array(
 			"type" 			=> "vc_links",
 			"param_name" 	=> "caption_url",
 			"class"			=>	"ult_param_heading",
-			"description" 	=> __( '<span style="Background: #ddd;padding: 10px; display: block; color: #0073aa;font-weight:600;"><a href="https://1.envato.market/02aNL" target="_blank" style="text-decoration: none;">Get the Pro version for more stunning elements and customization options.</a></span>', 'ihover' ),
+			"description" 	=> '<span style="Background: #ddd;padding: 10px; display: block; color: #0073aa;font-weight:600;">' . '<a href="https://1.envato.market/02aNL" target="_blank" style="text-decoration: none;">' . esc_html__( 'Get the Pro version for more stunning elements and customization options.', 'mega-addons-for-visual-composer' ) . '</a>' . '</span>',
 			"group" 		=> 'Embed Code',
 		),
 		array(
 			"type" 			=> "css_editor",
-			"heading" 		=> __( 'Display Design', 'trends' ),
+			"heading" 		=> __( 'Display Design', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "css",
 			"group" 		=> "Design Options",
 		),

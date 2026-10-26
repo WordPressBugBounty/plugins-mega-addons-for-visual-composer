@@ -21,17 +21,19 @@ class WPBakeryShortCode_tooltip_icons extends WPBakeryShortCode {
 			'position'		=>		'top',
 			'interactive'	=>		'true',
 		), $atts ) );
-		wp_enqueue_style( 'na-tooltip-css', plugin_dir_url( dirname(__FILE__) ).'/css/tooltipster.bundle.min.css' );
-		wp_enqueue_script( 'na-tooltip', plugin_dir_url( dirname(__FILE__) ).'/js/tooltipster.bundle.min.js', array('jquery') );
-		wp_enqueue_script( 'na-tooltipa', plugin_dir_url( dirname(__FILE__) ).'/js/tooltip.js', array('jquery') );
+		wp_enqueue_style( 'na-tooltip-css', plugin_dir_url( dirname(__FILE__) ).'/css/tooltipster.bundle.min.css' , array(), '4.2.7');
+		wp_enqueue_script( 'na-tooltip', plugin_dir_url( dirname(__FILE__) ).'/js/tooltipster.bundle.min.js', array('jquery') , '4.2.7', false);
+		wp_enqueue_script( 'na-tooltipa', plugin_dir_url( dirname(__FILE__) ).'/js/tooltip.js', array('jquery') , VC_MEGA::VERSION, false);
 		// wp_enqueue_style( 'animates-css', plugins_url( '../css/tooltip.css' , __FILE__ ));
 		if ($image_id != '') {
 			$image_url = wp_get_attachment_url( $image_id );		
 		}
 		$content = wpb_js_remove_wpautop($content, true);
-		$tooltip_id = rand();
+		$tooltip_id = VC_MEGA::next_instance_id();
+		$tooltip_description_id = 'tooltip-description-' . $tooltip_id;
 		ob_start(); ?>
-			<img src="<?php echo esc_attr($image_url); ?>" alt="<?php echo esc_attr($alt); ?>" style="max-width: 100%; width: <?php echo esc_attr($img_width); ?>;" data-uid="<?php echo esc_attr($tooltip_id); ?>" class="tooltip" data-theme="tooltipster-<?php echo esc_attr($theme); ?>" data-speed="<?php echo esc_attr($speed); ?>" data-anim="<?php echo esc_attr($animation); ?>" data-position="<?php echo esc_attr($position); ?>" data-interactive="<?php echo esc_attr($interactive); ?>" title="<?php echo esc_attr($text); ?>">
+			<button type="button" class="tooltip-trigger" aria-label="<?php echo esc_attr( $alt !== '' ? $alt : $text ); ?>" aria-describedby="<?php echo esc_attr($tooltip_description_id); ?>" style="display: inline-block; max-width: 100%; width: <?php echo esc_attr($img_width); ?>; margin: 0; padding: 0; border: 0; background: transparent; font: inherit; line-height: 0; vertical-align: middle; cursor: pointer;" data-uid="<?php echo esc_attr($tooltip_id); ?>" data-theme="tooltipster-<?php echo esc_attr($theme); ?>" data-speed="<?php echo esc_attr($speed); ?>" data-anim="<?php echo esc_attr($animation); ?>" data-position="<?php echo esc_attr($position); ?>" data-interactive="<?php echo esc_attr($interactive); ?>" title="<?php echo esc_attr($text); ?>"><img src="<?php echo esc_attr($image_url); ?>" alt="" style="display: block; max-width: 100%; width: 100%; height: auto;"></button>
+			<span id="<?php echo esc_attr($tooltip_description_id); ?>" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;"><?php echo esc_html($text); ?></span>
 			<style>
 				/*.tooltipster-content {
 					font-size: <?php echo esc_attr($textsize); ?>px !important;
@@ -45,45 +47,45 @@ class WPBakeryShortCode_tooltip_icons extends WPBakeryShortCode {
 
 
 vc_map( array(
-	"name" 			=> __( 'Tooltip Icons', 'justicons' ),
+	"name" 			=> __( 'Tooltip Icons', 'mega-addons-for-visual-composer' ),
 	"base" 			=> "tooltip_icons",
-	"category" 		=> __('Mega Addons'),
-	"description" 	=> __('show icons with tooltip', ''),
+	"category" 		=> __('Mega Addons', 'mega-addons-for-visual-composer'),
+	"description" 	=> __('show icons with tooltip', 'mega-addons-for-visual-composer'),
 	"icon" => plugin_dir_url( __FILE__ ).'../icons/icon.png',
 	'params' => array(
 		array(
             "type" 			=> 	"attach_image",
-			"heading" 		=> 	__( 'Image', 'justicons' ),
+			"heading" 		=> 	__( 'Image', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"image_id",
-			"description" 	=> 	__( 'Select the image', 'justicons' ),
+			"description" 	=> 	__( 'Select the image', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'Image',
         ),
         array(
             "type" 			=> 	"textfield",
-			"heading" 		=> 	__( 'Alternate Text', 'info-banner-vc' ),
+			"heading" 		=> 	__( 'Alternate Text', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"alt",
-			"description" 	=> 	__( 'It will be used as alt attribute of img tag', 'info-banner-vc' ),
+			"description" 	=> 	__( 'It will be used as alt attribute of img tag', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'Image',
         ),
         array(
             "type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Image Width', 'info-banner-vc' ),
+			"heading" 		=> 	__( 'Image Width', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"img_width",
 			"suffix" 		=> 	"px",
 			"group" 		=> 	'Image',
         ),
         array(
             "type" 			=> 	"textfield",
-			"heading" 		=> 	__( 'ToolTip Text', 'justicons' ),
+			"heading" 		=> 	__( 'ToolTip Text', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"text",
-			"description" 	=> 	__( 'it will show on hover image', 'justicons' ),
+			"description" 	=> 	__( 'it will show on hover image', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'Image',
         ),
         array(
 			"type" 			=> "vc_links",
 			"param_name" 	=> "caption_url",
 			"class"			=>	"ult_param_heading",
-			"description" 	=> __( '<span style="Background: #ddd;padding: 10px; display: block; color: #0073aa;font-weight:600;"><a href="https://1.envato.market/02aNL" target="_blank" style="text-decoration: none;">Get the Pro version for more stunning elements and customization options.</a></span>', 'ihover' ),
+			"description" 	=> '<span style="Background: #ddd;padding: 10px; display: block; color: #0073aa;font-weight:600;">' . '<a href="https://1.envato.market/02aNL" target="_blank" style="text-decoration: none;">' . esc_html__( 'Get the Pro version for more stunning elements and customization options.', 'mega-addons-for-visual-composer' ) . '</a>' . '</span>',
 			"group" 		=> 'Image',
 		),
 		// array(
@@ -120,15 +122,15 @@ vc_map( array(
    //      ),
         array(
             "type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Animation Speed', 'justicons' ),
+			"heading" 		=> 	__( 'Animation Speed', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"speed",
-			"description" 	=> 	__( 'Sets the duration of the animation, in milliseconds', 'justicons' ),
+			"description" 	=> 	__( 'Sets the duration of the animation, in milliseconds', 'mega-addons-for-visual-composer' ),
 			"value"			=>	"350",
 			"group" 		=> 	'Settings',
         ),
         array(
             "type" 			=> 	"dropdown",
-			"heading" 		=> 	__( 'Animation Style', 'justicons' ),
+			"heading" 		=> 	__( 'Animation Style', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"animation",
 			"group" 		=> 	'Settings',
 			"value"			=>	array(
@@ -141,7 +143,7 @@ vc_map( array(
         ),
         array(
             "type" 			=> 	"dropdown",
-			"heading" 		=> 	__( 'Choose Theme', 'justicons' ),
+			"heading" 		=> 	__( 'Choose Theme', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"theme",
 			"group" 		=> 	'Settings',
 			"value"			=>	array(
@@ -155,7 +157,7 @@ vc_map( array(
         ),
         array(
             "type" 			=> 	"dropdown",
-			"heading" 		=> 	__( 'Posotion', 'justicons' ),
+			"heading" 		=> 	__( 'Posotion', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"position",
 			"group" 		=> 	'Settings',
 			"value"			=>	array(
@@ -167,7 +169,7 @@ vc_map( array(
         ),
         array(
             "type" 			=> 	"dropdown",
-			"heading" 		=> 	__( 'Interactive', 'justicons' ),
+			"heading" 		=> 	__( 'Interactive', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"interactive",
 			"description" 	=> 	"Give users the possibility to interact with the content of the tooltip.",
 			"group" 		=> 	'Settings',

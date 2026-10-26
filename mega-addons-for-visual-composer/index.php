@@ -1,12 +1,16 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 	/*
 	Plugin Name: Mega Addons For WPBakery Page Builder
 	Description: Mega Addons gives you multi plugins all in one. It's very powerful for any theme.
 	Plugin URI: https://addons.topdigitaltrends.net/
 	Author: Topdigitaltrends
 	Author URI: https://www.topdigitaltrends.net/
-	Version: 4.3.0
-	License: GPL2
+	Version: 4.4.0
+	Requires at least: 4.9
+	Tested up to: 7.1
+	Text Domain: mega-addons-for-visual-composer
+	License: GPLv2
 	*/
 	
 	/*
@@ -29,6 +33,9 @@
 	require_once('main.php');
 	$N_object = new VC_MEGA( __FILE__ );
 	$N_object->init();
-	$N_object->activation();
+	// AJAX must not initialize settings before its save handler authorizes the request.
+	if ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) {
+		$N_object->activation();
+	}
 
 ?>

@@ -29,10 +29,10 @@ class WPBakeryShortCode_mvc_countdown extends WPBakeryShortCode {
 			'date'		=>	'',
 		), $atts ) );
 		$content = wpb_js_remove_wpautop($content, true);
-		wp_enqueue_style( 'countdown-css', plugins_url( '../css/jquery.countdown.css' , __FILE__ ));
-		wp_enqueue_script( 'countdown-min-js', plugins_url( '../js/countdown.min.js' , __FILE__ ), array('jquery', 'jquery-ui-core'));
-		wp_enqueue_script( 'countdown-js', plugins_url( '../js/jquery.countdown.js' , __FILE__ ), array('jquery', 'jquery-ui-core'));
-		wp_enqueue_script( 'custom-countdown-js', plugins_url( '../js/front-js/countdown.js' , __FILE__ ), array('jquery') );
+		wp_enqueue_style( 'countdown-css', plugins_url( '../css/jquery.countdown.css' , __FILE__ ), array(), '2.0.0');
+		wp_enqueue_script( 'countdown-min-js', plugins_url( '../js/countdown.min.js' , __FILE__ ), array('jquery', 'jquery-ui-core'), '1.0.2', false);
+		wp_enqueue_script( 'countdown-js', plugins_url( '../js/jquery.countdown.js' , __FILE__ ), array('jquery', 'jquery-ui-core'), '2.1.0', false);
+		wp_enqueue_script( 'custom-countdown-js', plugins_url( '../js/front-js/countdown.js' , __FILE__ ), array('jquery') , VC_MEGA::VERSION, false);
 		ob_start(); ?>
 		<div
 			id="defaultCountdown<?php echo esc_attr($id); ?>"
@@ -78,25 +78,25 @@ class WPBakeryShortCode_mvc_countdown extends WPBakeryShortCode {
 
 
 vc_map( array(
-	"name" 			=> __( 'Countdown', 'countdown' ),
+	"name" 			=> __( 'Countdown', 'mega-addons-for-visual-composer' ),
 	"base" 			=> "mvc_countdown",
-	"category" 		=> __('Mega Addons'),
-	"description" 	=> __('Set Countdown timer', 'countdown'),
+	"category" 		=> __('Mega Addons', 'mega-addons-for-visual-composer'),
+	"description" 	=> __('Set Countdown timer', 'mega-addons-for-visual-composer'),
 	"icon" => plugin_dir_url( __FILE__ ).'../icons/countdown.png',
 	'params' => array(
 		array(
             "type" 			=> 	"textfield",
-			"heading" 		=> 	__( 'Unique ID', 'countdown' ),
+			"heading" 		=> 	__( 'Unique ID', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"id",
-			"description" 	=> 	__( 'Required: It should be different from other countdown time. Any Name or numbers <a target="_blank" href="https://addons.topdigitaltrends.net/countdown/">Demo</a>', 'countdown' ),
+			"description" 	=> 	__( 'Required: It should be different from other countdown time. Enter any name or numbers.', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'General',
         ),
 
         array(
             "type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Width', 'countdown' ),
+			"heading" 		=> 	__( 'Width', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"width",
-			"description" 	=> 	__( 'set width in pixel for each week, hours, minutes and seconds e.g 100', 'countdown' ),
+			"description" 	=> 	__( 'set width in pixel for each week, hours, minutes and seconds e.g 100', 'mega-addons-for-visual-composer' ),
 			"value"			=>	'100',
 			"suffix" 		=> 'px',
 			"group" 		=> 	'General',
@@ -104,9 +104,9 @@ vc_map( array(
 
         array(
             "type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Height', 'countdown' ),
+			"heading" 		=> 	__( 'Height', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"height",
-			"description" 	=> 	__( 'set height in pixel for each week, hours, minutes and seconds e.g 100', 'countdown' ),
+			"description" 	=> 	__( 'set height in pixel for each week, hours, minutes and seconds e.g 100', 'mega-addons-for-visual-composer' ),
 			"value"			=>	'100',
 			"suffix" 		=> 'px',
 			"group" 		=> 	'General',
@@ -114,9 +114,9 @@ vc_map( array(
 
 		array(
             "type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Timer Font size', 'countdown' ),
+			"heading" 		=> 	__( 'Timer Font size', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"size",
-			"description" 	=> 	__( 'Timer font size in pixel e.g 18', 'countdown' ),
+			"description" 	=> 	__( 'Timer font size in pixel e.g 18', 'mega-addons-for-visual-composer' ),
 			"value"			=>	'18',
 			"suffix" 		=> 'px',
 			"group" 		=> 	'General',
@@ -124,9 +124,9 @@ vc_map( array(
 
         array(
             "type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Period Font size', 'countdown' ),
+			"heading" 		=> 	__( 'Period Font size', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"periodsize",
-			"description" 	=> 	__( 'period font size in pixel e.g 18', 'countdown' ),
+			"description" 	=> 	__( 'period font size in pixel e.g 18', 'mega-addons-for-visual-composer' ),
 			"value"			=>	'18',
 			"suffix" 		=> 'px',
 			"group" 		=> 	'General',
@@ -134,26 +134,26 @@ vc_map( array(
 
         array(
             "type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Line Height', 'countdown' ),
+			"heading" 		=> 	__( 'Line Height', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"lineheight",
-			"description" 	=> 	__( 'set line height between  e.g 1', 'countdown' ),
+			"description" 	=> 	__( 'set line height between  e.g 1', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'General',
         ),
 
         array(
             "type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Padding From Top', 'countdown' ),
+			"heading" 		=> 	__( 'Padding From Top', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"padding",
-			"description" 	=> 	__( 'padding from top help to move time in center default 15', 'countdown' ),
+			"description" 	=> 	__( 'padding from top help to move time in center default 15', 'mega-addons-for-visual-composer' ),
 			"suffix" 		=> 'px',
 			"group" 		=> 	'General',
         ),
 
         array(
             "type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Margin', 'countdown' ),
+			"heading" 		=> 	__( 'Margin', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"margin",
-			"description" 	=> 	__( 'set margin for each timer space between them from left and right side e.g 10', 'countdown' ),
+			"description" 	=> 	__( 'set margin for each timer space between them from left and right side e.g 10', 'mega-addons-for-visual-composer' ),
 			"value"			=>	"10",
 			"suffix" 		=> 'px',
 			"group" 		=> 	'General',
@@ -163,37 +163,37 @@ vc_map( array(
 			"type" 			=> "vc_links",
 			"param_name" 	=> "caption_url",
 			"class"			=>	"ult_param_heading",
-			"description" 	=> __( '<span style="Background: #ddd;padding: 10px; display: block; color: #0073aa;font-weight:600;"><a href="https://1.envato.market/02aNL" target="_blank" style="text-decoration: none;">Get the Pro version for more stunning elements and customization options.</a></span>', 'ihover' ),
+			"description" 	=> '<span style="Background: #ddd;padding: 10px; display: block; color: #0073aa;font-weight:600;">' . '<a href="https://1.envato.market/02aNL" target="_blank" style="text-decoration: none;">' . esc_html__( 'Get the Pro version for more stunning elements and customization options.', 'mega-addons-for-visual-composer' ) . '</a>' . '</span>',
 			"group" 		=> 'General',
 		),
 
         array(
             "type" 			=> 	"colorpicker",
-			"heading" 		=> 	__( 'Timer Text Color', 'countdown' ),
+			"heading" 		=> 	__( 'Timer Text Color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"textcolor",
 			"group" 		=> 	'Color',
         ),
 
         array(
             "type" 			=> 	"colorpicker",
-			"heading" 		=> 	__( 'Period Text Color', 'countdown' ),
+			"heading" 		=> 	__( 'Period Text Color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"periodcolor",
 			"group" 		=> 	'Color',
         ),
 
         array(
             "type" 			=> 	"colorpicker",
-			"heading" 		=> 	__( 'Background Color', 'countdown' ),
+			"heading" 		=> 	__( 'Background Color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"bgcolor",
-			"description" 	=> 	__( 'count down background color', 'countdown' ),
+			"description" 	=> 	__( 'count down background color', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'Color',
         ),
 
         array(
             "type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Border Width', 'countdown' ),
+			"heading" 		=> 	__( 'Border Width', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"borderwidth",
-			"description" 	=> 	__( 'set border width in pixel or leave blank e.g 10', 'countdown' ),
+			"description" 	=> 	__( 'set border width in pixel or leave blank e.g 10', 'mega-addons-for-visual-composer' ),
 			"value"			=>	"0",
 			"suffix" 		=>  'px',
 			"group" 		=> 	'Color',
@@ -201,25 +201,25 @@ vc_map( array(
 
         array(
             "type" 			=> 	"textfield",
-			"heading" 		=> 	__( 'Border Radius', 'countdown' ),
+			"heading" 		=> 	__( 'Border Radius', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"radius",
-			"description" 	=> 	__( 'border radius in pixel or percentage e.g 5px or 50%', 'countdown' ),
+			"description" 	=> 	__( 'border radius in pixel or percentage e.g 5px or 50%', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'Color',
         ),
 
         array(
             "type" 			=> 	"colorpicker",
-			"heading" 		=> 	__( 'Border Color', 'countdown' ),
+			"heading" 		=> 	__( 'Border Color', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"borderclr",
-			"description" 	=> 	__( 'set border color', 'countdown' ),
+			"description" 	=> 	__( 'set border color', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'Color',
         ),
 
         array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Border Style', 'countdown' ),
+			"heading" 		=> __( 'Border Style', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "borderstyle",
-			"description" 	=> __( 'set border style', 'countdown' ),
+			"description" 	=> __( 'set border style', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Color',
 				"value" 		=> array(
 					'Solid'	=>	'solid',
@@ -237,9 +237,9 @@ vc_map( array(
 
 		array(
 			"type" 			=> "dropdown",
-			"heading" 		=> __( 'Select Style', 'countdown' ),
+			"heading" 		=> __( 'Select Style', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> "style",
-			"description" 	=> __( 'Visible countdown style in', 'countdown' ),
+			"description" 	=> __( 'Visible countdown style in', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 'Countdown',
 				"value" 		=> array(
 					'Year'	=>	'YOWDHMS',
@@ -252,25 +252,25 @@ vc_map( array(
 
 		array(
             "type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Year', 'countdown' ),
+			"heading" 		=> 	__( 'Year', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"year",
-			"description" 	=> 	__( 'just number start from 0 [ e.g 0 for current year, 1 for next year.. ]', 'countdown' ),
+			"description" 	=> 	__( 'just number start from 0 [ e.g 0 for current year, 1 for next year.. ]', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'Countdown',
         ),
 
         array(
             "type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Month', 'countdown' ),
+			"heading" 		=> 	__( 'Month', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"month",
-			"description" 	=> 	__( 'just number between 1 to 12 for specific month [ e.g 3 ]', 'countdown' ),
+			"description" 	=> 	__( 'just number between 1 to 12 for specific month [ e.g 3 ]', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'Countdown',
         ),
 
         array(
             "type" 			=> 	"vc_number",
-			"heading" 		=> 	__( 'Date', 'countdown' ),
+			"heading" 		=> 	__( 'Date', 'mega-addons-for-visual-composer' ),
 			"param_name" 	=> 	"date",
-			"description" 	=> 	__( 'just number between 1 to 30 for specific date', 'countdown' ),
+			"description" 	=> 	__( 'just number between 1 to 30 for specific date', 'mega-addons-for-visual-composer' ),
 			"group" 		=> 	'Countdown',
         ),
 	),
